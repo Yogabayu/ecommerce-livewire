@@ -7,9 +7,9 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
-    #[Layout('components.admin.layouts.app')] 
+    #[Layout('layouts.admin.app')]
     public function render()
     {
-        return view('pages.admin.dashboard');
+        return view('livewire.admin.dashboard');
     }
 }

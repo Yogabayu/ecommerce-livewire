@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tag_id');
+            $table->uuid('user_uuid');
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->string('short_desc');
             $table->string('slug')->comment('untuk tag seo');
+            $table->string('price');
             $table->boolean('publish')->comment('untuk memilah apakah ingin di publish atau tidak');
             $table->timestamps();
 
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('user_uuid')->references('uuid')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }

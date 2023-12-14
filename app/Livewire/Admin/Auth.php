@@ -2,26 +2,37 @@
 
 namespace App\Livewire\Admin;
 
+use Illuminate\Support\Facades\Auth as facecadeAuth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Auth extends Component
-{     
-    public $count = 1;
- 
-    public function increment()
+{
+    public $email, $password;
+    public $registerForm = false;
+
+    private function resetInputFields()
     {
-        $this->count++;
+        $this->email = '';
+        $this->password = '';
     }
- 
-    public function decrement()
+    public function login()
     {
-        $this->count--;
+        $this->validate([
+            'email'     => 'required|email',
+            'password'  => 'required',
+        ]);
+
+        if (facecadeAuth::attempt(['email' => $this->email, 'password' => $this->password])) {
+            return redirect()->route('dashboard')->with('success', 'success login');
+        } else {
+            session()->flash('error', 'email and password are wrong.');
+        }
     }
 
-    #[Layout('components.admin.layouts.auth')] 
+    #[Layout('layouts.admin.auth')]
     public function render()
     {
-        return view('pages.admin.login');
+        return view('livewire.admin.auth');
     }
 }

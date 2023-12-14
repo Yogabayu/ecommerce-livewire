@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>@yield('title') &mdash; Stisla</title>
+    <title>{{ $title }} &mdash; e-Artha</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('admin/library/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -12,11 +12,10 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @stack('style')
-
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/library/izitoast/dist/css/iziToast.min.css') }}">
 
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -30,8 +29,10 @@
 
         gtag('config', 'UA-94034622-3');
     </script>
+    @stack('style')
     <!-- END GA -->
-    @livewireStyles
+
+    <livewire:styles />
 </head>
 </head>
 
@@ -39,17 +40,17 @@
     <div id="app">
         <div class="main-wrapper">
             <!-- Header -->
-            @include('components.admin.component.header')
+            @include('layouts.admin.components.header')
 
             <!-- Sidebar -->
-            @include('components.admin.component.sidebar')
+            @include('layouts.admin.components.sidebar')
 
             <!-- Content -->
             {{-- @yield('main') --}}
             {{ $slot }}
 
             <!-- Footer -->
-            @include('components.admin.component.footer')
+            @include('layouts.admin.components.footer')
         </div>
     </div>
 
@@ -62,12 +63,35 @@
     <script src="{{ asset('admin/library/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('admin/js/stisla.js') }}"></script>
 
-    @stack('scripts')
+
 
     <!-- Template JS File -->
     <script src="{{ asset('admin/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
-    @livewireScripts
+    <script src="{{ asset('admin/library/izitoast/dist/js/iziToast.min.js') }}"></script>
+    <script>
+        "use strict";
+        @if (session()->has('success'))
+            console.log();
+            iziToast.success({
+                title: 'Success',
+                message: '{{ session('success') }}',
+                position: 'topRight'
+            });
+        @endif
+
+        @if (session()->has('error'))
+            console.log();
+            iziToast.error({
+                title: 'Error',
+                message: '{{ session('error') }}',
+                position: 'topRight'
+            });
+        @endif
+    </script>
+    @stack('scripts')
+
+    <livewire:scripts />
 </body>
 
 </html>

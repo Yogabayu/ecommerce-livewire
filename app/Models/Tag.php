@@ -10,4 +10,9 @@ class Tag extends Model
     use HasFactory;
     protected $table = 'tags';
     protected $fillable = ['name '];
+
+    public function productTagMappings()
+    {
+        return $this->hasMany(ProductTagMapping::class, 'tag_id', 'id');
+    }
 }
