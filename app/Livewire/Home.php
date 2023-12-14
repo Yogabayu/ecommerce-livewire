@@ -3,23 +3,13 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
 class Home extends Component
-{
-    public $count = 1;
- 
-    public function increment()
-    {
-        $this->count++;
-    }
- 
-    public function decrement()
-    {
-        $this->count--;
-    }
- 
+{    
+    #[Layout('components.guest.layouts.app')] 
     public function render()
     {
-        return view('livewire.home');
+        return view('pages.guest.home');
     }
 }

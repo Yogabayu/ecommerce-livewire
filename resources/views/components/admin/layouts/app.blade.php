@@ -17,6 +17,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/components.css') }}">
+
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
@@ -32,27 +33,24 @@
     <!-- END GA -->
     @livewireStyles
 </head>
+</head>
 
 <body>
     <div id="app">
-        <section class="section">
-            <div class="container mt-5">
-                <div class="row">
-                    <div
-                        class="{{ Request::is('auth-register') ? 'col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2' : 'col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4' }}">
-                        <!-- Footer -->
-                        @include('components.admin.component.auth-header')
+        <div class="main-wrapper">
+            <!-- Header -->
+            @include('components.admin.component.header')
 
-                        <!-- Content -->
-                        @yield('main')
-                        {{-- {{ $slot }} --}}
+            <!-- Sidebar -->
+            @include('components.admin.component.sidebar')
 
-                        <!-- Footer -->
-                        @include('components.admin.component.auth-footer')
-                    </div>
-                </div>
-            </div>
-        </section>
+            <!-- Content -->
+            {{-- @yield('main') --}}
+            {{ $slot }}
+
+            <!-- Footer -->
+            @include('components.admin.component.footer')
+        </div>
     </div>
 
     <!-- General JS Scripts -->

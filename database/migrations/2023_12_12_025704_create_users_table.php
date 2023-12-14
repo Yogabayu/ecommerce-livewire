@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('role_id');
             $table->uuid('uuid')->unique();
+            $table->string('photo');
             $table->string('nik');
             $table->string('name');
             $table->string('email')->unique();
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('role_id')->references('id')->on('roles');
         });
