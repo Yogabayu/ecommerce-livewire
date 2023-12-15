@@ -21,192 +21,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div x-data="{ open: false }">
-                                    <button @click="open = true" class="btn btn-primary my-3">
-                                        <i class="fas fa-add"></i> Add Data
-                                    </button>
-
-                                    <div x-show="open" @click.away="open = false">
-                                        <div class="col-12 col-md-12 col-lg-12">
-                                            <form action="{{ route('user.store') }}" enctype="multipart/form-data"
-                                                method="post">
-                                                @csrf
-                                                @method('post')
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="form-group col-md-6 col-12">
-                                                                <label>NIK</label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text">
-                                                                            <i class="fas fa-voicemail"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="number" class="form-control"
-                                                                        placeholder="NIK" name="nik" required>
-                                                                    @error('nik')
-                                                                        <span class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group col-md-6 col-12">
-                                                                <label>Nama</label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text">
-                                                                            <i class="fas fa-person"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Nama user" name="name" required>
-                                                                </div>
-                                                                @error('name')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="form-group col-md-6 col-12">
-                                                                <label>E-mail</label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text">
-                                                                            <i class="fas fa-envelope"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="email" class="form-control"
-                                                                        placeholder="E-mail user" name="email" required>
-                                                                </div>
-                                                                @error('email')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group col-md-6 col-12">
-                                                                <label>Role</label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text">
-                                                                            <i class="fas fa-building"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <select name="role_id" id="role_id"
-                                                                        class="form-control" required>
-                                                                        <option selected>-</option>
-                                                                        @foreach ($roles as $role)
-                                                                            <option value="{{ $role->id }}">
-                                                                                {{ $role->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                                @error('role_id')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="form-group col-md-6 col-12">
-                                                                <label>Password</label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text">
-                                                                            <i class="fas fa-lock"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="password" class="form-control"
-                                                                        placeholder="Password" name="password" required>
-                                                                </div>
-                                                                @error('password')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group col-md-6 col-12">
-                                                                <label>Photo</label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text">
-                                                                            <i class="fas fa-image"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="file" class="form-control"
-                                                                        name="photo" required
-                                                                        accept="image/jpeg, image/png">
-                                                                </div>
-                                                                @error('photo')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer text-right">
-                                                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                                        <button class="btn btn-secondary" type="reset">Reset</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive" wire:ignore>
-                                    <table class="table-striped table" id="table-1" wire:key={{ uniqid() }}>
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">
-                                                    No.
-                                                </th>
-                                                <th>Photo</th>
-                                                <th>NIK</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $no = 1;
-                                            @endphp
-                                            @foreach ($users as $user)
-                                                @php
-                                                    $path = Storage::url('photos/' . $user->photo);
-                                                @endphp
-                                                <tr>
-                                                    <td>
-                                                        {{ $no++ }}
-                                                    </td>
-                                                    <td>
-                                                        <img src="{{ url($path) }}" alt="User Photo"
-                                                            class="rounded-circle" width="35" data-toggle="tooltip"
-                                                            title="{{ $user->name }}">
-                                                    </td>
-                                                    <td>{{ $user->nik }}</td>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>
-                                                        <a class="btn btn-info btn-sm" title="Edit" data-toggle="modal"
-                                                            data-target="#editModal{{ $user->id }}"
-                                                            data-backdrop="false">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-
-                                                        <form id="deleteForm{{ $user->id }}"
-                                                            action="{{ route('user.destroy', $user->uuid) }}"
-                                                            method="POST" style="display: inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" class="btn btn-danger btn-sm"
-                                                                title="Delete"
-                                                                onclick="confirmDelete({{ $user->id }})">
-                                                                <i class="fas fa-trash-alt"></i>
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                @include('pages.admin.user.modal.edit-modal', [
-                                                    'userId' => $user->id,
-                                                ])
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                @include('pages.admin.user.components.insert')
+                                <div class="table-responsive">
+                                    @include('pages.admin.user.components.table')
                                 </div>
                             </div>
                         </div>
@@ -219,9 +36,8 @@
 
 @push('scripts')
     <script>
-        function previewPhoto(input) {
-            const userId = "{{ $user->id }}";
-            const preview = document.getElementById(`preview${userId}`);
+        function previewPhotoInput(input) {
+            const preview = document.getElementById(`preview0`);
             const file = input.files[0];
 
             if (file) {
@@ -245,10 +61,41 @@
         });
     </script>
     <script>
-        function confirmDelete(id) {
-            if (window.confirm("Are you sure you want to delete this user?")) {
-                document.getElementById('deleteForm' + id).submit();
-            }
+        function confirmDelete(deleteUrl) {
+            Swal.fire({
+                title: 'Apakah anda yakin menghapus data?',
+                text: 'Data yang dihapus tidak dapat dipulihkan',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, lanjutkan !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If the user clicks "Yes," submit the form
+                    var form = document.createElement('form');
+                    form.action = deleteUrl;
+                    form.method = 'POST';
+                    form.style.display = 'none';
+
+                    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                    // Append CSRF token to the form
+                    var csrfInput = document.createElement('input');
+                    csrfInput.name = '_token';
+                    csrfInput.value = csrfToken;
+                    form.appendChild(csrfInput);
+
+                    // Append a method spoofing input for DELETE request
+                    var methodInput = document.createElement('input');
+                    methodInput.name = '_method';
+                    methodInput.value = 'DELETE';
+                    form.appendChild(methodInput);
+
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
         }
     </script>
 @endpush

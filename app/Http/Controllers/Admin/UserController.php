@@ -45,9 +45,13 @@ class UserController extends Controller
             $request->validate([
                 'role_id' => 'required',
                 'photo' => 'required|mimes:jpeg,jpg,png|max:2048',
-                'nik' => 'required|unique:users',
+                'nik' => [
+                    'required',
+                    Rule::unique('users')->ignore($request->user_id)->whereNull('deleted_at'),
+                    'min:6',
+                ],
                 'name' => 'required',
-                'email' => 'required|email|unique:users',
+                'email' => 'required|email|unique:users,email,NULL,id,deleted_at,NULL',
                 'password' => 'required|min:8',
             ]);
 
@@ -67,9 +71,9 @@ class UserController extends Controller
                 'photo' => $imgname,
             ]);
 
-            return back()->with('success', 'User added successfully!');
+            return redirect()->back()->with('success', 'User added successfully!');
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
@@ -138,9 +142,9 @@ class UserController extends Controller
 
             $user->save();
 
-            return back()->with('success', 'User updated successfully!');
+            return redirect()->back()->with('success', 'User updated successfully!');
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
