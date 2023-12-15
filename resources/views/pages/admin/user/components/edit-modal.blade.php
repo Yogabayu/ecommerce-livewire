@@ -102,8 +102,9 @@
                                                 style="max-width: 100px; max-height: 100px; display:none;" />
                                         </div>
                                         <div class="card-footer text-right">
-                                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                            <button class="btn btn-secondary" type="reset">Reset</button>
+                                            <button class="btn btn-primary mr-1" type="submit">Update</button>
+                                            <button class="btn btn-secondary" type="button"
+                                                data-dismiss="modal">Tutup</button>
                                         </div>
                                     </div>
                                 </form>
