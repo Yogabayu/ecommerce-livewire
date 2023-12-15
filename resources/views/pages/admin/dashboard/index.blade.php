@@ -1,7 +1,7 @@
-<x-slot name='title'>
-
-</x-slot>
-
+@extends('layouts.admin.app')
+@section('title')
+    Dashboard
+@endsection
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('admin/library/jqvmap/dist/jqvmap.min.css') }}">
@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="{{ asset('admin/library/owl.carousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/library/flag-icon-css/css/flag-icon.min.css') }}">
 @endpush
-
-<div class="main-content">
-</div>
-
+@section('main')
+    <div class="main-content">
+    </div>
+@endsection
 @push('scripts')
     <!-- JS Libraies -->
     <script src="{{ asset('admin/library/jquery-sparkline/jquery.sparkline.min.js') }}"></script>

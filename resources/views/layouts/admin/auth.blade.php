@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>{{ $title }} &mdash; e-Artha</title>
+    <title>@yield('title') &mdash; e-Artha</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('admin/library/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -30,8 +30,6 @@
         gtag('config', 'UA-94034622-3');
     </script>
     <!-- END GA -->
-
-    <livewire:styles />
 </head>
 
 <body>
@@ -45,8 +43,7 @@
                         @include('layouts.admin.components.auth-header')
 
                         <!-- Content -->
-                        {{-- @yield('main') --}}
-                        {{ $slot }}
+                        @yield('main')
 
                         <!-- Footer -->
                         @include('layouts.admin.components.auth-footer')
@@ -71,7 +68,6 @@
     <script src="{{ asset('admin/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
 
-    <livewire:scripts />
 </body>
 
 </html>

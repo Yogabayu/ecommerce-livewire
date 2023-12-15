@@ -1,8 +1,8 @@
 <?php
 
-use App\Livewire\Admin\Auth;
-use App\Livewire\Admin\Dashboard;
-use App\Livewire\Admin\User;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin')->group(function () {
-    Route::get('login', Auth::class)->name('login');
+    Route::get('login', [AuthController::class, 'index'])->name('login');
+    Route::post('actionLogin', [AuthController::class, 'actionLogin'])->name('actionLogin');
 
     Route::middleware('auth')->group(function () {
-        Route::get('dashboard', Dashboard::class)->name('dashboard');
-        Route::get('user', User::class)->name('user');
+        Route::resource('dashboard', DashboardController::class);
+        Route::resource('user', UserController::class);
+        //     Route::get('user', User::class)->name('user');
     });
 });
