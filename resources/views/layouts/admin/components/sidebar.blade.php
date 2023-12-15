@@ -4,7 +4,7 @@
             <a href="#">e-Artha</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="#">e-Artha</a>
+            <a href="#">eA</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -13,8 +13,6 @@
                     <i class="fas fa-fire"></i><span>Dashboard</span>
                 </a>
             </li>
-
-            {{-- user --}}
             <li class="menu-header">Organization</li>
             <li class='{{ Request::is('user') ? 'active' : '' }}'>
                 <a class="nav-link " href="{{ route('user') }}">

@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 
 class User extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, LivewireAlert;
     public $users, $roles;
     public $role_id, $photo, $nik, $name, $email, $password;
+    public $confirmingUserDeletion = false;
+    public $userToDeleteUuid;
 
     public function addUser()
     {
@@ -44,6 +47,26 @@ class User extends Component
 
         $this->reset(['role_id', 'nik', 'name', 'email', 'password', 'photo']);
         session()->flash('success', 'User added successfully!');
+    }
+
+    public function confirmUserDeletion($userUuid)
+    {
+        $this->userToDeleteUuid = $userUuid;
+        $this->confirmingUserDeletion = true;
+    }
+
+    public function deleteUser()
+    {
+        $user = ModelsUser::where('uuid', $this->userToDeleteUuid)->first();
+
+        if ($user) {
+            $user->delete();
+            session()->flash('success', 'User deleted successfully.');
+        }
+
+        // Reset variables
+        $this->confirmingUserDeletion = false;
+        $this->userToDeleteUuid = null;
     }
 
     #[Layout('layouts.admin.app')]
