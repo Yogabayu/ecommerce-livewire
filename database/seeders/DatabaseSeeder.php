@@ -33,5 +33,18 @@ class DatabaseSeeder extends Seeder
             'email'       => 'admin@gmail.com',
             'password'       => Hash::make('123456789'),
         ]);
+
+        DB::table('settings')->insert([
+            'name_app'   =>  'e-Arthaya',
+            'address'    =>  'Jln. xxxxx',
+            'email'    =>  'arthaya@arthaya.com',
+            'logo'    =>  'logo',
+            'main_tlp'    =>  '6282xxxxxxx',
+            'ig'    =>  'https://instagram.com',
+            'fb'    =>  'https://facebook.com',
+            'wa'    =>  '6282xxxxx',
+            'version'    =>  '1.1.2-admin',
+            'desc'    =>  '',
+        ]);
     }
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>@yield('title') &mdash; tester</title>
+    <title>@yield('title') &mdash; {{ $setting->name_app }}</title>
 
     {{-- <link rel="icon" href="{{ asset('file/setting/' . $app->logo) }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('file/setting/' . $app->logo) }}" type="image/x-icon"> --}}
@@ -14,7 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
     @stack('style')
 
     <!-- Template CSS -->

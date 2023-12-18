@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('logo');
             $table->string('main_tlp');
-            $table->string('ig');
-            $table->string('fb');
+            $table->string('ig')->comment('berbentuk link');
+            $table->string('fb')->comment('berbentuk link');
             $table->string('wa');
             $table->string('version');
             $table->string('desc')->nullable();

@@ -1,11 +1,3 @@
-@push('style')
-    <style>
-        [x-cloak] {
-            display: none !important;
-        }
-    </style>
-@endpush
-
 <div x-cloak x-data="{ open: false }">
     <button @click="open = true" class="btn btn-primary my-3">
         <i class="fas fa-add"></i> Add Data
