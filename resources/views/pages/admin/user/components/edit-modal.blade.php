@@ -97,9 +97,26 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <img id="preview{{ $user->id }}" src="#" alt="Your image"
-                                                class="mt-3"
-                                                style="max-width: 100px; max-height: 100px; display:none;" />
+                                            {{-- <div class="row">
+                                                <div class="form-group col-md-6 col-12">
+                                                    <label>Photo Saat ini:</label>
+                                                    <div class="input-group">
+                                                        <img src="{{ url($path) }}" alt="current image"
+                                                            class="mt-3"
+                                                            style="max-width: 100px; max-height: 100px; data-toggle="tooltip"
+                                                            title="{{ $user->name }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6 col-12">
+                                                    <label>Photo baru :</label>
+                                                    <div class="input-group">
+                                                        <img id="preview{{ $user->id }}" src="#"
+                                                            alt="new image" class="mt-3"
+                                                            style="max-width: 100px; max-height: 100px; display:none;" />
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+
                                         </div>
                                         <div class="card-footer text-right">
                                             <button class="btn btn-primary mr-1" type="submit">Update</button>

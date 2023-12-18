@@ -163,7 +163,7 @@ class UserController extends Controller
 
             return redirect()->back()->with('error', 'Unknown User Data');
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 }

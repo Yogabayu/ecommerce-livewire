@@ -13,6 +13,12 @@
                     <i class="fas fa-fire"></i><span>Dashboard</span>
                 </a>
             </li>
+            <li class="menu-header">Applications</li>
+            <li class='{{ Request::is('banner') ? 'active' : '' }}'>
+                <a class="nav-link " href="{{ route('banner.index') }}">
+                    <i class="fas fa-star"></i><span>Banner</span>
+                </a>
+            </li>
             <li class="menu-header">Organization</li>
             <li class='{{ Request::is('user') ? 'active' : '' }}'>
                 <a class="nav-link " href="{{ route('user.index') }}">

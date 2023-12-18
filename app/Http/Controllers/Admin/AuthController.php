@@ -38,4 +38,10 @@ class AuthController extends Controller
             return back()->with('error', $e->getMessage());
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }

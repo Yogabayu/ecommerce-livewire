@@ -43,7 +43,6 @@
     </script>
     <!-- END GA -->
 </head>
-</head>
 
 <body>
     <div id="app">
@@ -95,9 +94,6 @@
             });
         @endif
     </script>
-
-
-
     <script>
         // Auto-close the alert messages after 3 seconds (3000 milliseconds)
         setTimeout(function() {
