@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\SettingController;
@@ -32,5 +33,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('setting', SettingController::class);
         Route::resource('tag', TagController::class);
         Route::resource('faq', FaqController::class);
+
+        //categories
+        Route::resource('category', CategoryController::class);
+        Route::put('category-update/{slug}', [CategoryController::class, 'update'])->name('category-update');
     });
 });

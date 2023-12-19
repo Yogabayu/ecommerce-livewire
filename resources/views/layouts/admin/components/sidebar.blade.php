@@ -41,6 +41,11 @@
                     <i class="fas fa-tag"></i><span>Tag</span>
                 </a>
             </li>
+            <li class='{{ Request::is('admin/category') ? 'active' : '' }}'>
+                <a class="nav-link " href="{{ route('category.index') }}">
+                    <i class="fas fa-layer-group"></i><span>Kategori</span>
+                </a>
+            </li>
             <li class='{{ Request::is('admin/banner') ? 'active' : '' }}'>
                 <a class="nav-link " href="{{ route('banner.index') }}">
                     <i class="fas fa-star"></i><span>Banner</span>
