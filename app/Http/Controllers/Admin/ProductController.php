@@ -146,8 +146,6 @@ class ProductController extends Controller
                 }
 
                 $productPhotos->save();
-
-                $productPhotos->save();
             }
 
             //handle tag product
