@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
@@ -37,5 +38,10 @@ Route::prefix('admin')->group(function () {
         //categories
         Route::resource('category', CategoryController::class);
         Route::put('category-update/{slug}', [CategoryController::class, 'update'])->name('category-update');
+
+        //product
+        Route::resource('product', ProductController::class);
+        Route::get('get-cities/{provinceCode}', [ProductController::class, 'getCities'])->name('getCities');
+        Route::put('product-update/{slug}', [ProductController::class, 'update'])->name('product-update');
     });
 });

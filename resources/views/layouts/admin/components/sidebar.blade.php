@@ -31,6 +31,11 @@
             </li>
 
             <li class="menu-header">Applications</li>
+            <li class='{{ Request::is('admin/product') ? 'active' : '' }}'>
+                <a class="nav-link " href="{{ route('product.index') }}">
+                    <i class="fas fa-cart-shopping"></i><span>Product</span>
+                </a>
+            </li>
             <li class='{{ Request::is('admin/faq') ? 'active' : '' }}'>
                 <a class="nav-link " href="{{ route('faq.index') }}">
                     <i class="fas fa-question"></i><span>Faq</span>
