@@ -1,6 +1,6 @@
 <div x-cloak x-data="{ open: false }">
     <button @click="open = true" class="btn btn-primary my-3">
-        <i class="fas fa-add"></i> Add Data
+        <i class="fas fa-add"></i> Tambah Kategori
     </button>
 
     <div x-show="open" @click.away="open = false">
@@ -24,22 +24,6 @@
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Slug</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-person"></i>
-                                    </div>
-                                </div>
-                                <input type="text" class="form-control" name="slug" required
-                                    value="{{ old('slug') }}">
-                            </div>
-                            @error('slug')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                            <span class="text-danger">contoh: ini-adalah-slug</span>
                         </div>
                         <div class="form-group">
                             <label>Status</label>

@@ -40,18 +40,29 @@ class CategoryController extends Controller
         try {
             $request->validate([
                 'name'      => 'required|string',
-                'slug'      => 'required|unique:categories,slug',
                 'image'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
                 'status'    => 'required|boolean',
             ]);
+
+            $cekName = Category::where('name', '=', $request->name)->count();
+            if ($cekName > 0) {
+                return redirect()->back()->with("error", "Nama kategori sudah ada");
+            }
+            //slug
+            $slug = Str::slug($request->name);
+
+            // Check if a category with the same slug already exists
+            $existingCategory = Category::where('slug', $slug)->first();
+
+            if ($existingCategory) {
+                // Generate a unique slug
+                $slug = $slug . '-' . Str::random(5);
+            }
 
             //save image
             $extension = $request->file('image')->extension();
             $imgname = date('dmyHis') . '.' . $extension;
             $path = Storage::putFileAs('public/categories', $request->file('image'), $imgname);
-
-            //slug
-            $slug = Str::slug($request->slug);
 
             //save data to Category model
             Category::create([
@@ -64,6 +75,7 @@ class CategoryController extends Controller
             return redirect()->back()->with('success', 'Category added successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with("error", $e->getMessage());
+            // dd($e->getMessage());
         }
     }
 

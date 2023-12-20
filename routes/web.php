@@ -43,5 +43,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('product', ProductController::class);
         Route::get('get-cities/{provinceCode}', [ProductController::class, 'getCities'])->name('getCities');
         Route::put('product-update/{slug}', [ProductController::class, 'update'])->name('product-update');
+        Route::get('change-visibility/{id}', [ProductController::class, 'changeVisibility'])->name('changeVisibility');
+        Route::post('add-photos', [ProductController::class, 'addPhotos'])->name('addPhotos');
+        Route::get('delete-photos/{id}', [ProductController::class, 'deletePhotos'])->name('deletePhotos');
+        Route::get('change-primary/{id}', [ProductController::class, 'changePhotoPrimary'])->name('changePhotoPrimary');
     });
 });

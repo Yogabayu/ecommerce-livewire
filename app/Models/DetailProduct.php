@@ -20,7 +20,7 @@ class DetailProduct extends Model
         'gmaps',
         'surface_area',
         'building_area',
-        'suo_doc',
+        'sup_doc',
         'type_sales',
         'seeing_count',
         'share_count',

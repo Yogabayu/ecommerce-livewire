@@ -22,19 +22,28 @@
                 </td>
                 <td class="text-center">{{ $p->category->name }}</td>
                 <td class="text-center">{{ $p->name }}</td>
-                <td class="text-center">{{ $p->price }}</td>
+                <td class="text-center">Rp{{ $p->price }},-</td>
                 <td class="text-center">
                     @if ($p->publish == 1)
-                        <button type="button" class="btn btn-success btn-sm">Ditampilkan</button>
+                        <a href="{{ route('changeVisibility', $p->id) }}">
+                            <button type="button" class="btn btn-success btn-sm">
+                                Ditampilkan
+                            </button>
+                        </a>
                     @else
-                        <button type="button" class="btn btn-danger btn-sm">Disembunyikan</button>
+                        <a href="{{ route('changeVisibility', $p->id) }}">
+                            <button type="button" class="btn btn-danger btn-sm">Disembunyikan</button>
+                        </a>
                     @endif
                 </td>
                 <td class="text-center">
-                    <a class="btn btn-info btn-sm" title="Edit" data-toggle="modal"
+                    <a class="btn btn-info btn-sm" title="Edit" href="{{ route('product.show', $p->id) }}">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    {{-- <a class="btn btn-warning btn-sm" title="Edit" data-toggle="modal"
                         data-target="#editModal{{ $p->id }}" data-backdrop="false">
                         <i class="fas fa-edit"></i>
-                    </a>
+                    </a> --}}
 
                     <form id="deleteForm{{ $p->id }}" action="{{ route('product.destroy', $p->id) }}"
                         method="POST" style="display: inline">

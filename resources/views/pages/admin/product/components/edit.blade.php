@@ -29,9 +29,9 @@
             </div>
 
             <div class="section-body">
-                <form action="{{ route('product.store') }}" enctype="multipart/form-data" method="post">
+                <form action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data" method="post">
                     @csrf
-                    @method('post')
+                    @method('put')
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -47,7 +47,7 @@
                                                     <i class="fas fa-inbox"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Masukkan nama produk"
+                                            <input type="text" class="form-control" value="{{ $product->name }}"
                                                 name="name" required>
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@
                                                     <i class="fas fa-circle-info"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="deskripsi singkat"
+                                            <input type="text" class="form-control" value="{{ $product->short_desc }}"
                                                 name="short_desc" required>
                                         </div>
                                     </div>
@@ -71,7 +71,9 @@
                                                     required>
                                                     <option selected>-</option>
                                                     @foreach ($categories as $cat)
-                                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                                        <option value="{{ $cat->id }}"
+                                                            @if ($cat->id == $product->category_id) selected @endif>
+                                                            {{ $cat->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -93,7 +95,7 @@
                                                     <i class="fas fa-tag"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="harga produk"
+                                            <input type="text" class="form-control" value="{{ $product->price }}"
                                                 name="price" id="formattedPrice" required>
                                         </div>
                                     </div>
@@ -106,8 +108,11 @@
                                                 </div>
                                             </div>
                                             <select class="form-control" name="publish" id="publish" required>
-                                                <option value="1">Ya</option>
-                                                <option value="0">Tidak</option>
+                                                <option value="1" @if ($product->publish == 1) selected @endif>Ya
+                                                </option>
+                                                <option value="0" @if ($product->publish == 0) selected @endif>
+                                                    Tidak
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -126,7 +131,9 @@
                                                 onchange="getCities()" required>
                                                 <option selected>-</option>
                                                 @foreach ($provinces as $province)
-                                                    <option value="{{ $province->code }}">{{ $province->name }}</option>
+                                                    <option value="{{ $province->code }}"
+                                                        @if ($province->code == $detailProduct->province_code) selected @endif>
+                                                        {{ $province->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -148,13 +155,13 @@
                                                 </div>
                                             </div>
                                             <input type="text" name="address" id="address" class="form-control"
-                                                required>
+                                                value="{{ $detailProduct->address }}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Deskripsi Panjang</label>
                                         <div class="input-group">
-                                            <textarea class="form-control summernote" name="long_desc" id="long_desc" required></textarea>
+                                            <textarea class="form-control summernote" name="long_desc" id="long_desc" required>{!! $detailProduct->long_desc !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -168,7 +175,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="text" name="lat" id="lat"
-                                                        class="form-control">
+                                                        class="form-control" value="{{ $detailProduct->lat }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -182,7 +189,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="text" name="long" id="long"
-                                                        class="form-control">
+                                                        class="form-control" value="{{ $detailProduct->long }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -195,13 +202,14 @@
                                                     <i class="fas fa-location-crosshairs"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" name="gmaps" id="gmaps" class="form-control">
+                                            <input type="text" name="gmaps" id="gmaps" class="form-control"
+                                                value="{{ $detailProduct->gmaps }}">
                                         </div>
                                     </div>
-                                    <div x-cloak x-data="{ openLand: false, openQue: true }">
+                                    <div x-cloak x-data="{ openLand: {{ $detailProduct->surface_area ? 'true' : 'false' }}, openQue: false }">
                                         <div x-show="openQue">
                                             <p>Apakah Produk berupa Tanah ?</p>
-                                            <button @click="openLand = !openLand"
+                                            <button @click="openLand = true"
                                                 class="btn btn-sm btn-primary my-3 justify-content-start"
                                                 type="button">Ya</button>
                                             <button @click="openLand = false"
@@ -219,12 +227,12 @@
                                                         </div>
                                                     </div>
                                                     <input type="text" name="surface_area" id="surface_area"
-                                                        class="form-control">
+                                                        class="form-control" value="{{ $detailProduct->surface_area }}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div x-cloak x-data="{ openLand: false, openQue: true }">
+                                    <div x-cloak x-data="{ openLand: {{ $detailProduct->building_area ? 'true' : 'false' }}, openQue: false }">
                                         <div x-show="openQue">
                                             <p>Apakah Produk berupa Rumah ?</p>
                                             <button @click="openLand = !openLand"
@@ -245,7 +253,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="text" name="building_area" id="building_area"
-                                                        class="form-control">
+                                                        class="form-control" value="{{ $detailProduct->surface_area }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -271,8 +279,12 @@
                                                 </div>
                                             </div>
                                             <select name="type_sales" id="type_sales" class="form-control" required>
-                                                <option value="1" selected>Lelang</option>
-                                                <option value="0">Jual Langsung</option>
+                                                <option value="1" @if ($detailProduct->type_sales == 1) selected @endif>
+                                                    Lelang
+                                                </option>
+                                                <option value="0" @if ($detailProduct->type_sales == 0) selected @endif>
+                                                    Jual
+                                                    Langsung</option>
                                             </select>
                                         </div>
                                     </div>
@@ -287,20 +299,42 @@
                                                 </div>
                                             </div>
                                             <input class="form-control" type="text" name="no_pic" id="no_pic"
-                                                placeholder="6212345678912" required>
+                                                value="{{ $detailProduct->no_pic }}" required>
                                         </div>
                                         <span class="text-danger">contoh: 6212345678912</span>
                                     </div>
                                     <div class="form-group">
-                                        <label>Photo Produk</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-image"></i>
+                                        <label>Photo Produk
+                                            <a class="btn btn-primary" data-toggle="modal" data-target="#AddPhotoModal"
+                                                data-backdrop="false"><i class="fas fa-add" aria-hidden="true"></i>
+                                                Foto</a></label>
+                                        <div class="row">
+                                            @foreach ($productPhotos as $pp)
+                                                <div class="col-6 col-md-3 mb-3"
+                                                    style="display: flex; flex-direction: column; align-items: center;">
+                                                    <img src="{{ Storage::url('photos/' . $pp->photo) }}"
+                                                        alt="{{ $pp->photo }}" class="img-fluid">
+                                                    <div class="row">
+                                                        <a class="btn btn-danger btn-sm" title="Delete"
+                                                            onclick="confirmDelete('{{ route('deletePhotos', $pp->id) }}')"
+                                                            style="margin-top: 10px;">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                        @if ($pp->is_primary != 1)
+                                                            <a href="{{ route('changePhotoPrimary', $pp->id) }}"
+                                                                style="margin-top: 10px; margin-left:5px"
+                                                                data-toggle="tooltip" title="Jadikan Gambar Utama">
+                                                                <button type="button" class="btn btn-warning btn-sm"><i
+                                                                        class="fas fa-recycle"></i></button>
+                                                            </a>
+                                                        @endif
+                                                    </div>
+
+                                                    @if ($pp->is_primary == 1)
+                                                        <p>Gambar Utama</p>
+                                                    @endif
                                                 </div>
-                                            </div>
-                                            <input type="file" name="photos[]" class="form-control"
-                                                accept="image/jpeg, image/png" multiple required>
+                                            @endforeach
                                         </div>
                                     </div>
 
@@ -311,8 +345,12 @@
                                                 <select class="form-control select2" multiple="multiple" id="tags"
                                                     name="tags[]" required>
                                                     @foreach ($tags as $tag)
-                                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                        <option value="{{ $tag->id }}"
+                                                            @if (in_array($tag->id, $productTags)) selected @endif>
+                                                            {{ $tag->name }}
+                                                        </option>
                                                     @endforeach
+
                                                 </select>
                                             </div>
                                             <div class="input-group-prepend">
@@ -340,6 +378,7 @@
 
                 @include('pages.admin.product.components.modal-category')
                 @include('pages.admin.product.components.modal-tag')
+                @include('pages.admin.product.components.modal-photo')
             </div>
         </section>
     </div>
@@ -354,49 +393,20 @@
     <script src="{{ asset('admin/library/selectric/public/jquery.selectric.min.js') }}"></script>
     <script src="{{ asset('admin/library/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
+        function confirmDelete(deleteUrl) {
+            var result = confirm('Apakah anda yakin menghapus data?');
+
+            if (result) {
+                window.location.href = deleteUrl;
+            }
+        }
+    </script>
+    <script>
         $("#table-1").dataTable({
             responsive: true,
             paging: true,
             pagingType: 'full_numbers',
         });
-    </script>
-    <script>
-        function confirmDelete(deleteUrl) {
-            Swal.fire({
-                title: 'Apakah anda yakin menghapus data?',
-                text: 'Data yang dihapus tidak dapat dipulihkan',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, lanjutkan !'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // If the user clicks "Yes," submit the form
-                    var form = document.createElement('form');
-                    form.action = deleteUrl;
-                    form.method = 'POST';
-                    form.style.display = 'none';
-
-                    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-                    // Append CSRF token to the form
-                    var csrfInput = document.createElement('input');
-                    csrfInput.name = '_token';
-                    csrfInput.value = csrfToken;
-                    form.appendChild(csrfInput);
-
-                    // Append a method spoofing input for DELETE request
-                    var methodInput = document.createElement('input');
-                    methodInput.name = '_method';
-                    methodInput.value = 'DELETE';
-                    form.appendChild(methodInput);
-
-                    document.body.appendChild(form);
-                    form.submit();
-                }
-            });
-        }
     </script>
     <script>
         // JavaScript to format the input value with thousand separators
@@ -412,49 +422,32 @@
         });
     </script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Explicitly call getCities() after the document has finished loading
+            getCities();
+        });
+
         function getCities() {
             var province_code = document.getElementById('province_code').value;
             var city_code = document.getElementById('city_code');
 
-            // Empty the city options before fetching new data
             city_code.options.length = 0;
 
             $.ajax({
-                url: "{{ route('getCities', '') }}/" + province_code, // Remove the quotes around province_code
+                url: "{{ route('getCities', '') }}/" + province_code,
                 type: "GET",
                 success: function(data) {
-                    // Empty the city options after fetching new data
                     city_code.options.length = 0;
 
                     $.each(data, function(index, city) {
-                        // Create option using the correct approach
                         var option = new Option(city.name, city.code);
-                        // Append the option to the select element
+                        if ("{{ $detailProduct->city_code }}" === city.code) {
+                            option.setAttribute("selected", "selected");
+                        }
                         city_code.append(option);
                     });
                 }
             });
         }
-
-        // document.getElementById('province_code').addEventListener('change', function() {
-        //     var provinceCode = this.value;
-
-        //     // Menggunakan Ajax untuk mendapatkan data kota berdasarkan provinsi
-        //     fetch(`/get-cities/${provinceCode}`)
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // Menghapus semua opsi kota sebelumnya
-        //             var citySelect = document.getElementById('city_code');
-        //             citySelect.innerHTML = '<option selected>-</option>';
-
-        //             // Menambahkan opsi kota baru berdasarkan data yang diterima
-        //             data.forEach(city => {
-        //                 var option = document.createElement('option');
-        //                 option.value = city.code;
-        //                 option.text = city.name;
-        //                 citySelect.add(option);
-        //             });
-        //         });
-        // });
     </script>
 @endpush

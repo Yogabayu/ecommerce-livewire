@@ -49,7 +49,15 @@ class TagController extends Controller
             $tagsArray = explode(',', $request->tagsInput);
 
             foreach ($tagsArray as $tagName) {
-                Tag::create(['name' => trim($tagName)]);
+                $trimmedTagName = trim($tagName);
+
+                // Check if the tag already exists
+                $existingTag = Tag::where('name', $trimmedTagName)->first();
+
+                if (!$existingTag) {
+                    // If the tag doesn't exist, create it
+                    Tag::create(['name' => $trimmedTagName]);
+                }
             }
 
             return redirect()->back()->with("success", "Berhasil menambah tag");
@@ -57,7 +65,6 @@ class TagController extends Controller
             return redirect()->back()->with("error", $e->getMessage());
         }
     }
-
     /**
      * Display the specified resource.
      */
