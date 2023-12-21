@@ -16,6 +16,27 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    public function changeHero($slug)
+    {
+        try {
+            $countHero = Product::where('is_hero', 1)->count();
+            if ($countHero == 1) {
+                return redirect()->back()->with('error', 'Product updated failed! Pastikan hanya ada 1 produk yang dijadikan hero');
+            }
+            $product = Product::where('slug', $slug)->first();
+            if ($product->is_hero == 1) {
+                $product->is_hero = 0;
+            } else {
+                $product->is_hero = 1;
+            }
+            $product->save();
+
+            return redirect()->back()->with('success', 'Product updated successfully!');
+        } catch (\Exception $e) {
+            // return redirect()->back()->with('error', 'Failed to change hero.');
+            dd($e->getMessage());
+        }
+    }
     public function changePhotoPrimary($id)
     {
         try {
@@ -179,6 +200,7 @@ class ProductController extends Controller
                 'short_desc'    => 'required|string',
                 'price'         => 'required',
                 'publish'       => 'required|boolean',
+                'is_hero'       => 'required|boolean',
 
                 'province_code' => 'required|string',
                 'city_code'     => 'required|string',
@@ -191,6 +213,15 @@ class ProductController extends Controller
                 'photos'        => 'required|array', // Ensure 'photos' is an array
                 'photos.*'      => 'image|mimes:jpeg,jpg,png|max:2048', // Validate each photo in the array
             ]);
+            $cekIsSee = Product::where('is_hero', 1)->count();
+            $msg = "";
+            $is_hero = 0;
+            if ($cekIsSee == 1 && $request->is_hero == 1) {
+                $msg = "Produk tidak dijadikan produk utama";
+                $is_hero = 0;
+            } else {
+                $is_hero = 1;
+            }
             //slug
             $slugProduct = Str::slug($request->name);
 
@@ -202,6 +233,7 @@ class ProductController extends Controller
                 'short_desc'    => $request->short_desc,
                 'price'         => $request->price,
                 'publish'       => $request->publish,
+                'is_hero'       => $is_hero,
                 'slug'          => $slugProduct,
             ]);
 
@@ -264,7 +296,10 @@ class ProductController extends Controller
                 $tagMapping->save();
             }
 
-            return redirect()->back()->with('success', 'Product added successfully!');
+            if ($msg) {
+                return redirect()->back()->with('success', 'Product added successfully! ' . $msg);
+            }
+            return redirect()->back()->with('success', 'Product added successfully! ');
         } catch (\Exception $e) {
             return redirect()->back()->with("error", $e->getMessage());
         }
@@ -370,6 +405,7 @@ class ProductController extends Controller
                 'short_desc'    => 'required|string',
                 'price'         => 'required',
                 'publish'       => 'required|boolean',
+                'is_hero'       => 'required|boolean',
 
                 'province_code' => 'required|string',
                 'city_code'     => 'required|string',
@@ -380,6 +416,16 @@ class ProductController extends Controller
 
                 'tags'        => 'required|array', // Ensure 'photos' is an array
             ]);
+
+            $cekIsSee = Product::where('is_hero', 1)->count();
+            $msg = "";
+            $is_hero = 0;
+            if ($cekIsSee == 1 && $request->is_hero == 1) {
+                $msg = "Produk tidak dijadikan produk utama";
+                $is_hero = 0;
+            } else {
+                $is_hero = 1;
+            }
             //slug
             $slugProduct = Str::slug($request->name);
 
@@ -391,6 +437,7 @@ class ProductController extends Controller
                 'short_desc'    => $request->short_desc,
                 'price'         => $request->price,
                 'publish'       => $request->publish,
+                'is_hero'       => $is_hero,
                 'slug'          => $slugProduct,
             ]);
 
@@ -431,7 +478,10 @@ class ProductController extends Controller
                     $tagMapping->save();
                 }
             }
-            return redirect()->back()->with('success', 'Product updated successfully!');
+            if ($msg) {
+                return redirect()->back()->with('success', 'Product updated successfully! ' . $msg);
+            }
+            return redirect()->back()->with('success', 'Product updated successfully! ');
         } catch (\Exception $e) {
             return redirect()->back()->with("error", $e->getMessage());
         }

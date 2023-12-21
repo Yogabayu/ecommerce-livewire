@@ -1,3 +1,4 @@
  <div class="login-brand">
-     <img src="{{ asset('img/logos-bg.png') }}" alt="logo" width="100" class="shadow-light rounded-circle">
+     <img src="{{ Storage::url('setting/' . $setting->logo) }}" alt="logo" width="100"
+         class="shadow-light rounded-circle">
  </div>

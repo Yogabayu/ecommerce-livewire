@@ -111,6 +111,20 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Apakah akan ditampilkan di Layar Utama (hero)</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-eye"></i>
+                                                </div>
+                                            </div>
+                                            <select class="form-control" name="is_hero" id="is_hero" required>
+                                                <option value="1">Ya</option>
+                                                <option value="0">Tidak</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -134,7 +148,8 @@
                                     <div class="form-group">
                                         <label data-toggle="tooltip" title="Letak Kota dari produk">Kota</label>
                                         <div class="input-group">
-                                            <select name="city_code" id="city_code" class="form-control select2" required>
+                                            <select name="city_code" id="city_code" class="form-control select2"
+                                                required>
 
                                             </select>
                                         </div>

@@ -8,6 +8,8 @@
             <th class="text-center">Nama</th>
             <th class="text-center">Harga</th>
             <th class="text-center">Status</th>
+            <th class="text-center" data-toggle="tooltip"
+                title="Gambar akan diletakkan di layar awal sebagai gambar utama">Hero?</th>
             <th class="text-center">Action</th>
         </tr>
     </thead>
@@ -33,6 +35,19 @@
                     @else
                         <a href="{{ route('changeVisibility', $p->id) }}">
                             <button type="button" class="btn btn-danger btn-sm">Disembunyikan</button>
+                        </a>
+                    @endif
+                </td>
+                <td class="text-center">
+                    @if ($p->is_hero == 1)
+                        <a href="{{ route('changeHero', $p->slug) }}">
+                            <button type="button" class="btn btn-success btn-sm">
+                                Hero
+                            </button>
+                        </a>
+                    @else
+                        <a href="{{ route('changeHero', $p->slug) }}">
+                            <button type="button" class="btn btn-danger btn-sm">-</button>
                         </a>
                     @endif
                 </td>

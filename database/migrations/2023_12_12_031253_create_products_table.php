@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('slug')->comment('untuk tag seo');
             $table->string('price');
             $table->boolean('publish')->comment('untuk memilah apakah ingin di publish atau tidak');
+            $table->boolean('is_hero')->comment('apakah produk akan ditampilkan sebagai hero atau tidak');
             $table->timestamps();
 
             $table->foreign('user_uuid')->references('uuid')->on('users');

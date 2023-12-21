@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             'address'    =>  'Jln. xxxxx',
             'email'    =>  'arthaya@arthaya.com',
             'logo'    =>  'logo',
-            'main_tlp'    =>  '6282xxxxxxx',
+            'main_tlp'    =>  '6282345678901',
             'ig'    =>  'https://instagram.com',
             'fb'    =>  'https://facebook.com',
             'wa'    =>  '6282xxxxx',

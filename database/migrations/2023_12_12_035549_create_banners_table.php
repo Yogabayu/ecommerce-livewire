@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('banner_img');
             $table->boolean('is_see')->comment('apakah akan ditampilkan atau tidak | max: 2 banner');
-            $table->boolean('is_hero')->comment('apakah banner akan di letakkan sebagai hero pada awal website');
             $table->timestamps();
         });
     }

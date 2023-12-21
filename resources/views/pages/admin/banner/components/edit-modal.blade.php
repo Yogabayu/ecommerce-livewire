@@ -40,27 +40,6 @@
                                                         title="banner">
                                                 </div>
                                             </div>
-                                            <div class="form-group ">
-                                                <label>Apakah Akan ditampilkan sebagai hero image ?</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-person"></i>
-                                                        </div>
-                                                    </div>
-                                                    <select class="form-control" name="is_hero" id="is_hero">
-                                                        <option value="0"
-                                                            @if ($banner->is_hero == 0) selected @endif>Tidak
-                                                            ditampilkan</option>
-                                                        <option value="1"
-                                                            @if ($banner->is_hero == 1) selected @endif>
-                                                            Tampilkan Sebagai Hero Image</option>
-                                                    </select>
-                                                </div>
-                                                @error('is_hero')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
                                             <div class="form-group">
                                                 <label>Apakah Akan ditampilkan di aplikasi ?</label>
                                                 <div class="input-group">

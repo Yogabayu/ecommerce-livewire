@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Livewire\DashboardComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::middleware('guest')->group(function () {
+    //dashboard
+    Route::get('/', DashboardComponent::class);
+});
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [AuthController::class, 'index'])->name('login');
@@ -35,7 +41,10 @@ Route::prefix('admin')->group(function () {
         Route::get('show-user/{uuid}', [UserController::class, 'showUser'])->name('showUser');
         Route::put('update-user/{uuid}', [UserController::class, 'updateUser'])->name('updateUser');
 
+        //banner
         Route::resource('banner', BannerController::class);
+        Route::get('banner-visibility/{id}', [BannerController::class, 'changeVisibility'])->name('bannerVisibility');
+
         Route::resource('setting', SettingController::class);
         Route::resource('tag', TagController::class);
         Route::resource('faq', FaqController::class);
@@ -53,5 +62,6 @@ Route::prefix('admin')->group(function () {
         Route::post('add-photos', [ProductController::class, 'addPhotos'])->name('addPhotos');
         Route::get('delete-photos/{id}', [ProductController::class, 'deletePhotos'])->name('deletePhotos');
         Route::get('change-primary/{id}', [ProductController::class, 'changePhotoPrimary'])->name('changePhotoPrimary');
+        Route::get('hero-visibility/{slug}', [ProductController::class, 'changeHero'])->name('changeHero');
     });
 });

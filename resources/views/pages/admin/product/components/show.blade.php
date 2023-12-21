@@ -100,6 +100,22 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label>Apakah akan ditampilkan di Layar Utama (hero)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-eye"></i>
+                                            </div>
+                                        </div>
+                                        <select class="form-control" name="is_hero" id="is_hero" disabled>
+                                            <option value="1" @if ($product->is_hero == 1) selected @endif>Ya
+                                            </option>
+                                            <option value="0" @if ($product->is_hero == 0) selected @endif>Tidak
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
