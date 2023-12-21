@@ -5,18 +5,50 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    public function changeVisibility($slug)
+    {
+        try {
+            $category = Category::where('slug', $slug)->first();;
+            if ($category->status == 1) {
+                $category->status = 0;
+            } else {
+                $category->status = 1;
+            }
+            $category->save();
+
+            return redirect()->back()->with('success', 'Category updated successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal melakukan update');
+        }
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         try {
-            $categories = Category::all();
+            // $categories = Category::all();
+            $categories = DB::table('categories')
+                ->leftJoin('products', 'categories.id', '=', 'products.category_id')
+                ->select(
+                    'categories.id',
+                    'categories.name',
+                    'categories.slug',
+                    'categories.image',
+                    'categories.status',
+                    'categories.created_at',
+                    'categories.updated_at',
+                    DB::raw('COUNT(products.category_id) as prod_count')
+                )
+                ->groupBy('categories.id', 'categories.name', 'categories.slug', 'categories.image', 'categories.status', 'categories.created_at', 'categories.updated_at')
+                ->orderByDesc('prod_count')
+                ->get();
 
             return view('pages.admin.category.index', compact('categories'));
         } catch (\Exception $e) {
@@ -103,12 +135,27 @@ class CategoryController extends Controller
         try {
             $request->validate([
                 'name'      => 'required|string',
-                'slug'      => 'required|string',
                 'image'     => 'image|mimes:jpeg,jpg,png|max:2048',
                 'status'    => 'required|boolean',
             ]);
+            $cekName = Category::where('name', '=', $request->name)->count();
+            if ($cekName > 0) {
+                return redirect()->back()->with("error", "Nama kategori sudah ada");
+            }
 
-            $category = Category::where('slug', $slug)->firstOrFail();
+            $category = Category::where('slug', $request->slug)->firstOrFail();
+
+            $slug = Str::slug($request->name);
+            // Check if a category with the same slug already exists
+            $existingSlug = Category::where('slug', $slug)->first();
+            if ($existingSlug) {
+                // Generate a unique slug
+                $slug = $slug . '-' . Str::random(5);
+                $category->slug = $slug;
+            }
+
+            $category->name = $request->name;
+            $category->status = $request->status;
 
             if ($request->hasFile('image')) {
                 // Handle image upload
@@ -123,20 +170,6 @@ class CategoryController extends Controller
 
                 $category->image = $imgname;
             }
-
-            // Check if the requested slug is different from the current slug
-            if ($request->slug !== $category->slug) {
-                // Generate a unique slug
-                $slug = Str::slug($request->slug);
-                $cekSlug = Category::where('slug', $slug)->count();
-                if ($cekSlug > 0) {
-                    $slug = $slug . '-' . Str::random(5);
-                }
-                $category->slug = $slug;
-            }
-
-            $category->name = $request->name;
-            $category->status = $request->status;
             $category->save();
 
             return redirect()->back()->with('success', 'Category updated successfully!');

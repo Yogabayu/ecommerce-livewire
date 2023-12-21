@@ -139,15 +139,11 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            //get data from product table and join it with detail_product and product_photos
-            // $products = DB::table('products')
-            //     ->join('detail_products', 'products.id', '=', 'detail_products.product_id')
-            //     ->join('product_photos', 'products.id', '=', 'product_photos.product_id')
-            //     ->join('indonesia_provinces', 'detail_products.province_code', '=', 'indonesia_provinces.code')
-            //     ->join('indonesia_cities', 'indonesia_provinces.code', '=', 'indonesia_cities.province_code')
-            //     ->select('products.*', 'detail_products.*', 'indonesia_provinces.name as name-province', 'indonesia_cities.name as name-city', 'product_photos.*')
-            //     ->get();
-            $products = Product::with('category')->get();
+            if (auth()->user()->role_id == 1) {
+                $products = Product::with('category')->get();
+            } else {
+                $products = Product::with('category')->where('user_uuid', auth()->user()->uuid)->get();
+            }
 
             return view('pages.admin.product.index', compact('products'));
         } catch (\Exception $e) {

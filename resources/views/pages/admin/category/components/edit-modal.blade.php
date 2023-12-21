@@ -34,22 +34,6 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label>Slug</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-person"></i>
-                                                        </div>
-                                                    </div>
-                                                    <input type="text" class="form-control" name="slug"
-                                                        value="{{ $category->slug }}">
-                                                </div>
-                                                @error('slug')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                                <span class="text-danger">contoh: ini-adalah-slug</span>
-                                            </div>
-                                            <div class="form-group">
                                                 <label>Status</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">

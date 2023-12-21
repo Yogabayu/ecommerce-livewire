@@ -17,11 +17,12 @@
                 <a href="{{ route('showUser', auth()->user()->uuid) }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="{{ route('setting.index') }}" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
+                @if (auth()->user()->uuid)
+                    <a href="{{ route('setting.index') }}" class="dropdown-item has-icon">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                @endif
                 <div class="dropdown-divider"></div>
-                {{-- @livewire('admin.logout') --}}
                 <div>
                     <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                         <i class="fas fa-sign-out-alt"></i> Logout

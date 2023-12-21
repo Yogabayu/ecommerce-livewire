@@ -30,7 +30,11 @@ class AuthController extends Controller
             ]);
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                return redirect()->route('dashboard.index')->with('success', 'berhasil login sebagai admin');
+                if (auth()->user()->role_id == 1) {
+                    return redirect()->route('dashboard.index')->with('success', 'berhasil login sebagai administartor utama');
+                } else {
+                    return redirect()->route('dashboard.index')->with('success', 'berhasil login sebagai Seller');
+                }
             } else {
                 return back()->with('error', 'email and password are wrong.');
             }

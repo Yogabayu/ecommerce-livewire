@@ -43,6 +43,7 @@ Route::prefix('admin')->group(function () {
         //categories
         Route::resource('category', CategoryController::class);
         Route::put('category-update/{slug}', [CategoryController::class, 'update'])->name('category-update');
+        Route::get('category-visibility/{slug}', [CategoryController::class, 'changeVisibility'])->name('category-visibility');;
 
         //product
         Route::resource('product', ProductController::class);

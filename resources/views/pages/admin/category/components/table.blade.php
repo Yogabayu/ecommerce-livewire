@@ -6,7 +6,7 @@
             </th>
             <th class="text-center">Gambar</th>
             <th class="text-center">Nama</th>
-            <th class="text-center">Slug</th>
+            <th class="text-center">Jumlah produk yang memakai</th>
             <th class="text-center">Status</th>
             <th class="text-center">Action</th>
         </tr>
@@ -24,13 +24,19 @@
                     <img src="{{ Storage::url('categories/' . $category->image) }}" alt="{{ $category->name }}"
                         class="rounded-circle" width="35" data-toggle="tooltip" title="{{ $category->name }}">
                 </td>
-                <td class="text-center">{{ $category->image }}</td>
-                <td class="text-center">{{ $category->slug }}</td>
+                <td class="text-center">{{ $category->name }}</td>
+                <td class="text-center">{{ $category->prod_count }}</td>
                 <td class="text-center">
                     @if ($category->status == 1)
-                        <button type="button" class="btn btn-success btn-sm">Ditampilkan</button>
+                        <a href="{{ route('category-visibility', $category->slug) }}">
+                            <button type="button" class="btn btn-success btn-sm">
+                                Ditampilkan
+                            </button>
+                        </a>
                     @else
-                        <button type="button" class="btn btn-danger btn-sm">Disembunyikan</button>
+                        <a href="{{ route('category-visibility', $category->slug) }}">
+                            <button type="button" class="btn btn-danger btn-sm">Disembunyikan</button>
+                        </a>
                     @endif
                 </td>
                 <td class="text-center">
