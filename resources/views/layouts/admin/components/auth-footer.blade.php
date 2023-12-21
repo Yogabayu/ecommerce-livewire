@@ -1,3 +1,3 @@
-  <div class="simple-footer">
-      Copyright &copy; e-Artha 2024
-  </div>
+<div class="simple-footer">
+    Copyright &copy; {{ $setting->name_app }} {{ date('Y') }}
+</div>

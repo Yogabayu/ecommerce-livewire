@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>{{ $title }} &mdash; tester</title>
+    <title>@yield('title') &mdash; {{ $setting->name_app }}</title>
 
     {{-- <link rel="icon" href="{{ asset('file/setting/' . $app->logo) }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('file/setting/' . $app->logo) }}" type="image/x-icon"> --}}
@@ -14,7 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
     @stack('style')
 
     <!-- Template CSS -->
@@ -42,9 +46,6 @@
         gtag('config', 'UA-94034622-3');
     </script>
     <!-- END GA -->
-
-    <livewire:styles />
-</head>
 </head>
 
 <body>
@@ -57,8 +58,8 @@
             @include('layouts.admin.components.sidebar')
 
             <!-- Content -->
-            {{-- @yield('main') --}}
-            {{ $slot }}
+            @yield('main')
+            {{-- {{ $slot }} --}}
 
             <!-- Footer -->
             @include('layouts.admin.components.footer')
@@ -66,8 +67,8 @@
     </div>
 
     <!-- General JS Scripts -->
-    {{-- @include('sweetalert::alert')
-    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script> --}}
+    @include('sweetalert::alert')
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="{{ asset('admin/library/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/library/popper.js/dist/umd/popper.js') }}"></script>
     <script src="{{ asset('admin/library/tooltip.js/dist/umd/tooltip.js') }}"></script>
@@ -75,40 +76,40 @@
     <script src="{{ asset('admin/library/jquery.nicescroll/dist/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('admin/library/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('admin/js/stisla.js') }}"></script>
-    <script src="{{ asset('admin/library/izitoast/dist/js/iziToast.min.js') }}"></script>
-
     <script>
-        "use strict";
         @if (session()->has('success'))
-            console.log();
-            iziToast.success({
-                title: 'Success',
-                message: '{{ session('success') }}',
-                position: 'topRight'
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000 // Adjust the timer duration as needed
             });
         @endif
-
         @if (session()->has('error'))
-            console.log();
-            iziToast.error({
-                title: 'Error',
-                message: '{{ session('error') }}',
-                position: 'topRight'
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                title: '{{ session('error') }}',
+                showConfirmButton: false,
+                timer: 3000 // Adjust the timer duration as needed
             });
         @endif
     </script>
-
+    <script>
+        // Auto-close the alert messages after 3 seconds (3000 milliseconds)
+        setTimeout(function() {
+            $('.swal2-popup').fadeOut();
+        }, 3000);
+    </script>
     @stack('scripts')
 
     <!-- Template JS File -->
     <script src="{{ asset('admin/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
 
-    <livewire:scripts />
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <x-livewire-alert::scripts />
 </body>
 
 </html>

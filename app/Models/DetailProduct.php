@@ -11,19 +11,20 @@ class DetailProduct extends Model
     protected $table = 'detail_products';
     protected $fillable = [
         'product_id',
-        'spec',
+        'address',
         'long_desc',
-        'province_id',
-        'city_id',
+        'province_code',
+        'city_code',
         'lat',
         'long',
+        'gmaps',
         'surface_area',
         'building_area',
-        'suo_doc',
+        'sup_doc',
         'type_sales',
         'seeing_count',
         'share_count',
-        'pic_wa'
+        'no_pic'
     ];
 
     public function product()
