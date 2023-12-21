@@ -19,7 +19,8 @@
                                             <i class="fas fa-voicemail"></i>
                                         </div>
                                     </div>
-                                    <input type="file" class="form-control" name="banner_img" required>
+                                    <input type="file" class="form-control" name="banner_img"
+                                        accept=".jpg,.png,.jpeg" required>
                                     @error('banner_img')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
