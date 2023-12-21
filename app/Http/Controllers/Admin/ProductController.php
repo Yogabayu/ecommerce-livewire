@@ -365,7 +365,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd($request->all());
+        // dd($request->all());
         try {
 
             $request->validate([
@@ -383,7 +383,6 @@ class ProductController extends Controller
                 'no_pic'        => 'required',
 
                 'tags'        => 'required|array', // Ensure 'photos' is an array
-                'photos.*'      => 'image|mimes:jpeg,jpg,png|max:2048', // Validate each photo in the array
             ]);
             //slug
             $slugProduct = Str::slug($request->name);
@@ -425,42 +424,18 @@ class ProductController extends Controller
             $dp->no_pic             = $request->no_pic;
             $dp->save();
 
-
-            // Handle product photos upload
-            $photoFiles = $request->file('photos');
-            $isPrimarySet = 0;
-
-            foreach ($photoFiles as $photoFile) {
-                $extension = $photoFile->extension();
-                $imgname = date('dmyHis') . '.' . $extension;
-                $path = Storage::putFileAs('public/photos', $photoFile, $imgname);
-
-                // Insert into 'product_photos' table
-                $productPhotos = new ProductPhoto;
-                $productPhotos->product_id = $product->id;
-                $productPhotos->photo = $imgname;
-
-                // Set the first photo as primary
-                if (!$isPrimarySet) {
-                    $productPhotos->is_primary = 1;
-                    $isPrimarySet = true;
-                } else {
-                    $productPhotos->is_primary = 0;
-                }
-
-                $productPhotos->save();
-            }
-
             //handle tag product
             $tagsProduct = $request->tags;
+            $existingTagIds = ProductTagMapping::where('product_id', $id)->pluck('tag_id')->toArray();
             foreach ($tagsProduct as $tp) {
-                $tagMapping = new ProductTagMapping;
-                $tagMapping->product_id = $product->id;
-                $tagMapping->tag_id = $tp;
-                $tagMapping->save();
+                if (!in_array($tp, $existingTagIds)) {
+                    $tagMapping = new ProductTagMapping;
+                    $tagMapping->product_id = $id;
+                    $tagMapping->tag_id = $tp;
+                    $tagMapping->save();
+                }
             }
-
-            return redirect()->back()->with('success', 'Product added successfully!');
+            return redirect()->back()->with('success', 'Product updated successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with("error", $e->getMessage());
         }
@@ -472,7 +447,18 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         try {
-            //code...
+            DB::table('product_tag_mappings')->where('product_id', $id)->delete();
+            $delPhotos = DB::table('product_photos')->where('product_id', $id)->get();
+            foreach ($delPhotos as $dp) {
+                if ($dp->photo) {
+                    Storage::delete("public/photos/{$dp->photo}");
+                }
+                DB::table('product_photos')->where('id', $dp->id)->delete();
+            };
+            DB::table('detail_products')->where('product_id', $id)->delete();
+            DB::table('products')->where('id', $id)->delete();
+
+            return redirect()->back()->with('success', 'Product deleted successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with("error", $e->getMessage());
         }

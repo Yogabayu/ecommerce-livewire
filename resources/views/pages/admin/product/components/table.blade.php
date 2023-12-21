@@ -40,10 +40,9 @@
                     <a class="btn btn-info btn-sm" title="Edit" href="{{ route('product.show', $p->id) }}">
                         <i class="fas fa-eye"></i>
                     </a>
-                    {{-- <a class="btn btn-warning btn-sm" title="Edit" data-toggle="modal"
-                        data-target="#editModal{{ $p->id }}" data-backdrop="false">
+                    <a class="btn btn-warning btn-sm" title="Edit" href="{{ route('product.edit', $p->id) }}">
                         <i class="fas fa-edit"></i>
-                    </a> --}}
+                    </a>
 
                     <form id="deleteForm{{ $p->id }}" action="{{ route('product.destroy', $p->id) }}"
                         method="POST" style="display: inline">

@@ -164,32 +164,49 @@
                                             <textarea class="form-control summernote" name="long_desc" id="long_desc" required>{!! $detailProduct->long_desc !!}</textarea>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label>Latitude</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-map-location-dot"></i>
+                                    <div x-cloak x-data="{ openQue: {{ $detailProduct->lat || $detailProduct->long ? 'true' : 'false' }}, openQue2: false }">
+                                        <div x-show="false">
+                                            <p>Apakah Ingin ditampilkan dipeta ?</p>
+                                            <button @click="openQue = !openQue"
+                                                class="btn btn-sm btn-primary my-3 justify-content-start"
+                                                type="button">Ya</button>
+                                            <button @click="openQue = false"
+                                                class="btn btn-sm btn-primary my-3 justify-content-start"
+                                                type="button">Tidak</button>
+                                        </div>
+                                        <div x-show="openQue" class="row">
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Latitude</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-map-location-dot"></i>
+                                                            </div>
                                                         </div>
+                                                        <input type="text" name="lat" id="lat"
+                                                            class="form-control" value="{{ $detailProduct->lat }}">
                                                     </div>
-                                                    <input type="text" name="lat" id="lat"
-                                                        class="form-control" value="{{ $detailProduct->lat }}">
+                                                    <span class="text-danger">jika tidak ingin ditampilkan di peta beri
+                                                        nilai
+                                                        0</span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label>Longitude</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-map-location-dot"></i>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Longitude</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-map-location-dot"></i>
+                                                            </div>
                                                         </div>
+                                                        <input type="text" name="long" id="long"
+                                                            class="form-control" value="{{ $detailProduct->long }}">
                                                     </div>
-                                                    <input type="text" name="long" id="long"
-                                                        class="form-control" value="{{ $detailProduct->long }}">
+                                                    <span class="text-danger">jika tidak ingin ditampilkan di peta beri
+                                                        nilai
+                                                        0</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -205,6 +222,7 @@
                                             <input type="text" name="gmaps" id="gmaps" class="form-control"
                                                 value="{{ $detailProduct->gmaps }}">
                                         </div>
+                                        <span class="text-danger">jika tidak ada silahkan di beri nilai 0</span>
                                     </div>
                                     <div x-cloak x-data="{ openLand: {{ $detailProduct->surface_area ? 'true' : 'false' }}, openQue: false }">
                                         <div x-show="openQue">
@@ -229,6 +247,7 @@
                                                     <input type="text" name="surface_area" id="surface_area"
                                                         class="form-control" value="{{ $detailProduct->surface_area }}">
                                                 </div>
+                                                <span class="text-danger">jika tidak ada silahkan di beri nilai 0</span>
                                             </div>
                                         </div>
                                     </div>
@@ -252,12 +271,17 @@
                                                             <i class="fas fa-chart-area"></i>
                                                         </div>
                                                     </div>
-                                                    <input type="text" name="building_area" id="building_area"
-                                                        class="form-control" value="{{ $detailProduct->surface_area }}">
+                                                    <!-- Gunakan x-model untuk mengikat nilai input -->
+                                                    <input
+                                                        x-model="openLand ? '{{ $detailProduct->building_area }}' : '0'"
+                                                        type="text" name="building_area" id="building_area"
+                                                        class="form-control">
                                                 </div>
+                                                <span class="text-danger">jika tidak ada silahkan di beri nilai 0</span>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label>Dokumen Pendukung (jika ada)</label>
                                         <div class="input-group">
@@ -337,7 +361,6 @@
                                             @endforeach
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="tags">Tag Produk</label>
                                         <div class="input-group">

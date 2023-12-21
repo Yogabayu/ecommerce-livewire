@@ -29,7 +29,12 @@ Route::prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
         Route::resource('dashboard', DashboardController::class);
+
+        //user
         Route::resource('user', UserController::class);
+        Route::get('show-user/{uuid}', [UserController::class, 'showUser'])->name('showUser');
+        Route::put('update-user/{uuid}', [UserController::class, 'updateUser'])->name('updateUser');
+
         Route::resource('banner', BannerController::class);
         Route::resource('setting', SettingController::class);
         Route::resource('tag', TagController::class);

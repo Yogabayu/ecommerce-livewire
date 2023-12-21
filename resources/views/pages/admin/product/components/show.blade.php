@@ -140,32 +140,34 @@
                                         <textarea class="form-control summernote" name="long_desc" id="long_desc" readonly>{!! $detailProduct->long_desc !!}</textarea>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label>Latitude</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fas fa-map-location-dot"></i>
+                                <div x-cloak x-data="{ openLand: {{ $detailProduct->lat || $detailProduct->long ? 'true' : 'false' }} }">
+                                    <div x-show="openLand" class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label>Latitude</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-map-location-dot"></i>
+                                                        </div>
                                                     </div>
+                                                    <input type="text" name="lat" id="lat"
+                                                        class="form-control" value="{{ $detailProduct->lat }}" readonly>
                                                 </div>
-                                                <input type="text" name="lat" id="lat" class="form-control"
-                                                    value="{{ $detailProduct->lat }}" readonly>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label>Longitude</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fas fa-map-location-dot"></i>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label>Longitude</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-map-location-dot"></i>
+                                                        </div>
                                                     </div>
+                                                    <input type="text" name="long" id="long"
+                                                        class="form-control" value="{{ $detailProduct->long }}" readonly>
                                                 </div>
-                                                <input type="text" name="long" id="long" class="form-control"
-                                                    value="{{ $detailProduct->long }}" readonly>
                                             </div>
                                         </div>
                                     </div>

@@ -157,32 +157,43 @@
                                             <textarea class="form-control summernote" name="long_desc" id="long_desc" required></textarea>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label>Latitude</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-map-location-dot"></i>
+                                    <div x-cloak x-data="{ openLand: false, openQue: true }">
+                                        <div x-show="openQue">
+                                            <p>Apakah Produk akan ditampilkan di menu map ?</p>
+                                            <button @click="openLand = !openLand"
+                                                class="btn btn-sm btn-primary my-3 justify-content-start"
+                                                type="button">Ya</button>
+                                            <button @click="openLand = false"
+                                                class="btn btn-sm btn-primary my-3 justify-content-start"
+                                                type="button">Tidak</button>
+                                        </div>
+                                        <div x-show="openLand" class="row">
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Latitude</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-map-location-dot"></i>
+                                                            </div>
                                                         </div>
+                                                        <input type="text" name="lat" id="lat"
+                                                            class="form-control">
                                                     </div>
-                                                    <input type="text" name="lat" id="lat"
-                                                        class="form-control">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label>Longitude</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-map-location-dot"></i>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Longitude</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-map-location-dot"></i>
+                                                            </div>
                                                         </div>
+                                                        <input type="text" name="long" id="long"
+                                                            class="form-control">
                                                     </div>
-                                                    <input type="text" name="long" id="long"
-                                                        class="form-control">
                                                 </div>
                                             </div>
                                         </div>

@@ -120,7 +120,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>No. WhatsApp</label>
+                                        <label data-toggle="tooltip" title="nomor diawali dengan 62 tanpa tanda +">No.
+                                            WhatsApp</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -134,6 +135,7 @@
                                             <input type="text" class="form-control" name="wa"
                                                 value="{{ $setting->wa ?? '-' }}" required>
                                         </div>
+                                        <span class="text-danger">contoh: 6212345678912</span>
                                     </div>
 
                                     <div class="form-group">

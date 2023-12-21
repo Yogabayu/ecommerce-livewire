@@ -13,6 +13,68 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public function updateUser(Request $request, $uuid)
+    {
+        try {
+            $user = User::where('uuid', $uuid)->first();
+
+            $request->validate([
+                'role_id' => 'required',
+                'nik' => [
+                    'required',
+                    Rule::unique('users')->ignore($user->id),
+                ],
+                'name' => 'required',
+                'email' => [
+                    'required',
+                    'email',
+                    Rule::unique('users')->ignore($user->id),
+                ],
+                'password' => 'nullable|min:8',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
+            ]);
+
+            $user->role_id = $request->role_id;
+            $user->nik = $request->nik;
+            $user->name = $request->name;
+            $user->email = $request->email;
+
+            if ($request->filled('password')) {
+                $user->password = Hash::make($request->password);
+            }
+
+            if ($request->hasFile('photo')) {
+                // Save the photo to the storage
+                $extension = $request->file('photo')->extension();
+                $imgname = date('dmyHis') . '.' . $extension;
+                $path = $request->file('photo')->storeAs('public/photos', $imgname);
+
+                // Remove the old photo if exists
+                if ($user->photo) {
+                    Storage::delete("public/photos/{$user->photo}");
+                }
+
+                $user->photo = $imgname;
+            }
+
+            $user->save();
+
+            return redirect()->back()->with('success', 'User updated successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error updating user');
+        }
+    }
+    public function showUser($uuid)
+    {
+        try {
+            $user = User::where('uuid', $uuid)->firstOrFail();
+            $roles = Role::all();
+
+            return view('pages.admin.user.profile.index', compact('user', 'roles'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error showing detail user');
+        }
+    }
     /**
      * Display a listing of the resource.
      */
