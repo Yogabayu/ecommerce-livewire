@@ -25,23 +25,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group col-md-6 col-12">
-                                <label>Apakah Akan ditampilkan sebagai hero image ?</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-person"></i>
-                                        </div>
-                                    </div>
-                                    <select class="form-control" name="is_hero" id="is_hero">
-                                        <option value="0">Tidak ditampilkan</option>
-                                        <option value="1">Tampilkan Sebagai Hero Image</option>
-                                    </select>
-                                </div>
-                                @error('is_hero')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6 col-12">
@@ -49,10 +32,11 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                            <i class="fas fa-person"></i>
+                                            <i class="fas fa-image"></i>
                                         </div>
                                     </div>
                                     <select class="form-control" name="is_see" id="is_see">
+                                        <option selected>pilih</option>
                                         <option value="0">Tidak ditampilkan</option>
                                         <option value="1">Di tampilkan</option>
                                     </select>

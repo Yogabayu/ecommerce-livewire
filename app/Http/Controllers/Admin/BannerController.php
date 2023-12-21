@@ -9,6 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
+    public function changeVisibility($id)
+    {
+        try {
+            $category = Banner::where('id', $id)->first();;
+            if ($category->is_see == 1) {
+                $category->is_see = 0;
+            } else {
+                $category->is_see = 1;
+            }
+            $category->save();
+
+            return redirect()->back()->with('success', 'Banner updated successfully!');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,13 +56,10 @@ class BannerController extends Controller
             $request->validate([
                 'banner_img' => 'required|mimes:jpeg,jpg,png|max:2048',
                 'is_see' => 'required',
-                'is_hero' => 'required',
             ]);
-
-            // Check if there's already a hero image
-            $cekHero = Banner::where('is_hero', 1)->count();
-            if ($cekHero > 0 && $request->is_hero) {
-                return redirect()->back()->with('error', 'Hanya satu gambar yang dapat dijadikan hero image, mohon ganti terlebih dahulu');
+            $cekIsSee = Banner::where('is_see', 1)->count();
+            if ($cekIsSee == 2 && $request->is_see == 1) {
+                return redirect()->back()->with("error", "Tidak bisa menambahkan banner karena telah ada 2 banner yang ditayangkan, ubah data dahulu data lama");
             }
 
             // Save the photo to the storage
@@ -58,7 +71,7 @@ class BannerController extends Controller
             Banner::create([
                 'banner_img' => $imgname,
                 'is_see' => $request->is_see,
-                'is_hero' => $request->is_hero,
+                // 'is_hero' => $request->is_hero,
             ]);
 
             return redirect()->back()->with('success', 'Banner added successfully!');
@@ -92,17 +105,14 @@ class BannerController extends Controller
             $request->validate([
                 'banner_img' => 'mimes:jpeg,jpg,png|max:2048',
                 'is_see' => 'required',
-                'is_hero' => 'required',
             ]);
 
-            $cekHeroCount = Banner::where('is_hero', 1)->count();
-
-            if ($cekHeroCount == 1) {
-                return redirect()->back()->with('error', 'Hanya satu gambar yang dapat dijadikan hero image, mohon ganti terlebih dahulu');
+            $cekIsSee = Banner::where('is_see', 1)->count();
+            if ($cekIsSee == 2 && $request->is_see == 1) {
+                return redirect()->back()->with("error", "Tidak bisa menambahkan banner karena telah ada 2 banner yang ditayangkan, ubah data dahulu data lama");
             }
             $banner = Banner::findOrFail($id);
             $banner->is_see = $request->is_see;
-            $banner->is_hero = $request->is_hero;
 
             if ($request->hasFile('banner_img')) {
                 if ($banner->banner_img) {

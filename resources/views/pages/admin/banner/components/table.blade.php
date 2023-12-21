@@ -5,7 +5,6 @@
                 No.
             </th>
             <th>Photo</th>
-            <th>Hero Image ?</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
@@ -27,17 +26,16 @@
                         data-toggle="tooltip" title="banner">
                 </td>
                 <td>
-                    @if ($banner->is_hero)
-                        Tayang Sebagai Hero Image
-                    @else
-                        Tidak ditayangkan sebagai hero image
-                    @endif
-                </td>
-                <td>
                     @if ($banner->is_see)
-                        Di munculkan
+                        <a href="{{ route('bannerVisibility', $banner->id) }}">
+                            <button type="button" class="btn btn-success btn-sm">
+                                Ditampilkan
+                            </button>
+                        </a>
                     @else
-                        Tidak dimunculkan
+                        <a href="{{ route('bannerVisibility', $banner->id) }}">
+                            <button type="button" class="btn btn-danger btn-sm">Disembunyikan</button>
+                        </a>
                     @endif
                 </td>
                 <td>
