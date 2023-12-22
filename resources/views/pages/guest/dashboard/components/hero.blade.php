@@ -1,3 +1,12 @@
+@push('style')
+    <style>
+        .bg-overdrive {
+            background-color: #FFFF;
+            padding-inline: 5px;
+            border-radius: 10px
+        }
+    </style>
+@endpush
 <!-- Hero Section Begin -->
 <section class="hero">
     <div class="container">
@@ -43,11 +52,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero__item set-bg" data-setbg="{{ asset('guest/img/banner/banner-home.webp') }}">
+                <div wire:ignore class="hero__item set-bg"
+                    data-setbg="{{ Storage::url('photos/' . $heroProd->photo) ?? asset('guest/img/banner/banner-home.webp') }}">
                     <div class="hero__text">
-                        <span>Kategori 1</span>
-                        <h2>Produk 1 <br /> short-desc</h2>
-                        <p>Free Pickup and Delivery Available</p>
+                        <span class="bg-overdrive">{{ $heroProd->category }}</span>
+                        <h2 class="bg-overdrive">{{ $heroProd->name }}
+                            {{-- <br /> short-desc --}}
+                        </h2>
+                        <p class="bg-overdrive">{{ $heroProd->short_desc }}</p>
                         <a href="#" class="primary-btn">Detail</a>
                     </div>
                 </div>

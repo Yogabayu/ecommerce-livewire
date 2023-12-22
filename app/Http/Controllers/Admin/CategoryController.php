@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function changeVisibility($slug)
     {
         try {
-            $category = Category::where('slug', $slug)->first();;
+            $category = Category::where('slug', $slug)->first();
             if ($category->status == 1) {
                 $category->status = 0;
             } else {

@@ -16,7 +16,7 @@
     --------------------*/
     $(window).on('load', function () {
         $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow");
+        $("#preloder").delay(100).fadeOut("slow");
 
         /*------------------
             Gallery filter
@@ -110,7 +110,7 @@
         dots: false,
         nav: true,
         navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
-        smartSpeed: 1200,
+        smartSpeed: 5000,
         autoHeight: false,
         autoplay: true
     });
