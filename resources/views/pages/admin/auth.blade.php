@@ -49,6 +49,9 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                         Login
                     </button>
+                    <a href="{{ url('/') }}" class="btn btn-secondary btn-lg btn-block" tabindex="4">
+                        Kembali ke situs
+                    </a>
                 </div>
             </form>
         </div>

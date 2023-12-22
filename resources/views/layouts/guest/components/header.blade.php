@@ -30,7 +30,7 @@
 <!-- Humberger End -->
 
 <!-- Header Section Begin -->
-<header class="header">
+<header class="header" style="margin-bottom: 10px">
     <div class="header__top">
         <div class="container">
             <div class="row">
@@ -54,11 +54,14 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container"
+        style="box-shadow: 0px 15px 9px -5px rgba(0,0,0,0.11);
+-webkit-box-shadow: 0px 15px 9px -5px rgba(0,0,0,0.11);
+-moz-box-shadow: 0px 15px 9px -5px rgba(0,0,0,0.11);">
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="#">
+                    <a href="{{ url('/') }}">
                         <img src="{{ Storage::url('setting/' . $setting->logo) }}" alt="{{ $setting->name_app }}"
                             style="max-width: 120px;max-height: 50px;">
                     </a>
@@ -67,7 +70,7 @@
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="{{ url('/') }}">Home</a></li>
                         <li><a href="#">Daftar Lelang</a></li>
                         <li><a href="#">Peta</a></li>
                         <li><a href="#">Contact</a></li>

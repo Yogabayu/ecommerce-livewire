@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Livewire\AboutUsComponent;
 use App\Livewire\DashboardComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     //dashboard
     Route::get('/', DashboardComponent::class);
+    Route::get('aboutus', AboutUsComponent::class)->name('aboutus');
 });
 
 Route::prefix('admin')->group(function () {
