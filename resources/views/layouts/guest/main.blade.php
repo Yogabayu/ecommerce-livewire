@@ -65,6 +65,7 @@
     @include('layouts.guest.components.footer')
     <!-- Footer Section End -->
 
+    @stack('script')
     <!-- Js Plugins -->
     <script src="{{ asset('guest/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('guest/js/bootstrap.min.js') }}"></script>

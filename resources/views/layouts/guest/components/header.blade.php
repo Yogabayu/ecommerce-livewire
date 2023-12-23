@@ -11,7 +11,7 @@
             <li><a href="#">Daftar Lelang</a></li>
             <li><a href="#">Peta</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#">FaQ</a></li>
+            <li><a href="{{ route('faq') }}">FaQ</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -74,7 +74,7 @@
                         <li><a href="#">Daftar Lelang</a></li>
                         <li><a href="#">Peta</a></li>
                         <li><a href="#">Contact</a></li>
-                        <li><a href="#">FaQ</a></li>
+                        <li><a href="{{ route('faq') }}">FaQ</a></li>
                     </ul>
                 </nav>
             </div>
