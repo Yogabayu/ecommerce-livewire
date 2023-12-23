@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('long_desc');
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
-            $table->longText('gmap')->nullable();
+            $table->longText('gmaps')->nullable();
             $table->string('surface_area')->nullable();
             $table->string('building_area')->nullable();
             $table->string('sup_doc')->nullable()->comment('support document');
