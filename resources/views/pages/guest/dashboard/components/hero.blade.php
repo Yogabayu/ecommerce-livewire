@@ -21,16 +21,6 @@
                         @foreach ($categories as $cat)
                             <li><a href="#">{{ $cat->name }}</a></li>
                         @endforeach
-                        {{-- <li><a href="#">Kategori 2</a></li>
-                        <li><a href="#">Kategori 3</a></li>
-                        <li><a href="#">Kategori 4</a></li> --}}
-                        {{-- <li><a href="#">Kategori 5</a></li>
-                        <li><a href="#">Kategori 6</a></li>
-                        <li><a href="#">Kategori 7</a></li>
-                        <li><a href="#">Kategori 8</a></li>
-                        <li><a href="#">Kategori 9</a></li>
-                        <li><a href="#">Kategori 10</a></li>
-                        <li><a href="#">Kategori 11</a></li> --}}
                     </ul>
                 </div>
             </div>
@@ -53,16 +43,19 @@
                     </div>
                 </div>
                 <div wire:ignore class="hero__item set-bg"
-                    data-setbg="{{ Storage::url('photos/' . $heroProd->photo) ?? asset('guest/img/banner/banner-home.webp') }}">
+                    data-setbg="{{ $heroProd ? Storage::url('photos/' . $heroProd->photo) : asset('guest/img/banner/banner-home.webp') }}">
                     <div class="hero__text">
-                        <span class="bg-overdrive">{{ $heroProd->category }}</span>
-                        <h2 class="bg-overdrive">{{ $heroProd->name }}
-                            {{-- <br /> short-desc --}}
-                        </h2>
-                        <p class="bg-overdrive">{{ $heroProd->short_desc }}</p>
-                        <a href="#" class="primary-btn">Detail</a>
+                        @if ($heroProd)
+                            <span class="bg-overdrive">{{ $heroProd->category ?? 'kategori' }}</span>
+                            <h2 class="bg-overdrive">{{ $heroProd->name ?? 'name product' }}</h2>
+                            <p class="bg-overdrive">{{ $heroProd->short_desc ?? 'short desc' }}</p>
+                            <a href="#" class="primary-btn">Detail</a>
+                        @else
+                            <p class="bg-overdrive">No product available</p>
+                        @endif
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
