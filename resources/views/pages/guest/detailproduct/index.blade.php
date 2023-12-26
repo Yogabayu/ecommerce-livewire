@@ -3,16 +3,16 @@
     <livewire:headcomponent />
     <!-- Hero Section End -->
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/sales.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
+                        <h2>{{ $generalProduct->name }}</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <a href="./index.html">Vegetables</a>
-                            <span>Vegetable’s Package</span>
+                            <a href="{{ url('/') }}">Home</a>
+                            <a href="">{{ $generalProduct->nameCategory }}</a>
+                            <span>{{ $generalProduct->name }}</span>
                         </div>
                     </div>
                 </div>
@@ -28,6 +28,10 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
+                            @foreach ($photoProducts as $photo)
+                                @if ($photo->is_primary == 1)
+                                @endif
+                            @endforeach
                             <img class="product__details__pic__item--large"
                                 src="img/product/details/product-details-1.jpg" alt="">
                         </div>
