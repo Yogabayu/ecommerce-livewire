@@ -9,7 +9,7 @@
                         <div class="col-lg-3">
                             <div class="categories__item set-bg"
                                 data-setbg="{{ Storage::url('categories/' . $cat->image) }}"
-                                style="max-width: 270px; max-height: 270px">
+                                style="max-width: 270px; max-height: 270px;">
                                 <h5><a href="#">{{ $cat->name }}</a></h5>
                             </div>
                         </div>
