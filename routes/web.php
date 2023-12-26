@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Livewire\AboutUsComponent;
+use App\Livewire\ContactUsComponent;
 use App\Livewire\DashboardComponent;
 use App\Livewire\FaqComponent;
 use App\Livewire\PrivacyPolicyComponent;
@@ -32,6 +33,7 @@ Route::middleware('guest')->group(function () {
     Route::get('aboutus', AboutUsComponent::class)->name('aboutus');
     Route::get('privacypolicy', PrivacyPolicyComponent::class)->name('privacypolicy');
     Route::get('faq', FaqComponent::class)->name('faq');
+    Route::get('contactus', ContactUsComponent::class)->name('contactus');
 });
 
 Route::prefix('admin')->group(function () {

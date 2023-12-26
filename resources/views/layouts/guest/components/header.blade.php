@@ -10,7 +10,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#">Daftar Lelang</a></li>
             <li><a href="#">Peta</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{{ route('contactus') }}">Contact</a></li>
             <li><a href="{{ route('faq') }}">FaQ</a></li>
         </ul>
     </nav>
@@ -73,7 +73,7 @@
                         <li class="active"><a href="{{ url('/') }}">Home</a></li>
                         <li><a href="#">Daftar Lelang</a></li>
                         <li><a href="#">Peta</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ route('contactus') }}">Contact</a></li>
                         <li><a href="{{ route('faq') }}">FaQ</a></li>
                     </ul>
                 </nav>
