@@ -24,7 +24,8 @@ class DetailProduct extends Model
         'type_sales',
         'seeing_count',
         'share_count',
-        'no_pic'
+        'no_pic',
+        'after_sale'
     ];
 
     public function product()

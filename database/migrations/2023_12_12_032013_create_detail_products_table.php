@@ -27,6 +27,7 @@ return new class extends Migration
             $table->enum('type_sales', [1, 2])->comment('jenis penjualan. 1: lelang, 2: jual langsung');
             $table->integer('seeing_count')->nullable();
             $table->integer('share_count')->nullable();
+            $table->string('after_sale')->nullable();
             $table->string('no_pic')->comment('nomor whatsapp dari pic bank arthaya');
             $table->timestamps();
 

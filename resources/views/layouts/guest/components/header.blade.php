@@ -8,7 +8,7 @@
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Daftar Lelang</a></li>
+            <li><a href="{{ route('shop') }}">Daftar Lelang</a></li>
             <li><a href="#">Peta</a></li>
             <li><a href="{{ route('contactus') }}">Contact</a></li>
             <li><a href="{{ route('faq') }}">FaQ</a></li>
@@ -71,7 +71,7 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="#">Daftar Lelang</a></li>
+                        <li><a href="{{ route('shop') }}">Daftar Lelang</a></li>
                         <li><a href="#">Peta</a></li>
                         <li><a href="{{ route('contactus') }}">Contact</a></li>
                         <li><a href="{{ route('faq') }}">FaQ</a></li>

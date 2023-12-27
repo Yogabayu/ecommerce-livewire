@@ -15,6 +15,7 @@ use App\Livewire\DashboardComponent;
 use App\Livewire\DetailProductComponent;
 use App\Livewire\FaqComponent;
 use App\Livewire\PrivacyPolicyComponent;
+use App\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,9 @@ Route::middleware('guest')->group(function () {
 
     //detail
     Route::get('detail/{slug}', DetailProductComponent::class)->name('detailproduct');
+
+    //shop
+    Route::get('shop', ShopComponent::class)->name('shop');
 });
 
 Route::prefix('admin')->group(function () {

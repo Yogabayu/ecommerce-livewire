@@ -89,10 +89,10 @@ class DashboardComponent extends Component
     {
         $this->latesProducts = DB::table('products as p')
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
-            ->select('p.id', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
+            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
             ->where('pp.is_primary', 1)
             ->orderByDesc('p.created_at')
-            ->groupBy('p.id', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
+            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
             ->havingRaw('COUNT(p.id) <= 6')
             ->get();
     }
@@ -102,9 +102,9 @@ class DashboardComponent extends Component
         $this->mostSharedProducts = DB::table('products as p')
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
             ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
-            ->select('p.id', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
+            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
             ->where('pp.is_primary', 1)
-            ->groupBy('p.id', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.share_count')
+            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.share_count')
             ->orderByDesc('dp.share_count', 'dp.id')
             ->havingRaw('COUNT(p.id) <= 6')
             ->get();
@@ -115,9 +115,9 @@ class DashboardComponent extends Component
         $this->viewedProducts = DB::table('products as p')
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
             ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
-            ->select('p.id', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
+            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
             ->where('pp.is_primary', 1)
-            ->groupBy('p.id', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.seeing_count')
+            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.seeing_count')
             ->orderByDesc('dp.seeing_count', 'dp.id')
             ->havingRaw('COUNT(p.id) <= 6')
             ->get();

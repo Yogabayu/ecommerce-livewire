@@ -60,12 +60,15 @@
                                     </li>
                                     <li data-toggle="tooltip" title="Jumlah share"><a href="#"><i
                                                 class="fa fa-share"></i>{{ $fp->share_count }}</a></li>
-                                    <li data-toggle="tooltip" title="Info Selengkapnya"><a href="#"><i
+                                    <li data-toggle="tooltip" title="Info Selengkapnya"><a
+                                            href="{{ route('detailproduct', ['slug' => $fp->slug]) }}"><i
                                                 class="fa fa-info"></i></a></li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">
-                                <h6><a href="#">{{ $fp->name }}</a></h6>
+                                <h6><a
+                                        href="{{ route('detailproduct', ['slug' => $fp->slug]) }}">{{ $fp->name }}</a>
+                                </h6>
                                 <h5>Rp{{ $fp->price }}</h5>
                             </div>
                         </div>
@@ -105,7 +108,8 @@
                             @foreach ($latesProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
                                     @foreach ($chunk as $product)
-                                        <a href="#" class="latest-product__item" data-toogle="tooltip"
+                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                            class="latest-product__item" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"
@@ -130,7 +134,8 @@
                             @foreach ($viewedProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
                                     @foreach ($chunk as $product)
-                                        <a href="#" class="latest-product__item" data-toogle="tooltip"
+                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                            class="latest-product__item" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"
@@ -155,7 +160,8 @@
                             @foreach ($mostSharedProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
                                     @foreach ($chunk as $product)
-                                        <a href="#" class="latest-product__item" data-toogle="tooltip"
+                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                            class="latest-product__item" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"
