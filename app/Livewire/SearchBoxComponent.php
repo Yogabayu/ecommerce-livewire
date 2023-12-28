@@ -6,8 +6,12 @@ use Livewire\Component;
 
 class SearchBoxComponent extends Component
 {
-    public $suggestions = ['Suggestion 1', 'Suggestion 2', 'Suggestion 3'];
     public $inputText = '';
+
+    public function search()
+    {
+        $this->redirectRoute('search', ['inputText' => $this->inputText]);
+    }
 
     public function render()
     {

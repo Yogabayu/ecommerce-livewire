@@ -15,6 +15,7 @@ use App\Livewire\DashboardComponent;
 use App\Livewire\DetailProductComponent;
 use App\Livewire\FaqComponent;
 use App\Livewire\PrivacyPolicyComponent;
+use App\Livewire\SearchComponentInline;
 use App\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,9 @@ Route::middleware('guest')->group(function () {
 
     //shop
     Route::get('shop', ShopComponent::class)->name('shop');
+
+    //search
+    Route::get('search', SearchComponentInline::class)->name('search');
 });
 
 Route::prefix('admin')->group(function () {

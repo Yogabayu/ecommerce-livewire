@@ -115,7 +115,16 @@
                                 <span>({{ $viewCount }} Views)</span>
                             @endif
                         </div>
-                        <div class="product__details__price">Rp.{{ $generalProduct->price }}</div>
+                        <div class="product__details__price">
+                            @if ($detailProduct->after_sale)
+                            <span>
+                                Rp.{{ $detailProduct->after_sale }}*</span>
+                            <h4 class="text-center normal-price">
+                                Rp.{{ $generalProduct->price }}*</h4>
+                            @else
+                            <span>Rp.{{ $generalProduct->price }}*</span>
+                            @endif
+                        </div>
                         <p style="margin-bottom: 10px">{{ $generalProduct->short_desc }}</p>
                         <div class="product__details__quantity" style="width: 20%">
 

@@ -1,3 +1,12 @@
+@push('style')
+    <style>
+        .imgSpecial {
+            idth: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+@endpush
 <div>
     @include('pages.guest.dashboard.components.hero')
     <!-- Categories Section Begin -->
@@ -7,9 +16,9 @@
                 <div wire:ignore class="categories__slider owl-carousel">
                     @foreach ($categories as $cat)
                         <div class="col-lg-3">
-                            <div class="categories__item set-bg"
-                                data-setbg="{{ Storage::url('categories/' . $cat->image) }}"
-                                style="max-width: 270px; max-height: 270px;">
+                            <div class="categories__item">
+                                <img class="imgSpecial" src="{{ Storage::url('categories/' . $cat->image) }}"
+                                    alt="{{ $setting->name_app }}" srcset="">
                                 <h5><a href="#">{{ $cat->name }}</a></h5>
                             </div>
                         </div>
@@ -50,10 +59,9 @@
                     </div>
                     <div wire:key="{{ $fp->slugCat }}" class="col-lg-3 col-md-4 col-sm-6 mix {{ $fp->slugCat }}">
                         <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                @if ($firstCall == 1) data-setbg="{{ url('storage/photos/' . $fp->photo) }}"
-                                @else
-                                    style="background-image: url('{{ url('storage/photos/' . $fp->photo) }}');" @endif>
+                            <div class="featured__item__pic">
+                                <img class="imgSpecial" src="{{ url('storage/photos/' . $fp->photo) }}"
+                                    alt="{{ $setting->name_app }}" srcset="">
                                 <ul class="featured__item__pic__hover">
                                     <li data-toggle="tooltip" title="Jumlah Dilihat"><a href="#"><i
                                                 class="fa fa-eye"></i> {{ $fp->max_seeing_count }}</a>
