@@ -138,7 +138,8 @@
                 @foreach ($relatedProducts as $rp)
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{{ Storage::url('photos/' . $rp->photo) }}">
+                        <div class="product__item__pic" >
+                            <img class="imgSpecial" src="{{ Storage::url('photos/' . $rp->photo) }}" srcset="">
                             @if ($rp->after_sale)
                             <div class="tag">Sale</div>
                             @endif
