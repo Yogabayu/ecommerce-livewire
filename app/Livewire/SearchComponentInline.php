@@ -16,6 +16,7 @@ class SearchComponentInline extends Component
     private $results = [];
     public $state = 0;
     public $relatedProducts = [];
+    public $countProduct = [];
 
     public function updateSortState($value)
     {
@@ -52,6 +53,9 @@ class SearchComponentInline extends Component
                     ->orWhere(DB::raw("REPLACE(dp.long_desc, ' ', '')"), 'LIKE', '%' . $inputTextWithoutSpaces . '%')
                     ->orWhere(DB::raw("REPLACE(c.name, ' ', '')"), 'LIKE', '%' . $inputTextWithoutSpaces . '%');
             });
+
+        $this->countProduct = $query->count();
+
         if ($value == 1) { // Terbaru
             $query->orderBy('p.created_at', 'DESC');
         } elseif ($value == 2) { // Terlama

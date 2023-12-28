@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-lg-3 col-md-3">
                                 <div class="filter__found">
-                                    <h6><span>{{ $inputText }}</span> Produk ditemukan</h6>
+                                    <h6><span>{{ $countProduct }}</span> Produk ditemukan</h6>
                                 </div>
                             </div>
                         </div>
