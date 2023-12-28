@@ -70,11 +70,21 @@
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ route('shop') }}">Daftar Lelang</a></li>
-                        <li><a href="#">Peta</a></li>
-                        <li><a href="{{ route('contactus') }}">Contact</a></li>
-                        <li><a href="{{ route('faq') }}">FaQ</a></li>
+                        <li class="{{ request()->is('/') ? 'active' : '' }}">
+                            <a href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li class="{{ request()->is('shop') ? 'active' : '' }}">
+                            <a href="{{ route('shop') }}">Daftar Lelang</a>
+                        </li>
+                        <li class="{{ request()->is('map') ? 'active' : '' }}">
+                            <a href="{{ url('map') }}">Peta</a>
+                        </li>
+                        <li class="{{ request()->is('contactus') ? 'active' : '' }}">
+                            <a href="{{ route('contactus') }}">Contact</a>
+                        </li>
+                        <li class="{{ request()->is('faq') ? 'active' : '' }}">
+                            <a href="{{ route('faq') }}">FaQ</a>
+                        </li>
                     </ul>
                 </nav>
             </div>

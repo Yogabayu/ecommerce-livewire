@@ -10,7 +10,7 @@
                         </div>
                         <ul>
                             @foreach ($categories as $cat)
-                                <li><a href="#">{{ $cat->name }}</a></li>
+                                <li wire:key='{{$cat->name}}'><a href="#">{{ $cat->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>

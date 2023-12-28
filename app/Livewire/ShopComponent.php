@@ -5,18 +5,23 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\WithPagination;
 
 class ShopComponent extends Component
 {
-    public $categories = [], $saleProducts = [], $populartags = [], $latesProducts = [];
-    public $selecsort = 0;
+    use WithPagination;
 
-    public function updatedSelecsort($value)
+    public $categories = [], $saleProducts = [], $populartags = [], $latesProducts = [];
+    public $state = 0;
+    public $countProduct;
+    private $sortProducts = [];
+
+    public function updateSortState($value)
     {
-        dd('masuk sini');
+        $this->getProduct($value);
     }
 
-    public function getProduct($sort)
+    public function getProduct($value)
     {
         $query = DB::table('products as p')
             ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
@@ -35,11 +40,55 @@ class ShopComponent extends Component
             )
             ->where('pp.is_primary', 1);
 
-        if ($sort == 1) {
-            $query->orderByDesc('p.created_at');
-        } elseif ($sort == 2) {
+        $this->countProduct = $query->count();
+
+        if ($value == 1) { // Terbaru
+            $query->orderBy('p.created_at', 'DESC');
+        } elseif ($value == 2) { // Terlama
             $query->orderBy('p.created_at', 'ASC');
+        } elseif ($value == 3) { // A-Z
+            $query->orderBy('p.name', 'ASC');
+        } elseif ($value == 4) { // Z-A
+            $query->orderBy('p.name', 'DESC');
+        } elseif ($value == 5) { // Termahal
+            $query->orderBy(DB::raw('CAST(REPLACE(p.price, ".", "") AS SIGNED)'), 'DESC');
+        } elseif ($value == 6) { // Termurah
+            $query->orderBy(DB::raw('CAST(REPLACE(p.price, ".", "") AS SIGNED)'), 'ASC');
         }
+
+        $this->sortProducts = $query->groupBy(
+            'p.id',
+            'p.name',
+            'p.slug',
+            'p.price',
+            'dp.after_sale',
+            'dp.seeing_count',
+            'dp.share_count',
+            'c.name',
+            'pp.photo'
+        )->paginate(10);
+
+        $this->state = $value;
+    }
+
+    public function getSaleProduct()
+    {
+        $query = DB::table('products as p')
+            ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
+            ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
+            ->join('categories as c', 'c.id', '=', 'p.category_id')
+            ->select(
+                'p.id',
+                'p.name',
+                'p.slug',
+                'p.price',
+                'dp.after_sale',
+                'dp.seeing_count',
+                'dp.share_count',
+                'c.name as nameCategory',
+                'pp.photo'
+            )
+            ->where('pp.is_primary', 1);
 
         $this->saleProducts = $query->groupBy(
             'p.id',
@@ -100,18 +149,24 @@ class ShopComponent extends Component
             ->get();
     }
 
-    public function mount()
+    public function boot()
     {
         $this->getCategories();
         $this->getSale();
         $this->getPopularTag();
         $this->getLatestProducts();
-        $this->getProduct($this->selecsort);
+        $this->getSaleProduct();
+    }
+
+    public function mount()
+    {
+        $this->getProduct(0);
     }
 
     #[Layout('layouts.guest.main')]
     public function render()
     {
-        return view('pages.guest.shop.index');
+        $this->updateSortState($this->state);
+        return view('pages.guest.shop.index', ['sortProducts' => $this->sortProducts]);
     }
 }

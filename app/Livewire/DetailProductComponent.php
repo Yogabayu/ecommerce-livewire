@@ -43,8 +43,8 @@ class DetailProductComponent extends Component
             })
             ->where('products.id', '<>', $this->idProduct)
             ->where('product_photos.is_primary', 1)
-            ->select('products.id', 'products.name', 'products.short_desc', 'products.slug', 'products.price', 'product_photos.photo', 'detail_products.seeing_count', 'detail_products.share_count')
-            ->groupBy('products.id', 'products.name', 'products.short_desc', 'products.slug', 'products.price', 'product_photos.photo', 'detail_products.seeing_count', 'detail_products.share_count')
+            ->select('products.id', 'products.name', 'products.short_desc', 'products.slug', 'products.price', 'product_photos.photo', 'detail_products.seeing_count', 'detail_products.share_count', 'detail_products.after_sale')
+            ->groupBy('products.id', 'products.name', 'products.short_desc', 'products.slug', 'products.price', 'product_photos.photo', 'detail_products.seeing_count', 'detail_products.share_count', 'detail_products.after_sale')
             ->get();
     }
 

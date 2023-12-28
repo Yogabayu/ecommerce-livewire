@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('guest')->group(function () {
     //dashboard
     Route::get('/', DashboardComponent::class);

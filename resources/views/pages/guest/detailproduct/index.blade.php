@@ -10,6 +10,34 @@
             margin-bottom: 10px;
             /* Jarak bawah dari elemen berikutnya */
         }
+
+        .discount {
+            font-size: 30px;
+            color: #dd2222;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .normal-price {
+            display: inline-block;
+            font-weight: 400;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        .tag{
+            height: 45px;
+            width: 45px;
+            background: #dd2222;
+            border-radius: 50%;
+            font-size: 14px;
+            color: #ffffff;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
     </style>
 @endpush
 <div>
@@ -161,7 +189,15 @@
                                         <div class="col-12 col-md-6 col-lg-6">
                                             <h6>Harga</h6>
                                             <div class="product__details__text">
-                                                <div class="product__details__price">Rp.{{ $generalProduct->price }}*
+                                                <div class="product__details__price">
+                                                    @if ($detailProduct->after_sale)
+                                                        <span>
+                                                            Rp.{{ $detailProduct->after_sale }}*</span>
+                                                        <h4 class="text-center normal-price">
+                                                            Rp.{{ $generalProduct->price }}*</h4>
+                                                    @else
+                                                        <span>Rp.{{ $generalProduct->price }}*</span>
+                                                    @endif
                                                 </div>
                                                 <p class="note">*Harga Tersebut Belum Termasuk Pajak Pembeli , Biaya
                                                     Balik Nama Dan Biaya Lainya
@@ -255,6 +291,9 @@
                         <div class="product__item">
                             <div class="product__item__pic set-bg"
                                 data-setbg="{{ Storage::url('photos/' . $rp->photo) }}">
+                                @if ($rp->after_sale)
+                                    <div class="tag">Sale</div>
+                                @endif
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-eye"></i> {{ $rp->seeing_count }}</a></li>
                                     <li><a href="#"><i class="fa fa-share"></i> {{ $rp->share_count }}</a></li>
