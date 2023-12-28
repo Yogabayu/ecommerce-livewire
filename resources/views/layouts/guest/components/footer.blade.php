@@ -41,7 +41,7 @@
                     <h6>Bergabunglah dengan buletin Kami Sekarang</h6>
                     <p>Dapatkan pembaruan Email tentang penawaran terbaru dan spesial kami.</p>
                     <form action="#">
-                        <input type="text" placeholder="Enter your mail">
+                        <input type="text" placeholder="Enter your mail" id="newslatter">
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
                     <div class="footer__widget__social">
@@ -63,7 +63,7 @@
                             </script> All rights reserved
                         </p>
                     </div>
-                    <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    {{-- <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div> --}}
                 </div>
             </div>
         </div>

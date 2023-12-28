@@ -257,6 +257,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div x-cloak x-data="{ openLand: {{ $detailProduct->after_sale ? 'true' : 'false' }}, openQue: false }">
+                                    <div x-show="openQue">
+                                        <p>Apakah Produk sedang diskon ?</p>
+                                        <button @click="openLand = true"
+                                            class="btn btn-sm btn-primary my-3 justify-content-start"
+                                            type="button">Ya</button>
+                                        <button @click="openLand = false"
+                                            class="btn btn-sm btn-primary my-3 justify-content-start"
+                                            type="button">Tidak</button>
+                                    </div>
+
+                                    <div x-show="openLand">
+                                        <div class="form-group">
+                                            <label>Harga Setelah diskon</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fas fa-chart-area"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="text" name="after_sale" id="after_sale"
+                                                    class="form-control" value="{{ $detailProduct->after_sale }}"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label>Dokumen Pendukung (jika ada)</label>
                                     <div class="input-group">

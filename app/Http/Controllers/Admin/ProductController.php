@@ -259,6 +259,7 @@ class ProductController extends Controller
                 'building_area'     => $request->building_area,
                 'type_sales'        => $request->type_sales,
                 'no_pic'            => $request->no_pic,
+                'after_sale'        => $request->after_sale,
                 'sup_doc'           => $fileSup,
             ]);
 
@@ -314,7 +315,6 @@ class ProductController extends Controller
             $product = DB::table('products')
                 ->where('products.id', $id)
                 ->first();
-            // dd($product);
 
             $detailProduct = DB::table('detail_products')
                 ->join('indonesia_provinces', 'indonesia_provinces.code', '=', 'detail_products.province_code')
@@ -419,12 +419,10 @@ class ProductController extends Controller
 
             $cekIsSee = Product::where('is_hero', 1)->count();
             $msg = "";
-            $is_hero = 0;
+            $is_hero = $request->is_hero;
             if ($cekIsSee == 1 && $request->is_hero == 1) {
                 $msg = "Produk tidak dijadikan produk utama";
                 $is_hero = 0;
-            } else {
-                $is_hero = 1;
             }
             //slug
             $slugProduct = Str::slug($request->name);
@@ -452,6 +450,7 @@ class ProductController extends Controller
             $dp->gmaps              = $request->gmaps;
             $dp->surface_area       = $request->surface_area;
             $dp->building_area      = $request->building_area;
+            $dp->after_sale      = $request->after_sale;
 
             if ($request->hasFile('sup_doc')) {
                 // Handle image upload

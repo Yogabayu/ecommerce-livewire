@@ -51,7 +51,8 @@
                             <span class="bg-overdrive">{{ $heroProd->category ?? 'kategori' }}</span>
                             <h2 class="bg-overdrive">{{ $heroProd->name ?? 'name product' }}</h2>
                             <p class="bg-overdrive">{{ $heroProd->short_desc ?? 'short desc' }}</p>
-                            <a href="#" class="primary-btn">Detail</a>
+                            <a href="{{ route('detailproduct', ['slug' => $heroProd->slug]) }}"
+                                class="primary-btn">Detail</a>
                         @else
                             <p class="bg-overdrive">No product available</p>
                         @endif

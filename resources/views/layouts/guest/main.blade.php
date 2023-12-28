@@ -75,7 +75,7 @@
     <script src="{{ asset('guest/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('guest/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('guest/js/main.js') }}"></script>
-
+    
     <livewire:scripts />
 </body>
 

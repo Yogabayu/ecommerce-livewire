@@ -72,7 +72,7 @@
                 </a>
                 <div class="collapse" id="q{{ $faq->id }}" style="">
                     <div class="card card-body border-0 p-0">
-                        <p>{{ $faq->answer }}</p>
+                        <p>{!! $faq->answer !!}</p>
                     </div>
                 </div>
             @endforeach

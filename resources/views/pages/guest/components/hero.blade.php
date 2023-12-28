@@ -6,11 +6,11 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>Semua Kategori</span>
                         </div>
                         <ul>
                             @foreach ($categories as $cat)
-                                <li><a href="#">{{ $cat->name }}</a></li>
+                                <li wire:key='{{$cat->name}}'><a href="#">{{ $cat->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>

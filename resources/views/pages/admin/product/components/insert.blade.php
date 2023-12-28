@@ -60,7 +60,7 @@
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control" placeholder="deskripsi singkat"
-                                                name="short_desc" required>
+                                                name="short_desc" maxlength="250" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -163,7 +163,7 @@
                                                 </div>
                                             </div>
                                             <input type="text" name="address" id="address" class="form-control"
-                                                required>
+                                                maxlength="250" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -271,6 +271,32 @@
                                                         </div>
                                                     </div>
                                                     <input type="text" name="building_area" id="building_area"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div x-cloak x-data="{ openLand: false, openQue: true }">
+                                        <div x-show="openQue">
+                                            <p>Apakah Produk sedang diskon ?</p>
+                                            <button @click="openLand = !openLand"
+                                                class="btn btn-sm btn-primary my-3 justify-content-start"
+                                                type="button">Ya</button>
+                                            <button @click="openLand = false"
+                                                class="btn btn-sm btn-primary my-3 justify-content-start"
+                                                type="button">Tidak</button>
+                                        </div>
+
+                                        <div x-show="openLand">
+                                            <div class="form-group">
+                                                <label>Harga Setelah diskon</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-tag"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="after_sale" id="formattedPrice2"
                                                         class="form-control">
                                                 </div>
                                             </div>
@@ -427,6 +453,16 @@
     <script>
         // JavaScript to format the input value with thousand separators
         document.getElementById('formattedPrice').addEventListener('input', function(event) {
+            // Remove existing commas and dots
+            let inputValue = event.target.value.replace(/[,\.]/g, '');
+
+            // Format the number with commas
+            let formattedValue = Number(inputValue).toLocaleString('id-ID'); // 'id-ID' for Indonesian locale
+
+            // Update the input value
+            event.target.value = formattedValue;
+        });
+        document.getElementById('formattedPrice2').addEventListener('input', function(event) {
             // Remove existing commas and dots
             let inputValue = event.target.value.replace(/[,\.]/g, '');
 

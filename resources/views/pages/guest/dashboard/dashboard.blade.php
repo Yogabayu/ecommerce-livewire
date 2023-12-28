@@ -1,3 +1,12 @@
+@push('style')
+    <style>
+        .imgSpecial {
+            idth: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+@endpush
 <div>
     @include('pages.guest.dashboard.components.hero')
     <!-- Categories Section Begin -->
@@ -7,9 +16,9 @@
                 <div wire:ignore class="categories__slider owl-carousel">
                     @foreach ($categories as $cat)
                         <div class="col-lg-3">
-                            <div class="categories__item set-bg"
-                                data-setbg="{{ Storage::url('categories/' . $cat->image) }}"
-                                style="max-width: 270px; max-height: 270px">
+                            <div class="categories__item">
+                                <img class="imgSpecial" src="{{ Storage::url('categories/' . $cat->image) }}"
+                                    alt="{{ $setting->name_app }}" srcset="">
                                 <h5><a href="#">{{ $cat->name }}</a></h5>
                             </div>
                         </div>
@@ -50,22 +59,24 @@
                     </div>
                     <div wire:key="{{ $fp->slugCat }}" class="col-lg-3 col-md-4 col-sm-6 mix {{ $fp->slugCat }}">
                         <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                @if ($firstCall == 1) data-setbg="{{ url('storage/photos/' . $fp->photo) }}"
-                                @else
-                                    style="background-image: url('{{ url('storage/photos/' . $fp->photo) }}');" @endif>
+                            <div class="featured__item__pic">
+                                <img class="imgSpecial" src="{{ url('storage/photos/' . $fp->photo) }}"
+                                    alt="{{ $setting->name_app }}" srcset="">
                                 <ul class="featured__item__pic__hover">
                                     <li data-toggle="tooltip" title="Jumlah Dilihat"><a href="#"><i
                                                 class="fa fa-eye"></i> {{ $fp->max_seeing_count }}</a>
                                     </li>
                                     <li data-toggle="tooltip" title="Jumlah share"><a href="#"><i
                                                 class="fa fa-share"></i>{{ $fp->share_count }}</a></li>
-                                    <li data-toggle="tooltip" title="Info Selengkapnya"><a href="#"><i
+                                    <li data-toggle="tooltip" title="Info Selengkapnya"><a
+                                            href="{{ route('detailproduct', ['slug' => $fp->slug]) }}"><i
                                                 class="fa fa-info"></i></a></li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">
-                                <h6><a href="#">{{ $fp->name }}</a></h6>
+                                <h6><a
+                                        href="{{ route('detailproduct', ['slug' => $fp->slug]) }}">{{ $fp->name }}</a>
+                                </h6>
                                 <h5>Rp{{ $fp->price }}</h5>
                             </div>
                         </div>
@@ -105,7 +116,8 @@
                             @foreach ($latesProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
                                     @foreach ($chunk as $product)
-                                        <a href="#" class="latest-product__item" data-toogle="tooltip"
+                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                            class="latest-product__item" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"
@@ -130,7 +142,8 @@
                             @foreach ($viewedProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
                                     @foreach ($chunk as $product)
-                                        <a href="#" class="latest-product__item" data-toogle="tooltip"
+                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                            class="latest-product__item" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"
@@ -155,7 +168,8 @@
                             @foreach ($mostSharedProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
                                     @foreach ($chunk as $product)
-                                        <a href="#" class="latest-product__item" data-toogle="tooltip"
+                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                            class="latest-product__item" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"

@@ -12,8 +12,11 @@ use App\Http\Controllers\Admin\UserController;
 use App\Livewire\AboutUsComponent;
 use App\Livewire\ContactUsComponent;
 use App\Livewire\DashboardComponent;
+use App\Livewire\DetailProductComponent;
 use App\Livewire\FaqComponent;
 use App\Livewire\PrivacyPolicyComponent;
+use App\Livewire\SearchComponentInline;
+use App\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('guest')->group(function () {
     //dashboard
     Route::get('/', DashboardComponent::class);
@@ -34,6 +38,15 @@ Route::middleware('guest')->group(function () {
     Route::get('privacypolicy', PrivacyPolicyComponent::class)->name('privacypolicy');
     Route::get('faq', FaqComponent::class)->name('faq');
     Route::get('contactus', ContactUsComponent::class)->name('contactus');
+
+    //detail
+    Route::get('detail/{slug}', DetailProductComponent::class)->name('detailproduct');
+
+    //shop
+    Route::get('shop', ShopComponent::class)->name('shop');
+
+    //search
+    Route::get('search', SearchComponentInline::class)->name('search');
 });
 
 Route::prefix('admin')->group(function () {

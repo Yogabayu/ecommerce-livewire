@@ -138,10 +138,6 @@ class CategoryController extends Controller
                 'image'     => 'image|mimes:jpeg,jpg,png|max:2048',
                 'status'    => 'required|boolean',
             ]);
-            $cekName = Category::where('name', '=', $request->name)->count();
-            if ($cekName > 0) {
-                return redirect()->back()->with("error", "Nama kategori sudah ada");
-            }
 
             $category = Category::where('slug', $request->slug)->firstOrFail();
 

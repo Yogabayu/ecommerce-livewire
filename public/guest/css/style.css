@@ -1138,7 +1138,7 @@ ol {
 	font-size: 16px;
 	color: #dd2222;
 	font-weight: 700;
-	max-width: 20%;
+	max-width: 50%;
 	border: none;
 	display: inline-block;
 }
@@ -1848,6 +1848,7 @@ ol {
 
 .product__details__tab .product__details__tab__desc {
 	padding-top: 44px;
+	/* padding-inline: 15%; */
 }
 
 .product__details__tab .product__details__tab__desc h6 {
