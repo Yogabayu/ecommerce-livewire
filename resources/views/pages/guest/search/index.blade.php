@@ -251,10 +251,11 @@
                                         <div class="product__item__text">
                                             <h6><a href="#">{{ $sp->name }}</a></h6>
                                             @if ($sp->after_sale)
-                                            <h5>Rp.{{ $sp->after_sale }}</h5>
-                                            <span style="text-decoration: line-through">Rp.{{ $sp->price }}</span>
+                                                <h5>Rp.{{ $sp->after_sale }}</h5>
+                                                <span
+                                                    style="text-decoration: line-through">Rp.{{ $sp->price }}</span>
                                             @else
-                                            <h5>Rp.{{ $sp->price }}</h5>
+                                                <h5>Rp.{{ $sp->price }}</h5>
                                             @endif
                                         </div>
                                     </div>
@@ -300,7 +301,12 @@
                                 <h6><a
                                         href="{{ route('detailproduct', ['slug' => $rp->slug]) }}">{{ $rp->name }}</a>
                                 </h6>
-                                <h5>Rp.{{ $rp->price }}</h5>
+                                @if ($rp->after_sale)
+                                    <h5>Rp.{{ $rp->after_sale }}</h5>
+                                    <span style="text-decoration: line-through">Rp.{{ $rp->price }}</span>
+                                @else
+                                    <h5>Rp.{{ $rp->price }}</h5>
+                                @endif
                             </div>
                         </div>
                     </div>
