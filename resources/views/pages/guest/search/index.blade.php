@@ -38,6 +38,23 @@
             left: 15px;
             top: 15px;
         }
+
+        .hover-bg:hover {
+            color: #96d424;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .active-pad {
+            color: #290491;
+            font-weight: 900;
+        }
+
+        @media only screen and (max-width: 767px) {
+        .hidden-on-phone {
+        display: none;
+        }
+        }
     </style>
 @endpush
 <div>
@@ -71,15 +88,18 @@
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
-                        <div class="sidebar__item">
+                        <div class="sidebar__item hidden-on-phone">
                             <h4>Kategori</h4>
                             <ul>
                                 @foreach ($categories as $cat)
-                                    <li wire:key='{{ $cat->id }}'><a href="#">{{ $cat->name }}</a></li>
+                                    <li wire:key='{{ $cat->id }}'
+                                        class="@if ($inputText == $cat->name) active-pad @endif hover-bg">
+                                        <a wire:click="updateText('{{ $cat->name }}')">{{ $cat->name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
-                        {{-- <div class="sidebar__item">
+                        {{-- <div class="sidebar__item hidden-on-phone">
         <h4>Harga</h4>
         <div class="price-range-wrap">
             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -100,14 +120,15 @@
                             <h4>Tag Populer</h4>
                             @foreach ($populartags as $pt)
                                 <div wire:key='{{ $pt->name }}' class="sidebar__item__size">
-                                    <label for="large-{{ $pt->name }}">
+                                    <label for="large-{{ $pt->name }}"
+                                        wire:click="updateText('{{ $pt->name }}')" class="@if ($inputText == $pt->name) active-pad @endif hover-bg">
                                         {{ $pt->name }}
                                         <input type="radio" id="large-{{ $pt->name }}">
                                     </label>
                                 </div>
                             @endforeach
                         </div>
-                        <div class="sidebar__item">
+                        <div class="sidebar__item hidden-on-phone">
                             <div class="latest-product__text">
                                 <h4>Produk Terbaru</h4>
                                 <div wire:ignore class="latest-product__slider owl-carousel">

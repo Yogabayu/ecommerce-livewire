@@ -5,6 +5,9 @@
             height: 100%;
             object-fit: contain;
         }
+        .item-hover:hover {
+            border: 1px solid #39fc03
+        }
     </style>
 @endpush
 <div>
@@ -15,11 +18,11 @@
             <div class="row">
                 <div wire:ignore class="categories__slider owl-carousel">
                     @foreach ($categories as $cat)
-                        <div class="col-lg-3">
-                            <div class="categories__item">
+                        <div wire:key='{{$cat->id}}' class="col-lg-3">
+                            <div class="categories__item item-hover">
                                 <img class="imgSpecial" src="{{ Storage::url('categories/' . $cat->image) }}"
                                     alt="{{ $setting->name_app }}" srcset="">
-                                <h5><a href="#">{{ $cat->name }}</a></h5>
+                                <h5><a href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a></h5>
                             </div>
                         </div>
                     @endforeach
@@ -57,7 +60,7 @@
                             <div class="loader"></div>
                         </div>
                     </div>
-                    <div wire:key="{{ $fp->slugCat }}" class="col-lg-3 col-md-4 col-sm-6 mix {{ $fp->slugCat }}">
+                    <div wire:key="{{ $fp->slugCat }}" class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}">
                         <div class="featured__item">
                             <div class="featured__item__pic">
                                 <img class="imgSpecial" src="{{ url('storage/photos/' . $fp->photo) }}"
@@ -117,7 +120,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     @foreach ($chunk as $product)
                                         <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
-                                            class="latest-product__item" data-toogle="tooltip"
+                                            class="latest-product__item item-hover" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"
@@ -143,7 +146,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     @foreach ($chunk as $product)
                                         <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
-                                            class="latest-product__item" data-toogle="tooltip"
+                                            class="latest-product__item item-hover" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"
@@ -166,10 +169,10 @@
                         <h4>Most Share Products</h4>
                         <div wire:ignore class="latest-product__slider owl-carousel">
                             @foreach ($mostSharedProducts->chunk(3) as $chunk)
-                                <div class="latest-prdouct__slider__item">
+                                <div class="latest-prdouct__slider__item ">
                                     @foreach ($chunk as $product)
                                         <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
-                                            class="latest-product__item" data-toogle="tooltip"
+                                            class="latest-product__item item-hover" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
                                                 <img src="{{ Storage::url('photos/' . $product->photo) }}"

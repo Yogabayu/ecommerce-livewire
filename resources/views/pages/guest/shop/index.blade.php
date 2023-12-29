@@ -1,11 +1,21 @@
 @push('style')
-<style>
-    .imgSpecial{
-        idth: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-</style>
+    <style>
+        .imgSpecial {
+            idth: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hover-bg:hover {
+            color: #96d424;
+            font-weight: 900;
+        }
+
+        .active-pad {
+            color: #290491;
+            font-weight: 900;
+        }
+    </style>
 @endpush
 <div>
     <livewire:headcomponent />
@@ -37,7 +47,9 @@
                             <h4>Kategori</h4>
                             <ul>
                                 @foreach ($categories as $cat)
-                                    <li wire:key='{{ $cat->id }}'><a href="#">{{ $cat->name }}</a></li>
+                                    <li wire:key='{{ $cat->id }}' class="hover-bg active-pad"><a
+                                            href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -108,7 +120,9 @@
                                     <div class="col-lg-4">
                                         <div class="product__discount__item">
                                             <div class="product__discount__item__pic ">
-                                                <img class="imgSpecial" src="{{ Storage::url('photos/' . $sp->photo) }}" alt="{{$setting->name_app}}" srcset="">
+                                                <img class="imgSpecial"
+                                                    src="{{ Storage::url('photos/' . $sp->photo) }}"
+                                                    alt="{{ $setting->name_app }}" srcset="">
                                                 <ul class="product__item__pic__hover">
                                                     <li><a href="#"><i class="fa fa-eye"></i>
                                                             {{ $sp->seeing_count }}</a></li>
@@ -176,9 +190,9 @@
                         @foreach ($sortProducts as $sp)
                             <div class="col-lg-4 col-md-6 col-sm-6" wire:key='{{ $sp->id }}'>
                                 <div class="product__item">
-                                    <div class="product__item__pic"
-                                        >
-                                        <img class="imgSpecial" src="{{ url('storage/photos/' . $sp->photo) }}" alt="{{$setting->name_app}}" srcset="">
+                                    <div class="product__item__pic">
+                                        <img class="imgSpecial" src="{{ url('storage/photos/' . $sp->photo) }}"
+                                            alt="{{ $setting->name_app }}" srcset="">
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-eye"></i>
                                                     {{ $sp->seeing_count }}</a></li>

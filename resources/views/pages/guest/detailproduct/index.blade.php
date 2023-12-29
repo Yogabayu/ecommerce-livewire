@@ -38,6 +38,9 @@
             left: 15px;
             top: 15px;
         }
+        .link:hover {
+            color: #666
+        }
     </style>
 @endpush
 <div>
@@ -147,7 +150,9 @@
                             </li>
                             <li>
                                 @foreach ($tagProducts as $tp)
-                                    <span>#{{ $tp->name }}</span>
+                                    <a class="link" href="{{ route('search', ['inputText' => $tp->name]) }}">
+                                        <span>#{{ $tp->name }}</span>
+                                    </a>
                                 @endforeach
                             </li>
                         </ul>
