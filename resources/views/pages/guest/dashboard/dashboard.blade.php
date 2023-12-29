@@ -5,10 +5,25 @@
             height: 100%;
             object-fit: contain;
         }
+
         .item-hover:hover {
             /* border: 1px solid #39fc03; */
             background-color: #03b5fc;
             border-radius: 10px;
+        }
+
+        .sale {
+            height: 45px;
+            width: 45px;
+            background: #dd2222;
+            border-radius: 50%;
+            font-size: 14px;
+            color: #ffffff;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            left: 15px;
+            top: 15px;
         }
     </style>
 @endpush
@@ -20,11 +35,15 @@
             <div class="row">
                 <div wire:ignore class="categories__slider owl-carousel">
                     @foreach ($categories as $cat)
-                        <div wire:key='{{$cat->id}}' class="col-lg-3">
+                        <div wire:key='{{ $cat->id }}' class="col-lg-3">
                             <div class="categories__item item-hover">
                                 <img class="imgSpecial" src="{{ Storage::url('categories/' . $cat->image) }}"
                                     alt="{{ $setting->name_app }}" srcset="">
-                                <h5><a href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a></h5>
+                                <h5>
+                                    <a href="{{ route('search', ['inputText' => $cat->name]) }}">
+                                        {{ $cat->name }}
+                                    </a>
+                                </h5>
                             </div>
                         </div>
                     @endforeach
@@ -62,11 +81,15 @@
                             <div class="loader"></div>
                         </div>
                     </div>
-                    <div wire:key="{{ $fp->slugCat }}" class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}">
+                    <div wire:key="{{ $fp->slugCat }}"
+                        class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}">
                         <div class="featured__item">
                             <div class="featured__item__pic">
                                 <img class="imgSpecial" src="{{ url('storage/photos/' . $fp->photo) }}"
                                     alt="{{ $setting->name_app }}" srcset="">
+                                @if ($fp->after_sale)
+                                    <div class="sale">Sale</div>
+                                @endif
                                 <ul class="featured__item__pic__hover">
                                     <li data-toggle="tooltip" title="Jumlah Dilihat"><a href="#"><i
                                                 class="fa fa-eye"></i> {{ $fp->max_seeing_count }}</a>
@@ -82,7 +105,12 @@
                                 <h6><a
                                         href="{{ route('detailproduct', ['slug' => $fp->slug]) }}">{{ $fp->name }}</a>
                                 </h6>
-                                <h5>Rp{{ $fp->price }}</h5>
+                                @if ($fp->after_sale)
+                                    <h5>Rp.{{ $fp->after_sale }}</h5>
+                                    <span style="text-decoration: line-through">Rp.{{ $fp->price }}</span>
+                                @else
+                                    <h5>Rp.{{ $fp->price }}</h5>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -131,7 +159,13 @@
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>
-                                                <span>${{ $product->price }}</span>
+                                                @if ($product->after_sale)
+                                                    <span>Rp.{{ $product->after_sale }}</span>
+                                                    <p style="text-decoration: line-through">Rp.{{ $product->price }}
+                                                    </p>
+                                                @else
+                                                    <span>Rp.{{ $product->price }}</span>
+                                                @endif
                                             </div>
                                         </a>
                                     @endforeach
@@ -157,7 +191,13 @@
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>
-                                                <span>${{ $product->price }}</span>
+                                                @if ($product->after_sale)
+                                                    <span>Rp.{{ $product->after_sale }}</span>
+                                                    <p style="text-decoration: line-through">Rp.{{ $product->price }}
+                                                    </p>
+                                                @else
+                                                    <span>Rp.{{ $product->price }}</span>
+                                                @endif
                                             </div>
                                         </a>
                                     @endforeach
@@ -183,7 +223,14 @@
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $product->name }}</h6>
-                                                <span>${{ $product->price }}</span>
+                                                {{-- <span>${{ $product->price }}</span> --}}
+                                                @if ($product->after_sale)
+                                                    <span>Rp.{{ $product->after_sale }}</span>
+                                                    <p style="text-decoration: line-through">Rp.{{ $product->price }}
+                                                    </p>
+                                                @else
+                                                    <span>Rp.{{ $product->price }}</span>
+                                                @endif
                                             </div>
                                         </a>
                                     @endforeach
