@@ -6,14 +6,18 @@
             object-fit: contain;
         }
 
-        .hover-bg:hover {
-            color: #96d424;
-            font-weight: 900;
-        }
-
-        .active-pad {
-            color: #290491;
-            font-weight: 900;
+        .sale {
+            height: 45px;
+            width: 45px;
+            background: #dd2222;
+            border-radius: 50%;
+            font-size: 14px;
+            color: #ffffff;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            left: 15px;
+            top: 15px;
         }
     </style>
 @endpush
@@ -75,8 +79,10 @@
                             @foreach ($populartags as $pt)
                                 <div wire:key='{{ $pt->name }}' class="sidebar__item__size">
                                     <label for="large-{{ $pt->name }}">
-                                        {{ $pt->name }}
-                                        <input type="radio" id="large-{{ $pt->name }}">
+                                        <a href="{{ route('search', ['inputText' => $pt->name]) }}" class="hover-bg active-pad" style="color: #000000">
+                                            {{ $pt->name }}
+                                            <input type="radio" id="large-{{ $pt->name }}">
+                                        </a>
                                     </label>
                                 </div>
                             @endforeach
@@ -123,6 +129,9 @@
                                                 <img class="imgSpecial"
                                                     src="{{ Storage::url('photos/' . $sp->photo) }}"
                                                     alt="{{ $setting->name_app }}" srcset="">
+                                                @if ($sp->after_sale)
+                                                    <div class="product__discount__percent">Sale</div>
+                                                @endif
                                                 <ul class="product__item__pic__hover">
                                                     <li><a href="#"><i class="fa fa-eye"></i>
                                                             {{ $sp->seeing_count }}</a></li>
@@ -140,10 +149,10 @@
                                                 <div class="product__item__price">
                                                     @if ($sp->after_sale)
                                                         Rp. {{ $sp->after_sale }}
+                                                        <span>Rp.{{ $sp->price }}</span>
                                                     @else
                                                         Rp.{{ $sp->price }}
                                                     @endif
-                                                    <span>Rp.{{ $sp->price }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -193,6 +202,7 @@
                                     <div class="product__item__pic">
                                         <img class="imgSpecial" src="{{ url('storage/photos/' . $sp->photo) }}"
                                             alt="{{ $setting->name_app }}" srcset="">
+
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-eye"></i>
                                                     {{ $sp->seeing_count }}</a></li>
@@ -201,10 +211,18 @@
                                             <li><a href="{{ route('detailproduct', ['slug' => $sp->slug]) }}"><i
                                                         class="fa fa-info"></i></a></li>
                                         </ul>
+                                        @if ($sp->after_sale)
+                                            <div class="sale">Sale</div>
+                                        @endif
                                     </div>
                                     <div class="product__item__text">
                                         <h6><a href="#">{{ $sp->name }}</a></h6>
-                                        <h5>Rp.{{ $sp->price }}</h5>
+                                        @if ($sp->after_sale)
+                                            <h5>Rp.{{ $sp->after_sale }}</h5>
+                                            <span style="text-decoration: line-through">Rp.{{ $sp->price }}</span>
+                                        @else
+                                            <h5>Rp.{{ $sp->price }}</h5>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

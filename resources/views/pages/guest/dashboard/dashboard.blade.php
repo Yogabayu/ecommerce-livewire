@@ -1,12 +1,14 @@
 @push('style')
     <style>
         .imgSpecial {
-            idth: 100%;
+            width: 100%;
             height: 100%;
             object-fit: contain;
         }
         .item-hover:hover {
-            border: 1px solid #39fc03
+            /* border: 1px solid #39fc03; */
+            background-color: #03b5fc;
+            border-radius: 10px;
         }
     </style>
 @endpush

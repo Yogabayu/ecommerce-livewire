@@ -67,6 +67,7 @@ class ShopComponent extends Component
             'c.name',
             'pp.photo'
         )->paginate(10);
+        // dd($this->sortProducts);
 
         $this->state = $value;
     }
@@ -100,7 +101,7 @@ class ShopComponent extends Component
             'dp.share_count',
             'c.name',
             'pp.photo'
-        )->get();
+        )->orderByDesc('dp.after_sale')->get();
     }
 
 

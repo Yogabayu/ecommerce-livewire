@@ -1,3 +1,11 @@
+@push('style')
+    <style>
+        .hover-bg:hover {
+        color: #96d424;
+        font-weight: 900;
+        }
+    </style>
+@endpush
 <div>
     <section class="hero hero-normal">
         <div class="container">
@@ -10,7 +18,7 @@
                         </div>
                         <ul>
                             @foreach ($categories as $cat)
-                                <li wire:key='{{$cat->name}}'><a href="#">{{ $cat->name }}</a></li>
+                                <li wire:key='{{$cat->name}}' class="hover-bg"><a href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>

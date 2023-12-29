@@ -51,9 +51,35 @@
         }
 
         @media only screen and (max-width: 767px) {
-        .hidden-on-phone {
-        display: none;
+            .hidden-on-phone {
+                display: none;
+            }
         }
+
+        .item-hover:hover {
+            /* border: 1px solid #39fc03; */
+            background-color: #03b5fc;
+            border-radius: 10px;
+        }
+
+        .imgSpecial {
+            idth: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .sale {
+            height: 45px;
+            width: 45px;
+            background: #dd2222;
+            border-radius: 50%;
+            font-size: 14px;
+            color: #ffffff;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            left: 15px;
+            top: 15px;
         }
     </style>
 @endpush
@@ -121,7 +147,8 @@
                             @foreach ($populartags as $pt)
                                 <div wire:key='{{ $pt->name }}' class="sidebar__item__size">
                                     <label for="large-{{ $pt->name }}"
-                                        wire:click="updateText('{{ $pt->name }}')" class="@if ($inputText == $pt->name) active-pad @endif hover-bg">
+                                        wire:click="updateText('{{ $pt->name }}')"
+                                        class="@if ($inputText == $pt->name) active-pad @endif hover-bg">
                                         {{ $pt->name }}
                                         <input type="radio" id="large-{{ $pt->name }}">
                                     </label>
@@ -203,11 +230,14 @@
                             </div>
                         @else
                             @foreach ($results as $sp)
-                                <div class="col-lg-4 col-md-6 col-sm-6" wire:key='{{ $sp->id }}'>
+                                <div class="col-lg-4 col-md-6 col-sm-6 item-hover" wire:key='{{ $sp->id }}'>
                                     <div class="product__item">
                                         <div class="product__item__pic">
                                             <img class="imgSpecial" src="{{ url('storage/photos/' . $sp->photo) }}"
                                                 alt="{{ $setting->name_app }}" srcset="">
+                                            @if ($sp->after_sale)
+                                                <div class="sale">Sale</div>
+                                            @endif
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-eye"></i>
                                                         {{ $sp->seeing_count }}</a></li>
@@ -220,7 +250,12 @@
                                         </div>
                                         <div class="product__item__text">
                                             <h6><a href="#">{{ $sp->name }}</a></h6>
+                                            @if ($sp->after_sale)
+                                            <h5>Rp.{{ $sp->after_sale }}</h5>
+                                            <span style="text-decoration: line-through">Rp.{{ $sp->price }}</span>
+                                            @else
                                             <h5>Rp.{{ $sp->price }}</h5>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +281,7 @@
             </div>
             <div class="row">
                 @foreach ($relatedProducts as $rp)
-                    <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6 item-hover">
                         <div class="product__item">
                             <div class="product__item__pic">
                                 <img class="imgSpecial" src="{{ Storage::url('photos/' . $rp->photo) }}"

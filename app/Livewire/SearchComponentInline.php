@@ -63,6 +63,7 @@ class SearchComponentInline extends Component
                     ->orWhere('p.slug', 'LIKE', '%' . $slug . '%')
                     ->orWhere('c.slug', 'LIKE', '%' . $slug . '%')
                     ->orWhere('t.name', 'LIKE', '%' . $this->inputText . '%')
+                    ->orWhere('p.price', 'LIKE', '%' . $this->inputText . '%')
                     ->orWhere(DB::raw("REPLACE(p.name, ' ', '')"), 'LIKE', '%' . $inputTextWithoutSpaces . '%')
                     ->orWhere(DB::raw("REPLACE(p.short_desc, ' ', '')"), 'LIKE', '%' . $inputTextWithoutSpaces . '%')
                     ->orWhere(DB::raw("REPLACE(dp.long_desc, ' ', '')"), 'LIKE', '%' . $inputTextWithoutSpaces . '%')
