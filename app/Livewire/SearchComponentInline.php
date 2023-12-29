@@ -55,6 +55,7 @@ class SearchComponentInline extends Component
                 'pp.photo'
             )
             ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0)
             ->where(function ($query) use ($inputTextWithoutSpaces, $slug) {
                 $query->where('p.name', 'LIKE', '%' . $this->inputText . '%')
                     ->orWhere('p.short_desc', 'LIKE', '%' . $this->inputText . '%')
@@ -118,7 +119,8 @@ class SearchComponentInline extends Component
                 'c.name as nameCategory',
                 'pp.photo'
             )
-            ->where('pp.is_primary', 1);
+            ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0);
 
         $this->relatedProducts = $query
             ->groupBy(
@@ -142,6 +144,7 @@ class SearchComponentInline extends Component
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
             ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
             ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0)
             ->orderByDesc('p.created_at')
             ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
             ->havingRaw('COUNT(p.id) <= 6')
