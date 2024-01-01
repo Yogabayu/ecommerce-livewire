@@ -233,7 +233,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 item-hover" wire:key='{{ $sp->id }}'>
                                     <div class="product__item">
                                         <div class="product__item__pic">
-                                            <img class="imgSpecial" src="{{ url('storage/photos/' . $sp->photo) }}"
+                                            <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $sp->photo) }}"
                                                 alt="{{ $setting->name_app }}" srcset="">
                                             @if ($sp->after_sale)
                                                 <div class="sale">Sale</div>
