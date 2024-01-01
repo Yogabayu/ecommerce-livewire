@@ -9,7 +9,7 @@
         <ul>
             <li class="active"><a href="#">Home</a></li>
             <li><a href="{{ route('shop') }}">Daftar Lelang</a></li>
-            <li><a href="#">Peta</a></li>
+            {{-- <li><a href="#">Peta</a></li> --}}
             <li><a href="{{ route('contactus') }}">Contact</a></li>
             <li><a href="{{ route('faq') }}">FaQ</a></li>
         </ul>
@@ -76,9 +76,9 @@
                         <li class="{{ request()->is('shop') ? 'active' : '' }}">
                             <a href="{{ route('shop') }}">Daftar Lelang</a>
                         </li>
-                        <li class="{{ request()->is('map') ? 'active' : '' }}">
+                        {{-- <li class="{{ request()->is('map') ? 'active' : '' }}">
                             <a href="{{ url('map') }}">Peta</a>
-                        </li>
+                        </li> --}}
                         <li class="{{ request()->is('contactus') ? 'active' : '' }}">
                             <a href="{{ route('contactus') }}">Contact</a>
                         </li>

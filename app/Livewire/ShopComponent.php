@@ -38,7 +38,8 @@ class ShopComponent extends Component
                 'c.name as nameCategory',
                 'pp.photo'
             )
-            ->where('pp.is_primary', 1);
+            ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0);
 
         $this->countProduct = $query->count();
 
@@ -67,6 +68,7 @@ class ShopComponent extends Component
             'c.name',
             'pp.photo'
         )->paginate(10);
+        // dd($this->sortProducts);
 
         $this->state = $value;
     }
@@ -88,7 +90,8 @@ class ShopComponent extends Component
                 'c.name as nameCategory',
                 'pp.photo'
             )
-            ->where('pp.is_primary', 1);
+            ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0);
 
         $this->saleProducts = $query->groupBy(
             'p.id',
@@ -100,7 +103,7 @@ class ShopComponent extends Component
             'dp.share_count',
             'c.name',
             'pp.photo'
-        )->get();
+        )->orderByDesc('dp.after_sale')->get();
     }
 
 
@@ -110,6 +113,7 @@ class ShopComponent extends Component
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
             ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
             ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0)
             ->orderByDesc('p.created_at')
             ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
             ->havingRaw('COUNT(p.id) <= 6')
@@ -143,6 +147,7 @@ class ShopComponent extends Component
             ->join('categories as c', 'c.id', '=', 'p.category_id')
             ->select('p.id', 'p.name', 'p.slug', 'p.price', 'dp.after_sale', 'dp.seeing_count', 'dp.share_count', 'c.name as nameCategory', 'pp.photo')
             ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0)
             ->havingRaw('COUNT(p.id) <= 6')
             ->orderByDesc('dp.after_sale')
             ->groupBy('p.id', 'p.name', 'p.slug', 'p.price', 'dp.after_sale', 'dp.seeing_count', 'dp.share_count', 'c.name', 'pp.photo')

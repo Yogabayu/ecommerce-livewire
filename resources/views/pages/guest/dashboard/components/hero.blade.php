@@ -5,6 +5,12 @@
             padding-inline: 5px;
             border-radius: 10px
         }
+
+        .hover-bg:hover {
+            color: #290491;
+            border-radius: 5px;
+            font-weight: 900;
+        }
     </style>
 @endpush
 <!-- Hero Section Begin -->
@@ -19,20 +25,16 @@
                     </div>
                     <ul>
                         @foreach ($categories as $cat)
-                            <li><a href="#">{{ $cat->name }}</a></li>
+                            <li wire:key='{{ $cat->id }}' class="hover-bg"><a
+                                    href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="hero__search">
-                    {{-- <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
-                        </form>
-                    </div> --}}
-                    <livewire:searchboxcomponent />
+                    <livewire:SearchBoxComponent />
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">
                             <i class="fa fa-phone"></i>

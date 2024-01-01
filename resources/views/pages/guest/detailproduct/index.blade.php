@@ -38,11 +38,14 @@
             left: 15px;
             top: 15px;
         }
+        .link:hover {
+            color: #666
+        }
     </style>
 @endpush
 <div>
     <!-- Hero Section Begin -->
-    <livewire:headcomponent />
+    <livewire:HeadComponent />
     <!-- Hero Section End -->
     <!-- Breadcrumb Section Begin -->
     <section wire:ignore.self class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/sales.jpg') }}">
@@ -147,7 +150,9 @@
                             </li>
                             <li>
                                 @foreach ($tagProducts as $tp)
-                                    <span>#{{ $tp->name }}</span>
+                                    <a class="link" href="{{ route('search', ['inputText' => $tp->name]) }}">
+                                        <span>#{{ $tp->name }}</span>
+                                    </a>
                                 @endforeach
                             </li>
                         </ul>

@@ -1,6 +1,6 @@
 <div>
     <!-- Hero Section Begin -->
-    <livewire:headcomponent />
+    <livewire:HeadComponent />
     <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->

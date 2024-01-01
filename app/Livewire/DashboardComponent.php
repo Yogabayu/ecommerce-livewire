@@ -65,14 +65,26 @@ class DashboardComponent extends Component
                 'c.name as category',
                 'c.slug as slugCat',
                 DB::raw('MAX(dp.seeing_count) as max_seeing_count'),
-                'dp.share_count'
+                'dp.share_count',
+                'dp.after_sale',
             )
             ->where('pp.is_primary', 1)
             ->where('p.publish', '!=', 0)
             ->when($this->featuredCat != 'all', function ($query) {
                 $query->where('c.slug', $this->featuredCat);
             })
-            ->groupBy('p.id', 'p.name', 'p.short_desc', 'p.price', 'p.slug', 'pp.photo', 'category', 'dp.share_count', 'slugCat')
+            ->groupBy(
+                'p.id',
+                'p.name',
+                'p.short_desc',
+                'p.price',
+                'p.slug',
+                'pp.photo',
+                'category',
+                'dp.share_count',
+                'slugCat',
+                'dp.after_sale',
+            )
             ->orderByDesc('max_seeing_count')
             ->get();
     }
@@ -89,10 +101,12 @@ class DashboardComponent extends Component
     {
         $this->latesProducts = DB::table('products as p')
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
-            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
+            ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
+            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.after_sale')
             ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0)
             ->orderByDesc('p.created_at')
-            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
+            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.after_sale')
             ->havingRaw('COUNT(p.id) <= 6')
             ->get();
     }
@@ -102,9 +116,10 @@ class DashboardComponent extends Component
         $this->mostSharedProducts = DB::table('products as p')
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
             ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
-            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
+            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.after_sale')
             ->where('pp.is_primary', 1)
-            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.share_count')
+            ->where('p.publish', '!=', 0)
+            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.share_count', 'dp.after_sale')
             ->orderByDesc('dp.share_count', 'dp.id')
             ->havingRaw('COUNT(p.id) <= 6')
             ->get();
@@ -115,9 +130,10 @@ class DashboardComponent extends Component
         $this->viewedProducts = DB::table('products as p')
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
             ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
-            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at')
+            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.after_sale')
             ->where('pp.is_primary', 1)
-            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.seeing_count')
+            ->where('p.publish', '!=', 0)
+            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.seeing_count', 'dp.after_sale')
             ->orderByDesc('dp.seeing_count', 'dp.id')
             ->havingRaw('COUNT(p.id) <= 6')
             ->get();
