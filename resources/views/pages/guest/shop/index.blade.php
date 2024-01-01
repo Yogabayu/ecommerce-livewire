@@ -98,7 +98,7 @@
                                                     class="latest-product__item" data-toogle="tooltip"
                                                     title="{{ $product->name }}">
                                                     <div class="latest-product__item__pic">
-                                                        <img src="{{ Storage::url('photos/' . $product->photo) }}"
+                                                        <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
                                                             alt="{{ $product->name }}"
                                                             style="max-width: 110px;max-height: 110px">
                                                     </div>
@@ -127,7 +127,7 @@
                                         <div class="product__discount__item">
                                             <div class="product__discount__item__pic ">
                                                 <img class="imgSpecial"
-                                                    src="{{ Storage::url('photos/' . $sp->photo) }}"
+                                                    src="{{ asset('storage/public/photos/' . $sp->photo) }}"
                                                     alt="{{ $setting->name_app }}" srcset="">
                                                 @if ($sp->after_sale)
                                                     <div class="product__discount__percent">Sale</div>

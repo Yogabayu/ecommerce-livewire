@@ -30,7 +30,7 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <img alt="image" src="{{ Storage::url('photos/' . $user->photo) }}"
+                                    <img alt="image" src="{{ asset('storage/public/photos/' . $user->photo) }}"
                                         class="mx-auto d-block img-fluid" style="max-width: 20%; max-height: 20%;">
 
                                     <div class="form-group">

@@ -21,7 +21,7 @@
                     {{ $no++ }}
                 </td>
                 <td class="text-center">
-                    <img src="{{ Storage::url('categories/' . $category->image) }}" alt="{{ $category->name }}"
+                    <img src="{{ asset('storage/public/categories/' . $category->image) }}" alt="{{ $category->name }}"
                         class="rounded-circle" width="35" data-toggle="tooltip" title="{{ $category->name }}">
                 </td>
                 <td class="text-center">{{ $category->name }}</td>

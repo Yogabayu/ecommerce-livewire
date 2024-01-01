@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div wire:ignore class="hero__item set-bg"
-                    data-setbg="{{ $heroProd ? Storage::url('photos/' . $heroProd->photo) : asset('guest/img/banner/banner-home.webp') }}"
+                    data-setbg="{{ $heroProd ? asset('storage/public/photos/' . $heroProd->photo) : asset('guest/img/banner/banner-home.webp') }}"
                     style="max-width: 870px; max-height: 430px">
                     <div class="hero__text">
                         @if ($heroProd)

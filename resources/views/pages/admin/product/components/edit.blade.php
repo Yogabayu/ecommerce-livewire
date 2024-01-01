@@ -383,7 +383,7 @@
                                             @foreach ($productPhotos as $pp)
                                                 <div class="col-6 col-md-3 mb-3"
                                                     style="display: flex; flex-direction: column; align-items: center;">
-                                                    <img src="{{ Storage::url('photos/' . $pp->photo) }}"
+                                                    <img src="{{ asset('storage/public/photos/' . $pp->photo) }}"
                                                         alt="{{ $pp->photo }}" class="img-fluid">
                                                     <div class="row">
                                                         <a class="btn btn-danger btn-sm" title="Delete"

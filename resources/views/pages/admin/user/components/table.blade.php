@@ -17,7 +17,7 @@
         @endphp
         @foreach ($users as $user)
             @php
-                $path = Storage::url('photos/' . $user->photo);
+                $path = asset('storage/public/photos/' . $user->photo);
             @endphp
             <tr>
                 <td>

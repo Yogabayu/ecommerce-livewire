@@ -2,7 +2,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="{{ Storage::url('setting/' . $setting->logo) }}" alt="{{ $setting->name_app }}"
+        <a href="#"><img src="{{ asset('storage/public/setting/' . $setting->logo) }}" alt="{{ $setting->name_app }}"
                 style="max-width: 120px;max-height: 50px;"></a>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -62,7 +62,7 @@
             <div class="col-lg-3">
                 <div class="header__logo">
                     <a href="{{ url('/') }}">
-                        <img src="{{ Storage::url('setting/' . $setting->logo) }}" alt="{{ $setting->name_app }}"
+                        <img src="{{ asset('storage/public/setting/' . $setting->logo) }}" alt="{{ $setting->name_app }}"
                             style="max-width: 120px;max-height: 50px;">
                     </a>
                 </div>

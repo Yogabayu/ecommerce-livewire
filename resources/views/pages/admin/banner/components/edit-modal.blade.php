@@ -35,7 +35,7 @@
                                             <div class="form-group">
                                                 <label>Banner Saat ini:</label>
                                                 <div class="input-group">
-                                                    <img src="{{ url($path) }}" alt="banner" class="mt-3"
+                                                    <img src="{{ asset('storage/public/banners/' . $banner->banner_img)}}" alt="banner" class="mt-3"
                                                         style="max-width: 100px; max-height: 100px; data-toggle="tooltip"
                                                         title="banner">
                                                 </div>

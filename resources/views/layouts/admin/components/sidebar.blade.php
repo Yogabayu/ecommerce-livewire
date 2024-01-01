@@ -3,7 +3,7 @@
         <div class="sidebar-brand">
             <div class="row justify-content-center">
                 <a href="{{ route('dashboard.index') }}">
-                    <img alt="image" src="{{ Storage::url('setting/' . $setting->logo) }}" class="mr-1"
+                    <img alt="image" src="{{ asset('storage/public/setting/' . $setting->logo) }}" class="mr-1"
                         style="max-width: 40px; max-height: 40px;">
                 </a>
                 <a href="{{ route('dashboard.index') }}">{{ $setting->name_app }}</a>
@@ -11,7 +11,7 @@
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard.index') }}">
-                <img alt="image" src="{{ Storage::url('setting/' . $setting->logo) }}" class="mr-1"
+                <img alt="image" src="{{ asset('storage/public/setting/' . $setting->logo) }}" class="mr-1"
                     style="max-width: 40px; max-height: 40px;">
             </a>
         </div>
