@@ -85,7 +85,7 @@
                         class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}">
                         <div class="featured__item">
                             <div class="featured__item__pic">
-                                <img class="imgSpecial" src="{{ url('storage/photos/' . $fp->photo) }}"
+                                <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $fp->photo) }}"
                                     alt="{{ $setting->name_app }}" srcset="">
                                 @if ($fp->after_sale)
                                     <div class="sale">Sale</div>

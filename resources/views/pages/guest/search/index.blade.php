@@ -285,7 +285,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 item-hover">
                         <div class="product__item">
                             <div class="product__item__pic">
-                                <img class="imgSpecial" src="{{ assset('storage/public/photos/' . $rp->photo) }}"
+                                <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $rp->photo) }}"
                                     srcset="">
                                 @if ($rp->after_sale)
                                     <div class="tag">Sale</div>
