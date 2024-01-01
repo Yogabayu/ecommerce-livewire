@@ -22,7 +22,7 @@
     </style>
 @endpush
 <div>
-    <livewire:headcomponent />
+    <livewire:HeadComponent />
     <!-- Breadcrumb Section Begin -->
     <section wire:ignore class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/sales.jpg') }}">
         <div class="container">

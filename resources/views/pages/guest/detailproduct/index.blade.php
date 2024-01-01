@@ -45,7 +45,7 @@
 @endpush
 <div>
     <!-- Hero Section Begin -->
-    <livewire:headcomponent />
+    <livewire:HeadComponent />
     <!-- Hero Section End -->
     <!-- Breadcrumb Section Begin -->
     <section wire:ignore.self class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/sales.jpg') }}">
