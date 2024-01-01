@@ -287,7 +287,7 @@
                                 <div class="form-group">
                                     <label>Dokumen Pendukung (jika ada)</label>
                                     <div class="input-group">
-                                        <iframe src="{{ Storage::url('sup_doc/' . $detailProduct->sup_doc) }}"
+                                        <iframe src="{{ asset('storage/public/sup_doc/' . $detailProduct->sup_doc) }}"
                                             frameborder="1" width="100%" height="300px"></iframe>
                                     </div>
                                 </div>
@@ -326,7 +326,7 @@
                                     <div class="row">
                                         @foreach ($productPhotos as $pp)
                                             <div class="col-6 col-md-3 mb-3">
-                                                <img src="{{ Storage::url('photos/' . $pp->photo) }}"
+                                                <img src="{{ asset('storage/public/photos/' . $pp->photo) }}"
                                                     alt="{{ $pp->photo }}" class="img-fluid">
 
                                                 @if ($pp->is_primary == 1)

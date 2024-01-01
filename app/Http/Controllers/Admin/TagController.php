@@ -18,7 +18,7 @@ class TagController extends Controller
             $tags = DB::table('tags')
                 ->leftJoin('product_tag_mappings', 'tags.id', '=', 'product_tag_mappings.tag_id')
                 ->select('tags.*', DB::raw('COUNT(product_tag_mappings.tag_id) as tag_count'))
-                ->groupBy('tags.id', 'tags.name')
+                ->groupBy('tags.id', 'tags.name', 'tags.created_at', 'tags.updated_at')
                 ->orderBy('tag_count', 'desc')
                 ->get();
 

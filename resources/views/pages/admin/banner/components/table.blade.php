@@ -14,15 +14,12 @@
             $no = 1;
         @endphp
         @foreach ($banners as $banner)
-            @php
-                $path = Storage::url('banners/' . $banner->banner_img);
-            @endphp
             <tr>
                 <td>
                     {{ $no++ }}
                 </td>
                 <td>
-                    <img src="{{ url($path) }}" alt="Banner Photo" class="rounded-circle" width="35"
+                    <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}" alt="Banner Photo" class="rounded-circle" width="35"
                         data-toggle="tooltip" title="banner">
                 </td>
                 <td>

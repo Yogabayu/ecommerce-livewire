@@ -6,7 +6,7 @@
                 <div class="footer__about">
                     <div class="footer__about__logo">
                         <a href="{{ url('/') }}">
-                            <img src="{{ Storage::url('setting/' . $setting->logo) }}" alt="{{ $setting->name_app }}"
+                            <img src="{{ asset('storage/public/setting/' . $setting->logo) }}" alt="{{ $setting->name_app }}"
                                 style="max-width: 120px; max-height: 50px">
                         </a>
                     </div>

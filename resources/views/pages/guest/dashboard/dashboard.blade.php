@@ -37,7 +37,7 @@
                     @foreach ($categories as $cat)
                         <div wire:key='{{ $cat->id }}' class="col-lg-3">
                             <div class="categories__item item-hover">
-                                <img class="imgSpecial" src="{{ Storage::url('categories/' . $cat->image) }}"
+                                <img class="imgSpecial" src="{{ asset('storage/public/categories/' . $cat->image) }}"
                                     alt="{{ $setting->name_app }}" srcset="">
                                 <h5>
                                     <a href="{{ route('search', ['inputText' => $cat->name]) }}">
@@ -85,7 +85,7 @@
                         class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}">
                         <div class="featured__item">
                             <div class="featured__item__pic">
-                                <img class="imgSpecial" src="{{ url('storage/photos/' . $fp->photo) }}"
+                                <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $fp->photo) }}"
                                     alt="{{ $setting->name_app }}" srcset="">
                                 @if ($fp->after_sale)
                                     <div class="sale">Sale</div>
@@ -127,7 +127,7 @@
                 @foreach ($banners as $banner)
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="banner__pic">
-                            <img src="{{ Storage::url('banners/' . $banner->banner_img) }}"
+                            <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}"
                                 alt="{{ $banner->banner_img }}" wire:key="{{ $banner->id }}"
                                 style="max-width: 570px;max-height: 270px">
                         </div>
@@ -153,7 +153,7 @@
                                             class="latest-product__item item-hover" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ Storage::url('photos/' . $product->photo) }}"
+                                                <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
                                                     alt="{{ $product->name }}"
                                                     style="max-width: 110px;max-height: 110px">
                                             </div>
@@ -185,7 +185,7 @@
                                             class="latest-product__item item-hover" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ Storage::url('photos/' . $product->photo) }}"
+                                                <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
                                                     alt="{{ $product->name }}"
                                                     style="max-width: 110px;max-height: 110px">
                                             </div>
@@ -217,7 +217,7 @@
                                             class="latest-product__item item-hover" data-toogle="tooltip"
                                             title="{{ $product->name }}">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ Storage::url('photos/' . $product->photo) }}"
+                                                <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
                                                     alt="{{ $product->name }}"
                                                     style="max-width: 110px;max-height: 110px">
                                             </div>

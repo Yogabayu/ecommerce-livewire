@@ -76,7 +76,7 @@
                             @foreach ($photoProducts as $photo)
                                 @if ($photo->is_primary == 1)
                                     <img class="product__details__pic__item--large"
-                                        src="{{ Storage::url('photos/' . $photo->photo) }}" alt="">
+                                        src="{{ asset('storage/public/photos/' . $photo->photo) }}" alt="">
                                 @endif
                             @endforeach
                         </div>
@@ -87,8 +87,8 @@
                                     $nextPhoto = $photoProducts[$nextIndex];
                                 @endphp
 
-                                <img data-imgbigurl="{{ Storage::url('photos/' . $nextPhoto->photo) }}"
-                                    src="{{ Storage::url('photos/' . $photo->photo) }}"
+                                <img data-imgbigurl="{{ asset('storage/public/photos/' . $nextPhoto->photo) }}"
+                                    src="{{ asset('storage/public/photos/' . $photo->photo) }}"
                                     alt="{{ $generalProduct->name }}">
                             @endforeach
                         </div>
@@ -237,7 +237,7 @@
                                             <h6 class="d-flex justify-content-center">Dokumen Pendukung</h6>
                                             <p class="d-flex justify-content-center">
                                                 <a class="btn btn-sm btn-secondary"
-                                                    href="{{ Storage::url('sup_doc/' . $detailProduct->sup_doc) }}"
+                                                    href="{{ asset('storage/public/sup_doc/' . $detailProduct->sup_doc) }}"
                                                     target="_blank" rel="noopener noreferrer">
                                                     <i class="fa fa-file"></i> Lihat Dokumen
                                                 </a>
@@ -304,7 +304,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg"
-                                data-setbg="{{ Storage::url('photos/' . $rp->photo) }}">
+                                data-setbg="{{ asset('storage/public/photos/' . $rp->photo) }}">
                                 @if ($rp->after_sale)
                                     <div class="tag">Sale</div>
                                 @endif
