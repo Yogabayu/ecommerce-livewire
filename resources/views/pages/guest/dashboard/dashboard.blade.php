@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product</h2>
+                        <h2>Aset Lelang</h2>
                     </div>
                     <div class="featured__controls">
                         <ul wire:ignore>
@@ -78,8 +78,8 @@
 
                 @if ($featuredProdList->isEmpty())
                     <div class="col-12 text-center">
-                        <p>***Produck tidak ditemukan***</p>
-                        <p>***Tidak Ada Produk di kategori ini***</p>
+                        <p>***Asset tidak ditemukan***</p>
+                        <p>***Tidak Ada Asset di kategori ini***</p>
                     </div>
                 @else
                     @foreach ($featuredProdList as $fp)
@@ -150,98 +150,111 @@
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-12 col-md-12">
                     <div class="latest-product__text">
-                        <h4>Latest Products</h4>
+                        <h4>Aset Terbaru</h4>
                         <div wire:ignore class="latest-product__slider owl-carousel">
                             @foreach ($latesProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
-                                    @foreach ($chunk as $product)
-                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
-                                            class="latest-product__item item-hover" data-toogle="tooltip"
-                                            title="{{ $product->name }}">
-                                            <div class="latest-product__item__pic">
-                                                <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
-                                                    alt="{{ $product->name }}"
-                                                    style="max-width: 110px;max-height: 110px">
+                                    <div class="row">
+                                        @foreach ($chunk as $product)
+                                            <div class="col-md-4">
+                                                <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                                    class="latest-product__item item-hover" data-toggle="tooltip"
+                                                    title="{{ $product->name }}">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
+                                                            alt="{{ $product->name }}"
+                                                            style="max-width: 110px; max-height: 110px">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>{{ $product->name }}</h6>
+                                                        @if ($product->after_sale)
+                                                            <span>Rp.{{ $product->after_sale }}</span>
+                                                            <p style="text-decoration: line-through">
+                                                                Rp.{{ $product->price }}</p>
+                                                        @else
+                                                            <span>Rp.{{ $product->price }}</span>
+                                                        @endif
+                                                    </div>
+                                                </a>
                                             </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>{{ $product->name }}</h6>
-                                                @if ($product->after_sale)
-                                                    <span>Rp.{{ $product->after_sale }}</span>
-                                                    <p style="text-decoration: line-through">Rp.{{ $product->price }}
-                                                    </p>
-                                                @else
-                                                    <span>Rp.{{ $product->price }}</span>
-                                                @endif
-                                            </div>
-                                        </a>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-12 col-md-12">
                     <div class="latest-product__text">
-                        <h4>Most Viewed Products</h4>
+                        <h4>Aset Populer</h4>
                         <div wire:ignore class="latest-product__slider owl-carousel">
                             @foreach ($viewedProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
-                                    @foreach ($chunk as $product)
-                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
-                                            class="latest-product__item item-hover" data-toogle="tooltip"
-                                            title="{{ $product->name }}">
-                                            <div class="latest-product__item__pic">
-                                                <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
-                                                    alt="{{ $product->name }}"
-                                                    style="max-width: 110px;max-height: 110px">
+                                    <div class="row">
+                                        @foreach ($chunk as $product)
+                                            <div class="col-md-4">
+                                                <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                                    class="latest-product__item item-hover" data-toogle="tooltip"
+                                                    title="{{ $product->name }}">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
+                                                            alt="{{ $product->name }}"
+                                                            style="max-width: 110px;max-height: 110px">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>{{ $product->name }}</h6>
+                                                        @if ($product->after_sale)
+                                                            <span>Rp.{{ $product->after_sale }}</span>
+                                                            <p style="text-decoration: line-through">
+                                                                Rp.{{ $product->price }}
+                                                            </p>
+                                                        @else
+                                                            <span>Rp.{{ $product->price }}</span>
+                                                        @endif
+                                                    </div>
+                                                </a>
                                             </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>{{ $product->name }}</h6>
-                                                @if ($product->after_sale)
-                                                    <span>Rp.{{ $product->after_sale }}</span>
-                                                    <p style="text-decoration: line-through">Rp.{{ $product->price }}
-                                                    </p>
-                                                @else
-                                                    <span>Rp.{{ $product->price }}</span>
-                                                @endif
-                                            </div>
-                                        </a>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-12 col-md-12">
                     <div class="latest-product__text">
-                        <h4>Most Share Products</h4>
+                        <h4>Asset Terbanyak Dibagikan</h4>
                         <div wire:ignore class="latest-product__slider owl-carousel">
                             @foreach ($mostSharedProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item ">
-                                    @foreach ($chunk as $product)
-                                        <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
-                                            class="latest-product__item item-hover" data-toogle="tooltip"
-                                            title="{{ $product->name }}">
-                                            <div class="latest-product__item__pic">
-                                                <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
-                                                    alt="{{ $product->name }}"
-                                                    style="max-width: 110px;max-height: 110px">
+                                    <div class="row">
+                                        @foreach ($chunk as $product)
+                                            <div class="col-md-4">
+                                                <a href="{{ route('detailproduct', ['slug' => $product->slug]) }}"
+                                                    class="latest-product__item item-hover" data-toogle="tooltip"
+                                                    title="{{ $product->name }}">
+                                                    <div class="latest-product__item__pic">
+                                                        <img src="{{ asset('storage/public/photos/' . $product->photo) }}"
+                                                            alt="{{ $product->name }}"
+                                                            style="max-width: 110px;max-height: 110px">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                        <h6>{{ $product->name }}</h6>
+                                                        @if ($product->after_sale)
+                                                            <span>Rp.{{ $product->after_sale }}</span>
+                                                            <p style="text-decoration: line-through">
+                                                                Rp.{{ $product->price }}
+                                                            </p>
+                                                        @else
+                                                            <span>Rp.{{ $product->price }}</span>
+                                                        @endif
+                                                    </div>
+                                                </a>
                                             </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>{{ $product->name }}</h6>
-                                                {{-- <span>${{ $product->price }}</span> --}}
-                                                @if ($product->after_sale)
-                                                    <span>Rp.{{ $product->after_sale }}</span>
-                                                    <p style="text-decoration: line-through">Rp.{{ $product->price }}
-                                                    </p>
-                                                @else
-                                                    <span>Rp.{{ $product->price }}</span>
-                                                @endif
-                                            </div>
-                                        </a>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
                             @endforeach
                         </div>

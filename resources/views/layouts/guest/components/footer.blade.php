@@ -49,7 +49,6 @@
                             <a href="http://lelang.go.id" target="_blank" rel="noopener noreferrer"><img
                                     src="{{ asset('guest/img/lelang_djkn.jpeg') }}" alt="lelang"
                                     class="footer-logo"></a>
-
                         </div>
                     </div>
                 </div>
