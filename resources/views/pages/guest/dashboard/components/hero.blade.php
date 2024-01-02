@@ -11,6 +11,22 @@
             border-radius: 5px;
             font-weight: 900;
         }
+
+        .prod_count {
+            margin-top: 0.7rem;
+            display: inline-block;
+            min-width: 10px;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+            color: #ffffff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            background-color: #350f72;
+            border-radius: 10px;
+        }
     </style>
 @endpush
 <!-- Hero Section Begin -->
@@ -26,13 +42,18 @@
                     <ul>
                         @foreach ($categories->take(10) as $index => $cat)
                             <li wire:key='{{ $cat->id }}' class="hover-bg">
-                                <a href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a>
+                                <div class="row" style="display: flex; justify-content: space-between;margin-right:2rem">
+                                    <a href="{{ route('search', ['inputText' => $cat->name]) }}" >{{ $cat->name }}</a>
+                                    @if ($cat->prod_count)
+                                        <p class="prod_count">{{ $cat->prod_count }}</p>
+                                    @endif
+                                </div>
                             </li>
                         @endforeach
 
                         @if ($categories->count() > 10)
                             <li wire:key='more-categories' class="hover-bg">
-                                <a href="{{ route('shop')}}">lainnya</a>
+                                <a href="{{ route('shop') }}">lainnya</a>
                             </li>
                         @endif
                     </ul>

@@ -2742,6 +2742,8 @@ ol {
 
 .footer__copyright__payment {
 	float: right;
+	max-width: 290px;
+	max-height: 25px;
 }
 
 /*---------------------

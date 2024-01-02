@@ -13,6 +13,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     @stack('style')
+    <style>
+        .footer-logo {
+            max-width: 90px;
+            max-height: 40px;
+        }
+    </style>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('guest/css/bootstrap.min.css') }}" type="text/css">
