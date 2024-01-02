@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('title')
-    Tambah Produk
+    Lihat Produk
 @endsection
 
 @push('style')
@@ -156,7 +156,7 @@
                                         <textarea class="form-control summernote" name="long_desc" id="long_desc" readonly>{!! $detailProduct->long_desc !!}</textarea>
                                     </div>
                                 </div>
-                                <div x-cloak x-data="{ openLand: {{ $detailProduct->lat || $detailProduct->long ? 'true' : 'false' }} }">
+                                {{-- <div x-cloak x-data="{ openLand: {{ $detailProduct->lat || $detailProduct->long ? 'true' : 'false' }} }">
                                     <div x-show="openLand" class="row">
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
@@ -187,7 +187,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label>Link Gmaps</label>
                                     <div class="input-group">

@@ -24,11 +24,17 @@
                         <span>Semua Kategori</span>
                     </div>
                     <ul>
-                        @foreach ($categories as $cat)
-                            <li wire:key='{{ $cat->id }}' class="hover-bg"><a
-                                    href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a>
+                        @foreach ($categories->take(10) as $index => $cat)
+                            <li wire:key='{{ $cat->id }}' class="hover-bg">
+                                <a href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a>
                             </li>
                         @endforeach
+
+                        @if ($categories->count() > 10)
+                            <li wire:key='more-categories' class="hover-bg">
+                                <a href="{{ route('shop')}}">lainnya</a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

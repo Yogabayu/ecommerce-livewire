@@ -75,46 +75,54 @@
                 </div>
             </div>
             <div class="row featured__filter">
-                @foreach ($featuredProdList as $fp)
-                    <div wire:loading>
-                        <div id="preloder">
-                            <div class="loader"></div>
-                        </div>
+
+                @if ($featuredProdList->isEmpty())
+                    <div class="col-12 text-center">
+                        <p>***Produck tidak ditemukan***</p>
+                        <p>***Tidak Ada Produk di kategori ini***</p>
                     </div>
-                    <div wire:key="{{ $fp->slugCat }}"
-                        class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}">
-                        <div class="featured__item">
-                            <div class="featured__item__pic">
-                                <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $fp->photo) }}"
-                                    alt="{{ $setting->name_app }}" srcset="">
-                                @if ($fp->after_sale)
-                                    <div class="sale">Sale</div>
-                                @endif
-                                <ul class="featured__item__pic__hover">
-                                    <li data-toggle="tooltip" title="Jumlah Dilihat"><a href="#"><i
-                                                class="fa fa-eye"></i> {{ $fp->max_seeing_count }}</a>
-                                    </li>
-                                    <li data-toggle="tooltip" title="Jumlah share"><a href="#"><i
-                                                class="fa fa-share"></i>{{ $fp->share_count }}</a></li>
-                                    <li data-toggle="tooltip" title="Info Selengkapnya"><a
-                                            href="{{ route('detailproduct', ['slug' => $fp->slug]) }}"><i
-                                                class="fa fa-info"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a
-                                        href="{{ route('detailproduct', ['slug' => $fp->slug]) }}">{{ $fp->name }}</a>
-                                </h6>
-                                @if ($fp->after_sale)
-                                    <h5>Rp.{{ $fp->after_sale }}</h5>
-                                    <span style="text-decoration: line-through">Rp.{{ $fp->price }}</span>
-                                @else
-                                    <h5>Rp.{{ $fp->price }}</h5>
-                                @endif
+                @else
+                    @foreach ($featuredProdList as $fp)
+                        <div wire:loading>
+                            <div id="preloder">
+                                <div class="loader"></div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                        <div wire:key="{{ $fp->slugCat }}"
+                            class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}">
+                            <div class="featured__item">
+                                <div class="featured__item__pic">
+                                    <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $fp->photo) }}"
+                                        alt="{{ $setting->name_app }}" srcset="">
+                                    @if ($fp->after_sale)
+                                        <div class="sale">Sale</div>
+                                    @endif
+                                    <ul class="featured__item__pic__hover">
+                                        <li data-toggle="tooltip" title="Jumlah Dilihat"><a href="#"><i
+                                                    class="fa fa-eye"></i> {{ $fp->max_seeing_count }}</a>
+                                        </li>
+                                        <li data-toggle="tooltip" title="Jumlah share"><a href="#"><i
+                                                    class="fa fa-share"></i>{{ $fp->share_count }}</a></li>
+                                        <li data-toggle="tooltip" title="Info Selengkapnya"><a
+                                                href="{{ route('detailproduct', ['slug' => $fp->slug]) }}"><i
+                                                    class="fa fa-info"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a
+                                            href="{{ route('detailproduct', ['slug' => $fp->slug]) }}">{{ $fp->name }}</a>
+                                    </h6>
+                                    @if ($fp->after_sale)
+                                        <h5>Rp.{{ $fp->after_sale }}</h5>
+                                        <span style="text-decoration: line-through">Rp.{{ $fp->price }}</span>
+                                    @else
+                                        <h5>Rp.{{ $fp->price }}</h5>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

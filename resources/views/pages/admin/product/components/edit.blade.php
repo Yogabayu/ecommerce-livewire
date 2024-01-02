@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('title')
-    Tambah Produk
+    Edit Produk
 @endsection
 
 @push('style')
@@ -182,7 +182,7 @@
                                             <textarea class="form-control summernote" name="long_desc" id="long_desc" required>{!! $detailProduct->long_desc !!}</textarea>
                                         </div>
                                     </div>
-                                    <div x-cloak x-data="{ openQue: {{ $detailProduct->lat || $detailProduct->long ? 'true' : 'false' }}, openQue2: false }">
+                                    {{-- <div x-cloak x-data="{ openQue: {{ $detailProduct->lat || $detailProduct->long ? 'true' : 'false' }}, openQue2: false }">
                                         <div x-show="false">
                                             <p>Apakah Ingin ditampilkan dipeta ?</p>
                                             <button @click="openQue = !openQue"
@@ -228,7 +228,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label>Link Gmaps</label>
                                         <div class="input-group">

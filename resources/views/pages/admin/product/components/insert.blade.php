@@ -172,7 +172,7 @@
                                             <textarea class="form-control summernote" name="long_desc" id="long_desc" required></textarea>
                                         </div>
                                     </div>
-                                    <div x-cloak x-data="{ openLand: false, openQue: true }">
+                                    {{-- <div x-cloak x-data="{ openLand: false, openQue: true }">
                                         <div x-show="openQue">
                                             <p>Apakah Produk akan ditampilkan di menu map ?</p>
                                             <button @click="openLand = !openLand"
@@ -212,7 +212,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label>Link Gmaps</label>
                                         <div class="input-group">

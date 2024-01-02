@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,13 +18,20 @@ class DashboardController extends Controller
             $totalProduct = DB::table('products')->count();
             $totalClickProduct = DB::table('detail_products')->where('seeing_count', '!=', 0)->sum('seeing_count');
             $totalShareProduct = DB::table('detail_products')->where('share_count', '!=', 0)->sum('share_count');
+            $mostViewedProducts = DB::table('products as p')
+                ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
+                ->select('p.*', 'dp.seeing_count')
+                ->orderByDesc('dp.seeing_count')
+                ->get();
+            // dd($mostViewedProducts);
             return view('pages.admin.dashboard.index', compact(
                 'totalAdmin',
                 'totalSpv',
                 'totalRoles',
                 'totalProduct',
                 'totalClickProduct',
-                'totalShareProduct'
+                'totalShareProduct',
+                'mostViewedProducts'
             ));
         } else {
             $totalProduct = DB::table('products')->where('user_uuid', auth()->user()->uuid)->count();
