@@ -25,6 +25,21 @@
             left: 15px;
             top: 15px;
         }
+
+        .see_all {
+            color: #aaaaaa;
+            font-weight: 600
+        }
+
+        .see_all>a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s;
+        }
+
+        .see_all>a:hover {
+            color: #3e49b3;
+        }
     </style>
 @endpush
 <div>
@@ -152,7 +167,10 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="latest-product__text">
-                        <h4>Aset Terbaru</h4>
+                        <div style="display: flex; justify-content: space-between">
+                            <h4>Aset Terbaru</h4>
+                            <h5 class="see_all"><a href="{{ route('shop') }}">lihat semua</a></h5>
+                        </div>
                         <div wire:ignore class="latest-product__slider owl-carousel">
                             @foreach ($latesProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
@@ -188,7 +206,10 @@
                 </div>
                 <div class="col-lg-12 col-md-12">
                     <div class="latest-product__text">
-                        <h4>Aset Populer</h4>
+                        <div style="display: flex; justify-content: space-between">
+                            <h4>Aset Populer</h4>
+                            <h5 class="see_all"><a href="{{ route('shop') }}">lihat semua</a></h5>
+                        </div>
                         <div wire:ignore class="latest-product__slider owl-carousel">
                             @foreach ($viewedProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item">
@@ -225,7 +246,10 @@
                 </div>
                 <div class="col-lg-12 col-md-12">
                     <div class="latest-product__text">
-                        <h4>Asset Terbanyak Dibagikan</h4>
+                        <div style="display: flex; justify-content: space-between">
+                            <h4>Asset Terbanyak Dibagikan</h4>
+                            <h5 class="see_all"><a href="{{ route('shop') }}">lihat semua</a></h5>
+                        </div>
                         <div wire:ignore class="latest-product__slider owl-carousel">
                             @foreach ($mostSharedProducts->chunk(3) as $chunk)
                                 <div class="latest-prdouct__slider__item ">
