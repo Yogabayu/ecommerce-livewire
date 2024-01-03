@@ -27,12 +27,6 @@ class DashboardComponent extends Component
 
     public function getHeroSection()
     {
-        // $this->categories = DB::table('categories')
-        //     ->select('id', 'name', 'slug', 'image')
-        //     ->groupBy('id', 'name', 'slug', 'image')
-        //     ->where('status', '!=', 0)
-        //     ->havingRaw('COUNT(id) <= 11')
-        //     ->get();
         $this->categories = DB::table('categories')
             ->leftJoin('products', 'categories.id', '=', 'products.category_id')
             ->select(
@@ -48,7 +42,6 @@ class DashboardComponent extends Component
             ->groupBy('categories.id', 'categories.name', 'categories.slug', 'categories.image', 'categories.status', 'categories.created_at', 'categories.updated_at')
             ->orderByDesc('prod_count')
             ->get();
-        // dd($this->categories);
         $this->heroProd = DB::table('products as p')
             ->join('categories as c', 'p.category_id', '=', 'c.id')
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')

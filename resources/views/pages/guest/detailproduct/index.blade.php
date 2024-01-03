@@ -24,8 +24,8 @@
             text-decoration: line-through;
             margin-left: 10px;
         }
-        
-        .tag{
+
+        .tag {
             height: 45px;
             width: 45px;
             background: #dd2222;
@@ -38,8 +38,15 @@
             left: 15px;
             top: 15px;
         }
+
         .link:hover {
             color: #666
+        }
+
+        .imgSpecial {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     </style>
 @endpush
@@ -120,12 +127,12 @@
                         </div>
                         <div class="product__details__price">
                             @if ($detailProduct->after_sale)
-                            <span>
-                                Rp.{{ $detailProduct->after_sale }}*</span>
-                            <h4 class="text-center normal-price">
-                                Rp.{{ $generalProduct->price }}*</h4>
+                                <span>
+                                    Rp.{{ $detailProduct->after_sale }}*</span>
+                                <h4 class="text-center normal-price">
+                                    Rp.{{ $generalProduct->price }}*</h4>
                             @else
-                            <span>Rp.{{ $generalProduct->price }}*</span>
+                                <span>Rp.{{ $generalProduct->price }}*</span>
                             @endif
                         </div>
                         <p style="margin-bottom: 10px">{{ $generalProduct->short_desc }}</p>
@@ -140,8 +147,15 @@
                             <li>
                                 <b>Bagikan</b>
                                 <div class="share">
+                                    {{-- <a href="#"
+                                        wire:click.prevent="addShareCount('{{ $generalProduct->id }}', 1, 'https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}')"
+                                        target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a> --}}
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
-                                        target="_blank"><i class="fa fa-facebook"></i></a>
+                                        target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
                                     <a href="https://twitter.com/share?url={{ urlencode(url()->current()) }}"
                                         target="_blank"><i class="fa fa-twitter"></i></a>
                                     <a href="https://api.whatsapp.com/send?text={{ rawurlencode($generalProduct->name . ', Lelang Bank Arthaya , Buka Di: ' . url()->current()) }}"
@@ -303,8 +317,9 @@
                 @foreach ($relatedProducts as $rp)
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                data-setbg="{{ asset('storage/public/photos/' . $rp->photo) }}">
+                            <div class="product__item__pic set-bg">
+                                <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $rp->photo) }}"
+                                    alt="{{ $setting->name_app }}" srcset="">
                                 @if ($rp->after_sale)
                                     <div class="tag">Sale</div>
                                 @endif
@@ -329,3 +344,4 @@
     </section>
     <!-- Related Product Section End -->
 </div>
+
