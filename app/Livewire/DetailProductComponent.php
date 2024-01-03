@@ -91,6 +91,16 @@ class DetailProductComponent extends Component
         ]);
     }
 
+    public function addShareCount($id, $text)
+    {
+        $product = DB::table('detail_products')->where('product_id', $id)->first();
+        DB::table('detail_products')->where('product_id', $id)->update([
+            'share_count' => $product->share_count + 1
+        ]);
+
+        return redirect()->to($text);
+    }
+
     public function mount()
     {
         $this->getGeneralProduct();

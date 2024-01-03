@@ -53,7 +53,9 @@
 
                         @if ($categories->count() > 10)
                             <li wire:key='more-categories' class="hover-bg">
-                                <a href="{{ route('shop') }}">lainnya</a>
+                                <div class="row" style="display: flex; justify-content: space-between;margin-right:2rem">
+                                    <a href="{{ route('shop') }}">lainnya</a>
+                                </div>
                             </li>
                         @endif
                     </ul>

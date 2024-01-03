@@ -139,7 +139,7 @@
                         <div class="product__details__quantity" style="width: 20%">
 
                         </div>
-                        <a href="https://wa.me/{{ $detailProduct->no_pic }}?text=Selamat%20Datang%20di%20Website%20Lelang%20Bank%20Arthaya.%20Silahkan%20isi%20formulir%20dibawah.%0A%0ANama:%20xxx%0AAlamat:%20xxx%0ALelang:{{ $generalProduct->name }}.%20%0ABank:%20Bank%20Arthaya."
+                        <a href="https://wa.me/{{ $detailProduct->no_pic }}?text=%2ASelamat%20Datang%20di%20Website%20Lelang%20Bank%20Arthaya.%2A%20Silahkan%20isi%20formulir%20dibawah.%0A%0ANama:%20xxx%0A%0AAlamat:%20xxx%0A%0ALelang:%20{{ $generalProduct->name }}.%20%0A%0ABank:%20Bank%20Arthaya.%0A%0A%2ATerima%20Kasih%20Telah%20Menggunakan%20Aplikasi%20Lelang%20Bank%20Arthaya%2A"
                             class="primary-btn" target="_blank"> <i class="fa fa-whatsapp"></i> hubungi via
                             WhatsApp</a>
                         <ul style="padding-top: 5px;margin-top:5px;">
@@ -147,19 +147,24 @@
                             <li>
                                 <b>Bagikan</b>
                                 <div class="share">
-                                    {{-- <a href="#"
-                                        wire:click.prevent="addShareCount('{{ $generalProduct->id }}', 1, 'https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}')"
+                                    <a href="#"
+                                        wire:click.prevent="addShareCount('{{ $generalProduct->id }}', 'https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}')"
                                         target="_blank">
                                         <i class="fa fa-facebook"></i>
-                                    </a> --}}
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
+                                    </a>
+                                    <a href="#" wire:click.prevent="addShareCount('{{$generalProduct->id}}','https://twitter.com/share?url={{ urlencode(url()->current()) }}')" target="_blank"><i
+                                            class="fa fa-twitter"></i></a>
+                                    <a href="#" wire:click.prevent="addShareCount('{{$generalProduct->id}}','https://api.whatsapp.com/send?text={{ rawurlencode($generalProduct->name . ', Lelang Bank Arthaya , Buka Di: ' .
+                                    url()->current()) }}')"
+                                        target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                    {{-- <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
                                         target="_blank">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                     <a href="https://twitter.com/share?url={{ urlencode(url()->current()) }}"
                                         target="_blank"><i class="fa fa-twitter"></i></a>
                                     <a href="https://api.whatsapp.com/send?text={{ rawurlencode($generalProduct->name . ', Lelang Bank Arthaya , Buka Di: ' . url()->current()) }}"
-                                        target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                        target="_blank"><i class="fa fa-whatsapp"></i></a> --}}
                                 </div>
                             </li>
                             <li>
@@ -296,7 +301,7 @@
             </div>
         </div>
         <div style="display: flex;align-items:center;justify-content: center;">
-            <a href="https://wa.me/{{ $detailProduct->no_pic }}?text=Selamat%20Datang%20di%20Website%20Lelang%20Bank%20Arthaya.%20Silahkan%20isi%20formulir%20dibawah.%0A%0ANama:%20xxx%0AAlamat:%20xxx%0ALelang:{{ $generalProduct->name }}.%20%0ABank:%20Bank%20Arthaya."
+            <a href="https://wa.me/{{ $detailProduct->no_pic }}?text=%2ASelamat%20Datang%20di%20Website%20Lelang%20Bank%20Arthaya.%2A%20Silahkan%20isi%20formulir%20dibawah.%0A%0ANama:%20xxx%0A%0AAlamat:%20xxx%0A%0ALelang:%20{{ $generalProduct->name }}.%20%0A%0ABank:%20Bank%20Arthaya.%0A%0A%2ATerima%20Kasih%20Telah%20Menggunakan%20Aplikasi%20Lelang%20Bank%20Arthaya%2A"
                 class="primary-btn" target="_blank"> <i class="fa fa-whatsapp"></i> hubungi via
                 WhatsApp</a>
         </div>
@@ -344,4 +349,3 @@
     </section>
     <!-- Related Product Section End -->
 </div>
-
