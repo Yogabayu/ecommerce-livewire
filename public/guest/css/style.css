@@ -784,7 +784,7 @@ ol {
 	display: block;
 }
 
-.categories__slider .col-3 {
+.categories__slider .col-lg-3 {
 	max-width: 100%;
 }
 
