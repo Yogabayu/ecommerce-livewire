@@ -6,6 +6,7 @@
             </th>
             <th>Photo</th>
             <th>Status</th>
+            <th data-toggle="tooltip" title="Jika banner diklik akan membuka link">URL</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -19,8 +20,8 @@
                     {{ $no++ }}
                 </td>
                 <td>
-                    <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}" alt="Banner Photo" class="rounded-circle" width="35"
-                        data-toggle="tooltip" title="banner">
+                    <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}" alt="Banner Photo"
+                        class="rounded-circle" width="35" data-toggle="tooltip" title="banner">
                 </td>
                 <td>
                     @if ($banner->is_see)
@@ -33,6 +34,15 @@
                         <a href="{{ route('bannerVisibility', $banner->id) }}">
                             <button type="button" class="btn btn-danger btn-sm">Disembunyikan</button>
                         </a>
+                    @endif
+                </td>
+                <td>
+                    @if ($banner->url)
+                        <a href="{{ $banner->url }}">
+                            {{ $banner->url }}
+                        </a>
+                    @else
+                        -
                     @endif
                 </td>
                 <td>

@@ -12,13 +12,17 @@ class BannerController extends Controller
     public function changeVisibility($id)
     {
         try {
-            $category = Banner::where('id', $id)->first();;
-            if ($category->is_see == 1) {
-                $category->is_see = 0;
-            } else {
-                $category->is_see = 1;
+            $banner = Banner::where('id', $id)->first();
+            $cekIsSee = Banner::where('is_see', 1)->count();
+            if ($cekIsSee == 2 && $banner->is_see != 1) {
+                return redirect()->back()->with("error", "Tidak bisa mengubah status banner karena telah ada 2 banner yang ditayangkan, ubah data dahulu data lama");
             }
-            $category->save();
+            if ($banner->is_see == 1) {
+                $banner->is_see = 0;
+            } else {
+                $banner->is_see = 1;
+            }
+            $banner->save();
 
             return redirect()->back()->with('success', 'Banner updated successfully!');
         } catch (\Exception $e) {
@@ -57,6 +61,7 @@ class BannerController extends Controller
                 'banner_img' => 'required|mimes:jpeg,jpg,png|max:2048',
                 'is_see' => 'required',
             ]);
+
             $cekIsSee = Banner::where('is_see', 1)->count();
             if ($cekIsSee == 2 && $request->is_see == 1) {
                 return redirect()->back()->with("error", "Tidak bisa menambahkan banner karena telah ada 2 banner yang ditayangkan, ubah data dahulu data lama");
@@ -71,6 +76,7 @@ class BannerController extends Controller
             Banner::create([
                 'banner_img' => $imgname,
                 'is_see' => $request->is_see,
+                'url' => $request->url,
                 // 'is_hero' => $request->is_hero,
             ]);
 
@@ -107,12 +113,14 @@ class BannerController extends Controller
                 'is_see' => 'required',
             ]);
 
+            $bannerEdit = Banner::where('id', $id)->first();
             $cekIsSee = Banner::where('is_see', 1)->count();
-            if ($cekIsSee == 2 && $request->is_see == 1) {
+            if ($cekIsSee == 2 && $request->is_see == 1 && $bannerEdit->is_see != 1) {
                 return redirect()->back()->with("error", "Tidak bisa menambahkan banner karena telah ada 2 banner yang ditayangkan, ubah data dahulu data lama");
             }
             $banner = Banner::findOrFail($id);
             $banner->is_see = $request->is_see;
+            $banner->url = $request->url;
 
             if ($request->hasFile('banner_img')) {
                 if ($banner->banner_img) {

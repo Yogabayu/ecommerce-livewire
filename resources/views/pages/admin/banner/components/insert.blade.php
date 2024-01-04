@@ -46,26 +46,22 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            {{-- <div class="form-group col-md-6 col-12">
-                                <label>Role</label>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-12">
+                                <label>Link Banner</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                            <i class="fas fa-building"></i>
+                                            <i class="fas fa-link"></i>
                                         </div>
                                     </div>
-                                    <select name="role_id" id="role_id" class="form-control" required>
-                                        <option selected>-</option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">
-                                                {{ $role->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @error('role_id')
+                                    <input type="text" class="form-control" name="url">
+                                    @error('url')
                                     <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div> --}}
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-right">

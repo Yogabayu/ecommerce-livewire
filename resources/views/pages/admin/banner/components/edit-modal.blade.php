@@ -35,7 +35,8 @@
                                             <div class="form-group">
                                                 <label>Banner Saat ini:</label>
                                                 <div class="input-group">
-                                                    <img src="{{ asset('storage/public/banners/' . $banner->banner_img)}}" alt="banner" class="mt-3"
+                                                    <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}"
+                                                        alt="banner" class="mt-3"
                                                         style="max-width: 100px; max-height: 100px; data-toggle="tooltip"
                                                         title="banner">
                                                 </div>
@@ -56,6 +57,21 @@
                                                             @if ($banner->is_see == 1) selected @endif>Di
                                                             tampilkan</option>
                                                     </select>
+                                                </div>
+                                                @error('is_see')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Link Banner: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-link"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="url"
+                                                        value="{{ $banner->url }}">
                                                 </div>
                                                 @error('is_see')
                                                     <span class="text-danger">{{ $message }}</span>
