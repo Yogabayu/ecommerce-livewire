@@ -30,7 +30,7 @@
 <!-- Humberger End -->
 
 <!-- Header Section Begin -->
-<header class="header" style="margin-bottom: 10px">
+<header class="header" >
     <div class="header__top">
         <div class="container">
             <div class="row">
@@ -38,6 +38,7 @@
                     <div class="header__top__left">
                         <ul>
                             <li><i class="fa fa-envelope"></i> {{ $setting->email }}</li>
+                            <li>Ternama dan Terpercaya</li>
                         </ul>
                     </div>
                 </div>
@@ -55,9 +56,7 @@
         </div>
     </div>
     <div class="container"
-        style="box-shadow: 0px 15px 9px -5px rgba(0,0,0,0.11);
--webkit-box-shadow: 0px 15px 9px -5px rgba(0,0,0,0.11);
--moz-box-shadow: 0px 15px 9px -5px rgba(0,0,0,0.11);">
+       >
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
