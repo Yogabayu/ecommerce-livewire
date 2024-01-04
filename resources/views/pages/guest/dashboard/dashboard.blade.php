@@ -9,7 +9,7 @@
         .item-hover:hover {
             /* border: 1px solid #39fc03; */
             background-color: #03b5fc;
-            border-radius: 10px;
+            border-radius: 1.5rem;
         }
 
         .sale {
@@ -51,7 +51,7 @@
             <div class="row">
                 <div wire:ignore class="categories__slider owl-carousel">
                     @foreach ($categories as $cat)
-                        <div wire:key='{{ $cat->id }}' class="col-lg-3">
+                        <div wire:key='{{ $cat->id }}' class="col-3">
                             <div class="categories__item item-hover">
                                 <img class="imgSpecial" src="{{ asset('storage/public/categories/' . $cat->image) }}"
                                     alt="{{ $setting->name_app }}" srcset="">
