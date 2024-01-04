@@ -29,7 +29,7 @@
                     <div class="contact__widget">
                         <span class="icon_phone"></span>
                         <h4>Phone</h4>
-                        <p>+{{ $setting->main_telp }}</p>
+                        <p>+{{ $setting->main_tlp }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 text-center">
