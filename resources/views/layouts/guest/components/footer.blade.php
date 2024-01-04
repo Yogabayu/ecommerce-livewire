@@ -65,8 +65,9 @@
                             </script> All rights reserved
                         </p>
                     </div>
-                    <div class="footer__copyright__payment"><img src="{{ asset('guest/img/footer.png') }}"
-                            alt="footer"></div>
+                    <div class="footer__copyright__payment">
+                        <img src="{{ asset('guest/img/footer.png') }}" alt="footer">
+                    </div>
                 </div>
             </div>
         </div>
