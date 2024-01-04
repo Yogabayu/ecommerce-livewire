@@ -101,7 +101,7 @@ class DashboardComponent extends Component
     public function getBanners()
     {
         $this->banners = DB::table('banners')
-            ->select('id', 'banner_img', 'is_see')
+            ->select('id', 'banner_img', 'is_see', 'url')
             ->where('is_see', 1)
             ->get();
     }

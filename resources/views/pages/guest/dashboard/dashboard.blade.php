@@ -180,7 +180,7 @@
                 @foreach ($banners as $banner)
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="banner__pic">
-                            <a href="{{$banner->url ?? '#'}}" target="_blank" rel="noopener noreferrer">
+                            <a href="{{$banner->url ? $banner->url :'#'}}" target="_blank" rel="noopener noreferrer">
                                 <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}"
                                 alt="{{ $banner->banner_img }}" wire:key="{{ $banner->id }}"
                                 style="max-width: 570px;max-height: 270px">
