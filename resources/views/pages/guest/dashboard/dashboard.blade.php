@@ -180,9 +180,10 @@
                 @foreach ($banners as $banner)
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="banner__pic">
-                            <a href="{{ is_string($banner->url) ? url($banner->url) : '#' }}" target="_blank">
-                                <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}" alt="{{ $banner->banner_img }}"
-                                    wire:key="{{ $banner->id }}" style="max-width: 570px; max-height: 270px">
+                            <a href="{{$banner->url}}" target="_blank">
+                                <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}"
+                                alt="{{ $banner->banner_img }}" wire:key="{{ $banner->id }}"
+                                style="max-width: 570px;max-height: 270px">
                             </a>
                         </div>
                     </div>

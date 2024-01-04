@@ -73,6 +73,7 @@
                                                     <input type="text" class="form-control" name="url"
                                                         value="{{ $banner->url }}">
                                                 </div>
+                                                <span class="text-danger">wajib ada Http / https , contoh: https://linkbanner.com</span>
                                                 @error('is_see')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror

@@ -57,6 +57,7 @@
                                         </div>
                                     </div>
                                     <input type="text" class="form-control" name="url">
+                                    <span class="text-danger">wajib ada Http / https , contoh: https://linkbanner.com</span>
                                     @error('url')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror

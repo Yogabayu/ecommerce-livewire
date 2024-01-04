@@ -60,6 +60,7 @@ class BannerController extends Controller
             $request->validate([
                 'banner_img' => 'required|mimes:jpeg,jpg,png|max:2048',
                 'is_see' => 'required',
+                'url' => 'url:http,https',
             ]);
 
             $cekIsSee = Banner::where('is_see', 1)->count();
@@ -111,6 +112,7 @@ class BannerController extends Controller
             $request->validate([
                 'banner_img' => 'mimes:jpeg,jpg,png|max:2048',
                 'is_see' => 'required',
+                'url' => 'url:http,https',
             ]);
 
             $bannerEdit = Banner::where('id', $id)->first();
