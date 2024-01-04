@@ -122,7 +122,11 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
-                                <span>({{ $viewCount }} Views)</span>
+                                <span>(@if ($viewCount >= 1000)
+                                        {{ $viewCount >= 1000000 ? number_format($viewCount / 1000000, 1) . 'M' : number_format($viewCount / 1000, 1) . 'k' }}
+                                    @else
+                                        {{ $viewCount }}
+                                    @endif Views)</span>
                             @endif
                         </div>
                         <div class="product__details__price">
@@ -152,10 +156,11 @@
                                         target="_blank">
                                         <i class="fa fa-facebook"></i>
                                     </a>
-                                    <a href="#" wire:click.prevent="addShareCount('{{$generalProduct->id}}','https://twitter.com/share?url={{ urlencode(url()->current()) }}')" target="_blank"><i
-                                            class="fa fa-twitter"></i></a>
-                                    <a href="#" wire:click.prevent="addShareCount('{{$generalProduct->id}}','https://api.whatsapp.com/send?text={{ rawurlencode($generalProduct->name . ', Lelang Bank Arthaya , Buka Di: ' .
-                                    url()->current()) }}')"
+                                    <a href="#"
+                                        wire:click.prevent="addShareCount('{{ $generalProduct->id }}','https://twitter.com/share?url={{ urlencode(url()->current()) }}')"
+                                        target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"
+                                        wire:click.prevent="addShareCount('{{ $generalProduct->id }}','https://api.whatsapp.com/send?text={{ rawurlencode($generalProduct->name . ', Lelang Bank Arthaya , Buka Di: ' . url()->current()) }}')"
                                         target="_blank"><i class="fa fa-whatsapp"></i></a>
                                     {{-- <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
                                         target="_blank">
@@ -329,10 +334,42 @@
                                     <div class="tag">Sale</div>
                                 @endif
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-eye"></i> {{ $rp->seeing_count }}</a></li>
-                                    <li><a href="#"><i class="fa fa-share"></i> {{ $rp->share_count }}</a></li>
-                                    <li><a href="{{ route('detailproduct', ['slug' => $rp->slug]) }}"><i
-                                                class="fa fa-info"></i></a></li>
+                                    <li>
+                                        <a href="#" style="display: flex; align-items: center; justify-content: center;">
+                                            <i class="fa fa-eye" style="margin: 0; padding: 0;"></i>
+                                            @if ($rp->seeing_count >= 1000)
+                                                <span>
+                                                    {{ $rp->seeing_count >= 1000000
+                                                        ? number_format($rp->seeing_count / 1000000, 1) . 'M'
+                                                        : number_format($rp->seeing_count / 1000, 1) . 'k' }}
+                                                </span>
+                                            @else
+                                                <span>{{ $rp->seeing_count }}</span>
+                                            @endif
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" style="display: flex; align-items: center; justify-content: center;">
+                                            <i class="fa fa-share" style="margin: 0; padding: 0;"></i>
+                                            {{-- {{ $rp->share_count }} --}}
+                                            @if ($rp->share_count >= 1000)
+                                                {{-- <span> --}}
+                                                    {{ $rp->share_count >= 1000000
+                                                        ? number_format($rp->share_count / 1000000, 1) . 'M'
+                                                        : number_format($rp->share_count / 1000, 1) . 'k' }}
+                                                {{-- </span> --}}
+                                            @else
+                                                {{-- <span> --}}
+                                                    {{ $rp->share_count }}
+                                                {{-- </span> --}}
+                                            @endif
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('detailproduct', ['slug' => $rp->slug]) }}" style="display: flex; align-items: center; justify-content: center;">
+                                            <i class="fa fa-info" style="margin: 0; padding: 0;"></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="product__item__text">

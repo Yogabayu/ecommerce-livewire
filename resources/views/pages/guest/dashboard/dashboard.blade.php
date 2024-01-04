@@ -40,6 +40,7 @@
         .see_all>a:hover {
             color: #3e49b3;
         }
+
     </style>
 @endpush
 <div>
@@ -113,14 +114,43 @@
                                         <div class="sale">Sale</div>
                                     @endif
                                     <ul class="featured__item__pic__hover">
-                                        <li data-toggle="tooltip" title="Jumlah Dilihat"><a href="#"><i
-                                                    class="fa fa-eye"></i> {{ $fp->max_seeing_count }}</a>
+                                        <li data-toggle="tooltip" title="Jumlah Dilihat">
+                                            <a href="#"
+                                                style="display: flex; align-items: center; justify-content: center;">
+                                                <i class="fa fa-eye" style="margin: 0; padding: 0;"></i>
+                                                @if ($fp->max_seeing_count >= 1000)
+                                                    <span>
+                                                        {{ $fp->max_seeing_count >= 1000000
+                                                            ? number_format($fp->max_seeing_count / 1000000, 1) . 'M'
+                                                            : number_format($fp->max_seeing_count / 1000, 1) . 'k' }}
+                                                    </span>
+                                                @else
+                                                    <span>{{ $fp->max_seeing_count }}</span>
+                                                @endif
+                                            </a>
                                         </li>
-                                        <li data-toggle="tooltip" title="Jumlah share"><a href="#"><i
-                                                    class="fa fa-share"></i>{{ $fp->share_count }}</a></li>
-                                        <li data-toggle="tooltip" title="Info Selengkapnya"><a
-                                                href="{{ route('detailproduct', ['slug' => $fp->slug]) }}"><i
-                                                    class="fa fa-info"></i></a></li>
+                                        <li data-toggle="tooltip" title="Jumlah share">
+                                            <a href="#"
+                                                style="display: flex; align-items: center; justify-content: center;">
+                                                {{-- <i class="fa fa-share"></i> --}}
+                                                {{-- {{ $fp->share_count }} --}}
+                                                <i class="fa fa-share" style="margin: 0; padding: 0;"></i>
+                                                @if ($fp->share_count >= 1000)
+                                                    <span>
+                                                        {{ $fp->share_count >= 1000000
+                                                            ? number_format($fp->share_count / 1000000, 1) . 'M'
+                                                            : number_format($fp->share_count / 1000, 1) . 'k' }}
+                                                    </span>
+                                                @else
+                                                    <span>{{ $fp->share_count }}</span>
+                                                @endif
+                                            </a>
+                                        </li>
+                                        <li data-toggle="tooltip" title="Info Selengkapnya">
+                                            <a href="{{ route('detailproduct', ['slug' => $fp->slug]) }}" style="display: flex; align-items: center; justify-content: center;">
+                                                <i class="fa fa-info" style="margin: 0; padding: 0;"></i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="featured__item__text">

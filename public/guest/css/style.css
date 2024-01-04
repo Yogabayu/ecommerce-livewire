@@ -900,8 +900,8 @@ ol {
 .featured__item__pic__hover li a {
 	font-size: 16px;
 	color: #1c1c1c;
-	height: 40px;
-	width: 40px;
+	height: 3.5rem;
+	width: 3.5rem;
 	line-height: 40px;
 	text-align: center;
 	border: 1px solid #ebebeb;
@@ -1336,8 +1336,8 @@ ol {
 .product__item__pic__hover li a {
 	font-size: 16px;
 	color: #1c1c1c;
-	height: 40px;
-	width: 40px;
+	height: 100px;
+	width: 100px;
 	line-height: 40px;
 	text-align: center;
 	border: 1px solid #ebebeb;
@@ -1576,8 +1576,8 @@ ol {
 .product__item__pic__hover li a {
 	font-size: 16px;
 	color: #1c1c1c;
-	height: 40px;
-	width: 40px;
+	height: 3.5rem;
+	width: 3.5rem;
 	line-height: 40px;
 	text-align: center;
 	border: 1px solid #ebebeb;

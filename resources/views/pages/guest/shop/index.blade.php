@@ -79,7 +79,8 @@
                             @foreach ($populartags as $pt)
                                 <div wire:key='{{ $pt->name }}' class="sidebar__item__size">
                                     <label for="large-{{ $pt->name }}">
-                                        <a href="{{ route('search', ['inputText' => $pt->name]) }}" class="hover-bg active-pad" style="color: #000000">
+                                        <a href="{{ route('search', ['inputText' => $pt->name]) }}"
+                                            class="hover-bg active-pad" style="color: #000000">
                                             {{ $pt->name }}
                                             <input type="radio" id="large-{{ $pt->name }}">
                                         </a>
@@ -133,12 +134,45 @@
                                                     <div class="product__discount__percent">Sale</div>
                                                 @endif
                                                 <ul class="product__item__pic__hover">
-                                                    <li><a href="#"><i class="fa fa-eye"></i>
-                                                            {{ $sp->seeing_count }}</a></li>
-                                                    <li><a href="#"><i class="fa fa-share"></i>
-                                                            {{ $sp->share_count }}</a></li>
-                                                    <li><a href="{{ route('detailproduct', ['slug' => $sp->slug]) }}"><i
-                                                                class="fa fa-info"></i></a></li>
+                                                    <li>
+                                                        <a href="#"
+                                                            style="display: flex; align-items: center; justify-content: center;">
+                                                            <i class="fa fa-eye" style="margin: 0; padding: 0;"></i>
+                                                            {{-- {{ $sp->seeing_count }} --}}
+                                                            @if ($sp->seeing_count >= 1000)
+                                                                <span>
+                                                                    {{ $sp->share_count >= 1000000
+                                                                        ? number_format($sp->seeing_count / 1000000, 1) . 'M'
+                                                                        : number_format($sp->seeing_count / 1000, 1) . 'k' }}
+                                                                </span>
+                                                            @else
+                                                                <span>{{ $sp->seeing_count }}</span>
+                                                            @endif
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"
+                                                            style="display: flex; align-items: center; justify-content: center;">
+                                                            <i class="fa fa-share" style="margin: 0; padding: 0;"></i>
+                                                            {{-- {{ $sp->share_count }} --}}
+                                                            @if ($sp->share_count >= 1000)
+                                                                <span>
+                                                                    {{ $sp->share_count >= 1000000
+                                                                        ? number_format($sp->share_count / 1000000, 1) . 'M'
+                                                                        : number_format($sp->share_count / 1000, 1) . 'k' }}
+                                                                </span>
+                                                            @else
+                                                                <span>{{ $sp->share_count }}</span>
+                                                            @endif
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ route('detailproduct', ['slug' => $sp->slug]) }}"
+                                                            style="display: flex; align-items: center; justify-content: center;">
+                                                            <i class="fa fa-info" style="margin: 0; padding: 0;">
+                                                            </i>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="product__discount__item__text">
@@ -200,16 +234,49 @@
                             <div class="col-lg-4 col-md-6 col-sm-6" wire:key='{{ $sp->id }}'>
                                 <div class="product__item">
                                     <div class="product__item__pic">
-                                        <img class="imgSpecial" src="{{ url('storage/photos/' . $sp->photo) }}"
+                                        <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $sp->photo) }}"
                                             alt="{{ $setting->name_app }}" srcset="">
 
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-eye"></i>
-                                                    {{ $sp->seeing_count }}</a></li>
-                                            <li><a href="#"><i class="fa fa-share"></i>
-                                                    {{ $sp->share_count }}</a></li>
-                                            <li><a href="{{ route('detailproduct', ['slug' => $sp->slug]) }}"><i
-                                                        class="fa fa-info"></i></a></li>
+                                            <li>
+                                                <a href="#"
+                                                    style="display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fa fa-eye" style="margin: 0; padding: 0;"></i>
+                                                    {{-- {{ $sp->seeing_count }} --}}
+                                                    @if ($sp->seeing_count >= 1000)
+                                                        <span>
+                                                            {{ $sp->seeing_count >= 1000000
+                                                                ? number_format($sp->seeing_count / 1000000, 1) . 'M'
+                                                                : number_format($sp->seeing_count / 1000, 1) . 'k' }}
+                                                        </span>
+                                                    @else
+                                                        <span>{{ $sp->seeing_count }}</span>
+                                                    @endif
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"
+                                                    style="display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fa fa-share" style="margin: 0; padding: 0;"></i>
+                                                    {{-- {{ $sp->share_count }} --}}
+                                                    @if ($sp->share_count >= 1000)
+                                                        <span>
+                                                            {{ $sp->share_count >= 1000000
+                                                                ? number_format($sp->share_count / 1000000, 1) . 'M'
+                                                                : number_format($sp->share_count / 1000, 1) . 'k' }}
+                                                        </span>
+                                                    @else
+                                                        <span>{{ $sp->share_count }}</span>
+                                                    @endif
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('detailproduct', ['slug' => $sp->slug]) }}"
+                                                    style="display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fa fa-info" style="margin: 0; padding: 0;">
+                                                    </i>
+                                                </a>
+                                            </li>
                                         </ul>
                                         @if ($sp->after_sale)
                                             <div class="sale">Sale</div>
