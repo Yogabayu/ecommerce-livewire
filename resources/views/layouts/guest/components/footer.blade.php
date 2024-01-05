@@ -41,14 +41,14 @@
                             <h6>Bank Arthaya terdaftar dan diawasi oleh:</h6>
                             <a href="http://www.ojk.go.id" target="_blank" rel="noopener noreferrer"><img
                                     src="https://bankarthaya.com/wp-content/uploads/2022/06/OJK.png" alt="ojk"
-                                    class="footer-logo"></a>
+                                    class="footer-logo" loading="lazy"></a>
 
                         </div>
                         <div class="col">
                             <h6>Tautan ke link mitra:</h6>
                             <a href="http://lelang.go.id" target="_blank" rel="noopener noreferrer"><img
                                     src="{{ asset('guest/img/lelang_djkn.jpeg') }}" alt="lelang"
-                                    class="footer-logo"></a>
+                                    class="footer-logo" loading="lazy"></a>
                         </div>
                     </div>
                 </div>

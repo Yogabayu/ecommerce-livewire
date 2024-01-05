@@ -73,14 +73,14 @@
 
     @stack('script')
     <!-- Js Plugins -->
-    <script src="{{ asset('guest/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('guest/js/jquery-3.3.1.min.js') }}" ></script>
     <script src="{{ asset('guest/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('guest/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('guest/js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('guest/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('guest/js/jquery.slicknav.js') }}" ></script>
     <script src="{{ asset('guest/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('guest/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('guest/js/main.js') }}"></script>
+    <script src="{{ asset('guest/js/main.js') }}" defer></script>
     
     <livewire:scripts />
 </body>

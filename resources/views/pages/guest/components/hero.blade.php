@@ -1,11 +1,3 @@
-@push('style')
-    <style>
-        .hover-bg:hover {
-        color: #96d424;
-        font-weight: 900;
-        }
-    </style>
-@endpush
 <div>
     <section class="hero hero-normal">
         <div class="container">
