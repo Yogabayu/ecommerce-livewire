@@ -51,7 +51,7 @@ class ScheduleLelangComponent extends Component
                 'ac.schedule',
                 'pp.photo'
             )
-            ->paginate(2);
+            ->paginate(10);
         // ->get();
 
         // dd($this->datas);
@@ -98,7 +98,7 @@ class ScheduleLelangComponent extends Component
             ->paginate(10);
     }
 
-    public function mount()
+    public function boot()
     {
         $this->getCategories();
 
