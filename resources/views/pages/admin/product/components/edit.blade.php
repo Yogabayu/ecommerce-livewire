@@ -569,15 +569,15 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Tanggal Lelang</label>
+                                        <label>Tanggal Lelang (WIB)</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-calendar"></i>
                                                 </div>
                                             </div>
-                                            <input type="date" name="schedule" id="schedule" class="form-control"
-                                                value="{{ \Carbon\Carbon::parse($auctionSchedule->schedule)->toDateString() }}">
+                                            <input type="datetime-local" name="schedule" id="schedule" class="form-control"
+                                                value="{{ \Carbon\Carbon::parse($auctionSchedule->schedule)->format('Y-m-d\TH:i') }}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">

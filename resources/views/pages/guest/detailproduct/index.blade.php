@@ -164,7 +164,7 @@
                         <ul style="padding-top: 5px;margin-top:5px;">
                             <li><b>Kategori</b> <span>{{ $detailProduct->categoryName }}</span></li>
                             <li><b>Status</b> <span>Tersedia</span></li>
-                            <li><b>Jadwal</b> <span>{{  \Carbon\Carbon::parse($schedule->schedule)->format('d/m/Y') }}</span></li>
+                            <li><b>Jadwal lelang</b> <span>{{ \Carbon\Carbon::parse($schedule->schedule)->format('d/m/Y H:i:s') }} WIB</span></li>
                             <li>
                                 <b>Bagikan</b>
                                 <div class="share">
@@ -1092,7 +1092,7 @@
                 100; // Convert percentage to decimal
             var jangkaWaktu = parseInt(document.getElementById('loanTerm').value);
 
-            var hasilKPR = ((hargaAsset * sukuBunga) + hargaAsset) / jangkaWaktu;
+            var hasilKPR = ((hargaAsset * sukuBunga) + (hargaAsset/jangkaWaktu));
             // var monthlyPayment = hasilKPR / jangkaWaktu;
 
             document.getElementById('result').innerHTML = '<div class="common-border">' +
