@@ -165,6 +165,7 @@
                             <li><b>Kategori</b> <span>{{ $detailProduct->categoryName }}</span></li>
                             <li><b>Status</b> <span>Tersedia</span></li>
                             <li><b>Jadwal lelang</b> <span>{{ \Carbon\Carbon::parse($schedule->schedule)->format('d/m/Y H:i:s') }} WIB</span></li>
+                            <li><b>Tempat Lelang</b> <span>KPKNL {{$schedule->kpknl}}</span></li>
                             <li>
                                 <b>Bagikan</b>
                                 <div class="share">
