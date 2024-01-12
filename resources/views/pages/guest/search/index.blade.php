@@ -213,7 +213,8 @@
                             </div>
                         @else
                             @foreach ($results as $sp)
-                                <div class="col-lg-4 col-md-6 col-sm-6 item-hover" wire:key='{{ $sp->id }}'>
+                                <div class="col-lg-4 col-md-6 col-sm-6 item-hover" wire:key='{{ $sp->id }}' onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
+                                style="cursor: pointer;">
                                     <div class="product__item">
                                         <div class="product__item__pic">
                                             <img class="imgSpecial"
@@ -266,7 +267,8 @@
             </div>
             <div class="row">
                 @foreach ($relatedProducts as $rp)
-                    <div class="col-lg-3 col-md-4 col-sm-6 item-hover">
+                    <div class="col-lg-3 col-md-4 col-sm-6 item-hover" onclick="window.location='{{ route('detailproduct', ['slug' => $rp->slug]) }}';"
+                            style="cursor: pointer;">
                         <div class="product__item">
                             <div class="product__item__pic">
                                 <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $rp->photo) }}"

@@ -124,7 +124,8 @@
                         <div class="row">
                             <div wire:ignore class="product__discount__slider owl-carousel">
                                 @foreach ($saleProducts as $sp)
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4" onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
+                            style="cursor: pointer;">
                                         <div class="product__discount__item">
                                             <div class="product__discount__item__pic ">
                                                 <img class="imgSpecial"
@@ -231,7 +232,8 @@
 
                     <div class="row">
                         @foreach ($sortProducts as $sp)
-                            <div class="col-lg-4 col-md-6 col-sm-6" wire:key='{{ $sp->id }}'>
+                            <div class="col-lg-4 col-md-6 col-sm-6" wire:key='{{ $sp->id }}' onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
+                            style="cursor: pointer;">
                                 <div class="product__item">
                                     <div class="product__item__pic">
                                         <img class="imgSpecial"

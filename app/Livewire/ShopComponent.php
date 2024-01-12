@@ -52,9 +52,21 @@ class ShopComponent extends Component
         } elseif ($value == 4) { // Z-A
             $query->orderBy('p.name', 'DESC');
         } elseif ($value == 5) { // Termahal
-            $query->orderBy(DB::raw('CAST(REPLACE(p.price, ".", "") AS SIGNED)'), 'DESC');
+            // $query->orderBy(DB::raw('CAST(REPLACE(p.price, ".", "") AS SIGNED)'), 'DESC');
+            $query->orderBy(DB::raw('
+    CASE
+        WHEN dp.after_sale IS NOT NULL THEN CAST(REPLACE(dp.after_sale, ".", "") AS SIGNED)
+        ELSE CAST(REPLACE(p.price, ".", "") AS SIGNED)
+    END
+'), 'DESC');
         } elseif ($value == 6) { // Termurah
-            $query->orderBy(DB::raw('CAST(REPLACE(p.price, ".", "") AS SIGNED)'), 'ASC');
+            // $query->orderBy(DB::raw('CAST(REPLACE(p.price, ".", "") AS SIGNED)'), 'ASC');
+            $query->orderBy(DB::raw('
+    CASE
+        WHEN dp.after_sale IS NOT NULL THEN CAST(REPLACE(dp.after_sale, ".", "") AS SIGNED)
+        ELSE CAST(REPLACE(p.price, ".", "") AS SIGNED)
+    END
+'), 'ASC');
         }
 
         $this->sortProducts = $query->groupBy(
