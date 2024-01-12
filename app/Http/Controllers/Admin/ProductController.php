@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\AccessProductModel;
+use App\Models\AuctionSchedule;
 use App\Models\DetailProduct;
+use App\Models\FacilitiesProduct;
 use App\Models\Product;
 use App\Models\ProductPhoto;
 use App\Models\ProductTagMapping;
@@ -179,10 +182,9 @@ class ProductController extends Controller
     {
         try {
             $categories = DB::table('categories')->where('status', '!=', 0)->select('id', 'name')->get();
-            $provinces = DB::table('indonesia_provinces')->get();
             $tags = DB::table('tags')->get();
 
-            return view('pages.admin.product.components.insert', compact('categories', 'provinces', 'tags'));
+            return view('pages.admin.product.components.insert', compact('categories', 'tags'));
         } catch (\Exception $e) {
             return redirect()->back()->with("error", $e->getMessage());
         }
@@ -193,31 +195,31 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         try {
             $request->validate([
-                'category_id'   => 'required',
-                'name'          => 'required|string',
-                'short_desc'    => 'required|string',
-                'price'         => 'required',
-                'publish'       => 'required|boolean',
-                'is_hero'       => 'required|boolean',
-
-                'province_code' => 'required|string',
-                'city_code'     => 'required|string',
-                'address'          => 'required|string',
-                'long_desc'     => 'required|string',
-                'type_sales'    => 'required|string',
-                'no_pic'        => 'required',
-
+                //wajibun
+                'name' => 'required',
+                'short_desc' => 'required',
+                'category_id' => 'required',
+                'price' => 'required',
+                'publish' => 'required',
+                'is_hero' => 'required',
+                'address' => 'required',
+                'long_desc' => 'required',
+                'gmaps' => 'required',
+                'type_sales' => 'required',
+                'no_pic' => 'required',
                 'tags'        => 'required|array', // Ensure 'photos' is an array
                 'photos'        => 'required|array', // Ensure 'photos' is an array
                 'photos.*'      => 'image|mimes:jpeg,jpg,png|max:2048', // Validate each photo in the array
             ]);
+
             $cekIsSee = Product::where('is_hero', 1)->count();
             $msg = "";
             $is_hero = 0;
             if ($cekIsSee == 1 && $request->is_hero == 1) {
-                $msg = "Produk tidak dijadikan produk utama";
+                $msg = "Asset tidak dijadikan asset utama";
                 $is_hero = 0;
             } else {
                 $is_hero = 1;
@@ -248,19 +250,42 @@ class ProductController extends Controller
 
             DetailProduct::create([
                 'product_id'        => $product->id,
-                'province_code'     => $request->province_code,
-                'city_code'         => $request->city_code,
                 'address'           => $request->address,
                 'long_desc'         => $request->long_desc,
-                'lat'               => $request->lat,
-                'long'              => $request->long,
                 'gmaps'             => $request->gmaps,
+                'type_sales'        => $request->type_sales,
+                'after_sale'        => $request->after_sale,
+                'no_pic'            => $request->no_pic,
+                'sup_doc'           => $fileSup,
+
                 'surface_area'      => $request->surface_area,
                 'building_area'     => $request->building_area,
-                'type_sales'        => $request->type_sales,
-                'no_pic'            => $request->no_pic,
-                'after_sale'        => $request->after_sale,
-                'sup_doc'           => $fileSup,
+                'bedroom'           => $request->bedroom,
+                'bathroom'          => $request->bathroom,
+                'floors'            => $request->floors,
+                'certificate'       => $request->certificate,
+                'garage'            => $request->garage,
+                'electrical_power'  => $request->electrical_power,
+                'building_year'     => $request->building_year,
+
+                'chassis_number'    => $request->chassis_number,
+                'machine_number'    => $request->machine_number,
+                'brand'             => $request->brand,
+                'series'            => $request->series,
+                'kilometers'        => $request->kilometers,
+                'cc'                => $request->cc,
+                'type'              => $request->type,
+                'color'             => $request->color,
+                'transmission'      => $request->transmission,
+                'vehicle_year'      => $request->vehicle_year,
+                'date_stnk'         => $request->date_stnk,
+            ]);
+
+            AuctionSchedule::create([
+                'product_id' => $product->id,
+                'category_id' => $request->category_id,
+                'schedule' => $request->schedule,
+                'kpknl' => $request->kpknl,
             ]);
 
             // Handle product photos upload
@@ -297,11 +322,49 @@ class ProductController extends Controller
                 $tagMapping->save();
             }
 
+            //access to public facilities
+            if ($request->isPublicFacilities) {
+                AccessProductModel::create([
+                    'product_id' => $product->id,
+                    'hospital' => $request->hospital,
+                    'school' => $request->school,
+                    'bank' => $request->bank,
+                    'market' => $request->market,
+                    'house_of_worship' => $request->house_of_worship,
+                    'cinema' => $request->cinema,
+                    'halte' => $request->halte,
+                    'airport' => $request->airport,
+                    'toll' => $request->toll,
+                    'mall' => $request->mall,
+                    'park' => $request->park,
+                    'pharmacy' => $request->pharmacy,
+                    'restaurant' => $request->restaurant,
+                    'station' => $request->station,
+                    'gas_station' => $request->gas_station,
+                ]);
+            }
+
+            if ($request->isAssetFacilities) {
+                FacilitiesProduct::insert([
+                    'product_id'        => $product->id,
+                    'furnished'         => $request->furnished,
+                    'swimming_pool'     => $request->swimming_pool,
+                    'lift' => $request->lift,
+                    'gym' => $request->gym,
+                    'carport' => $request->carport,
+                    'telephone' => $request->telephone,
+                    'security' => $request->security,
+                    'garage' => $request->fasgarage,
+                    'park' => $request->faspark,
+                ]);
+            }
+
             if ($msg) {
                 return redirect()->back()->with('success', 'Product added successfully! ' . $msg);
             }
             return redirect()->back()->with('success', 'Product added successfully! ');
         } catch (\Exception $e) {
+            DB::rollBack();
             return redirect()->back()->with("error", $e->getMessage());
         }
     }
@@ -313,19 +376,13 @@ class ProductController extends Controller
     {
         try {
             $product = DB::table('products')
-                ->where('products.id', $id)
+                ->where('id', $id)
                 ->first();
 
-            $detailProduct = DB::table('detail_products')
-                ->join('indonesia_provinces', 'indonesia_provinces.code', '=', 'detail_products.province_code')
-                ->join('indonesia_cities', 'indonesia_cities.code', '=', 'detail_products.city_code')
-                ->select(
-                    'detail_products.*',
-                    'indonesia_provinces.name as name_province',
-                    'indonesia_cities.name as name_city'
-                )
-                ->where('detail_products.product_id', $id)
-                ->first();
+            $accessProduct = DB::table('access_products')->where('product_id', $id)->first();
+            $auctionSchedule = DB::table('auction_schedules')->where('product_id', $id)->first();
+            $detailProduct = DB::table('detail_products')->where('product_id', $id)->first();
+            $facilitiesProduct = DB::table('facilities_tables')->where('product_id', $id)->first();
             $productPhotos = DB::table('product_photos')->where('product_id', $id)->select('product_photos.*')->get();
             $productTags = DB::table('product_tag_mappings')
                 ->join('tags', 'tags.id', '=', 'product_tag_mappings.tag_id')
@@ -339,8 +396,7 @@ class ProductController extends Controller
             //additional
             $categories = DB::table('categories')->where('status', '!=', 0)->select('id', 'name')->get();
 
-
-            return view('pages.admin.product.components.show', compact('product', 'detailProduct', 'productPhotos', 'productTags', 'categories',));
+            return view('pages.admin.product.components.show', compact('accessProduct', 'auctionSchedule', 'facilitiesProduct', 'product', 'detailProduct', 'productPhotos', 'productTags', 'categories',));
         } catch (\Exception $e) {
             return redirect()->back()->with("error", $e->getMessage());
         }
@@ -353,20 +409,14 @@ class ProductController extends Controller
     {
         try {
             $product = DB::table('products')
-                ->where('products.id', $id)
+                ->where('id', $id)
                 ->first();
-            // dd($product);
 
-            $detailProduct = DB::table('detail_products')
-                ->join('indonesia_provinces', 'indonesia_provinces.code', '=', 'detail_products.province_code')
-                ->join('indonesia_cities', 'indonesia_cities.code', '=', 'detail_products.city_code')
-                ->select(
-                    'detail_products.*',
-                    'indonesia_provinces.name as name_province',
-                    'indonesia_cities.name as name_city'
-                )
-                ->where('detail_products.product_id', $id)
-                ->first();
+
+            $accessProduct = DB::table('access_products')->where('product_id', $id)->first();
+            $auctionSchedule = DB::table('auction_schedules')->where('product_id', $id)->first();
+            $detailProduct = DB::table('detail_products')->where('product_id', $id)->first();
+            $facilitiesProduct = DB::table('facilities_tables')->where('product_id', $id)->first();
             $productPhotos = DB::table('product_photos')->where('product_id', $id)->select('product_photos.*')->get();
             $productTags = DB::table('product_tag_mappings')
                 ->join('tags', 'tags.id', '=', 'product_tag_mappings.tag_id')
@@ -381,11 +431,10 @@ class ProductController extends Controller
 
             //additional
             $categories = DB::table('categories')->where('status', '!=', 0)->select('id', 'name')->get();
-            $provinces = DB::table('indonesia_provinces')->get();
             $tags = DB::table('tags')->get();
 
 
-            return view('pages.admin.product.components.edit', compact('product', 'detailProduct', 'productPhotos', 'productTags', 'categories', 'provinces', 'tags'));
+            return view('pages.admin.product.components.edit', compact('accessProduct', 'auctionSchedule', 'facilitiesProduct', 'product', 'detailProduct', 'productPhotos', 'productTags', 'categories', 'tags'));
         } catch (\Exception $e) {
             return redirect()->back()->with("error", $e->getMessage());
         }
@@ -398,19 +447,16 @@ class ProductController extends Controller
     {
         // dd($request->all());
         try {
-
             $request->validate([
-                'category_id'   => 'required',
                 'name'          => 'required|string',
                 'short_desc'    => 'required|string',
+                'category_id'   => 'required',
                 'price'         => 'required',
                 'publish'       => 'required|boolean',
                 'is_hero'       => 'required|boolean',
-
-                'province_code' => 'required|string',
-                'city_code'     => 'required|string',
-                'address'          => 'required|string',
+                'address'       => 'required|string',
                 'long_desc'     => 'required|string',
+                'gmaps'         => 'required',
                 'type_sales'    => 'required|string',
                 'no_pic'        => 'required',
 
@@ -418,12 +464,17 @@ class ProductController extends Controller
             ]);
 
             $cekIsSee = Product::where('is_hero', 1)->count();
+            $isHero = Product::where('is_hero', 1)->first();
             $msg = "";
             $is_hero = $request->is_hero;
-            if ($cekIsSee == 1 && $request->is_hero == 1) {
-                $msg = "Produk tidak dijadikan produk utama";
+
+            if (
+                $cekIsSee == 1 && $request->is_hero == 1 && $isHero && $isHero->id != $id
+            ) {
+                $msg = "Asset tidak dijadikan asset utama";
                 $is_hero = 0;
             }
+
             //slug
             $slugProduct = Str::slug($request->name);
 
@@ -441,16 +492,12 @@ class ProductController extends Controller
 
             $dp                     = DetailProduct::where('product_id', $id)->first();
             $dp->product_id         = $id;
-            $dp->province_code      = $request->province_code;
-            $dp->city_code          = $request->city_code;
             $dp->address            = $request->address;
             $dp->long_desc          = $request->long_desc;
-            $dp->lat                = $request->lat;
-            $dp->long               = $request->long;
             $dp->gmaps              = $request->gmaps;
-            $dp->surface_area       = $request->surface_area;
-            $dp->building_area      = $request->building_area;
+            $dp->type_sales         = $request->type_sales;
             $dp->after_sale      = $request->after_sale;
+            $dp->no_pic             = $request->no_pic;
 
             if ($request->hasFile('sup_doc')) {
                 // Handle image upload
@@ -462,9 +509,37 @@ class ProductController extends Controller
                 }
                 $dp->sup_doc        = $fileSup;
             }
-            $dp->type_sales         = $request->type_sales;
-            $dp->no_pic             = $request->no_pic;
+
+
+            $dp->surface_area      = $request->surface_area;
+            $dp->building_area     = $request->building_area;
+            $dp->bedroom           = $request->bedroom;
+            $dp->bathroom          = $request->bathroom;
+            $dp->floors            = $request->floors;
+            $dp->certificate       = $request->certificate;
+            $dp->garage            = $request->garage;
+            $dp->electrical_power  = $request->electrical_power;
+            $dp->building_year     = $request->building_year;
+
+            $dp->chassis_number    = $request->chassis_number;
+            $dp->machine_number    = $request->machine_number;
+            $dp->brand             = $request->brand;
+            $dp->series            = $request->series;
+            $dp->kilometers        = $request->kilometers;
+            $dp->cc                = $request->cc;
+            $dp->type              = $request->type;
+            $dp->color             = $request->color;
+            $dp->transmission      = $request->transmission;
+            $dp->vehicle_year      = $request->vehicle_year;
+            $dp->date_stnk         = $request->date_stnk;
             $dp->save();
+
+            $as  =
+                AuctionSchedule::where('product_id', $id)->first();
+            $as->category_id = $request->category_id;
+            $as->schedule = $request->schedule;
+            $as->kpknl = $request->kpknl;
+            $as->save();
 
             //handle tag product
             $tagsProduct = $request->tags;
@@ -477,6 +552,56 @@ class ProductController extends Controller
                     $tagMapping->save();
                 }
             }
+
+            //fasilitas public
+            if ($request->statePublicFacilities == '1') {
+                AccessProductModel::updateOrCreate(
+                    ['product_id' => $id],
+                    [
+                        'hospital' => $request->hospital,
+                        'school' => $request->school,
+                        'bank' => $request->bank,
+                        'market' => $request->market,
+                        'house_of_worship' => $request->house_of_worship,
+                        'cinema' => $request->cinema,
+                        'halte' => $request->halte,
+                        'airport' => $request->airport,
+                        'toll' => $request->toll,
+                        'mall' => $request->mall,
+                        'park' => $request->park,
+                        'pharmacy' => $request->pharmacy,
+                        'restaurant' => $request->restaurant,
+                        'station' => $request->station,
+                        'gas_station' => $request->gas_station,
+                    ]
+                );
+            }
+            if ($request->statePublicFacilities == '2') {
+                DB::table('access_products')->where('product_id', $id)->delete();
+            }
+
+            //fasilitas aset
+            if ($request->stateAssetFacilities == '1') {
+                FacilitiesProduct::updateOrInsert(
+                    ['product_id' => $id],
+                    [
+                        'furnished'     => $request->furnished,
+                        'swimming_pool' => $request->swimming_pool,
+                        'lift'          => $request->lift,
+                        'gym'           => $request->gym,
+                        'carport'       => $request->carport,
+                        'telephone'     => $request->telephone,
+                        'security'      => $request->security,
+                        'garage'        => $request->fasgarage,
+                        'park'          => $request->faspark,
+                    ]
+                );
+            }
+            if ($request->stateAssetFacilities == '2') {
+                DB::table('facilities_tables')->where('product_id', $id)->delete();
+            }
+
+
             if ($msg) {
                 return redirect()->back()->with('success', 'Product updated successfully! ' . $msg);
             }
@@ -501,6 +626,9 @@ class ProductController extends Controller
                 DB::table('product_photos')->where('id', $dp->id)->delete();
             };
             DB::table('detail_products')->where('product_id', $id)->delete();
+            DB::table('access_products')->where('product_id', $id)->delete();
+            DB::table('auction_schedules')->where('product_id', $id)->delete();
+            DB::table('facilities_tables')->where('product_id', $id)->delete();
             DB::table('products')->where('id', $id)->delete();
 
             return redirect()->back()->with('success', 'Product deleted successfully!');

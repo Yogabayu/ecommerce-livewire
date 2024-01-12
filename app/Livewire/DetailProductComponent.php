@@ -18,6 +18,9 @@ class DetailProductComponent extends Component
     public $viewCount = 0;
     public $relatedProducts = [];
     public $tagProducts = [];
+    public $accessProducts = [];
+    public $facilitiesProduct = [];
+    public $schedule = [];
 
     public function getHashtag()
     {
@@ -68,18 +71,24 @@ class DetailProductComponent extends Component
         $this->photoProducts = DB::table('product_photos')->where('product_id', $this->idProduct)->orderBy('id')->get();
     }
 
+    public function getSchedule()
+    {
+        $this->schedule = DB::table('auction_schedules')->where('product_id', $this->idProduct)->first();
+    }
+
     public function getDetailProduct()
     {
-        $this->detailProduct = DB::table('detail_products')
-            ->join('indonesia_provinces', 'indonesia_provinces.code', '=', 'detail_products.province_code')
-            ->join('indonesia_cities', 'indonesia_cities.code', '=', 'detail_products.city_code')
+        $this->detailProduct = DB::table('products')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('detail_products', 'detail_products.product_id', '=', 'products.id')
             ->select(
                 'detail_products.*',
-                'indonesia_provinces.name as name_province',
-                'indonesia_cities.name as name_city'
+                'categories.name as categoryName'
             )
             ->where('detail_products.product_id', $this->idProduct)
             ->first();
+        $this->accessProducts = DB::table('access_products')->where('product_id', $this->idProduct)->first();
+        $this->facilitiesProduct = DB::table('facilities_tables')->where('product_id', $this->idProduct)->first();
         $this->viewCount = $this->detailProduct->seeing_count;
     }
 
@@ -109,6 +118,7 @@ class DetailProductComponent extends Component
         $this->getDetailProduct();
         $this->getRelatedProducts();
         $this->getHashtag();
+        $this->getSchedule();
 
         $this->viewCount++;
         DB::table('detail_products')->where('product_id', $this->idProduct)->update([

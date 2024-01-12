@@ -18,7 +18,7 @@
                                         <i class="fas fa-person"></i>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Nama Gambar" name="name"
+                                <input type="text" class="form-control" placeholder="Nama Kategori" name="name"
                                     required value="{{ old('name') }}">
                             </div>
                             @error('name')

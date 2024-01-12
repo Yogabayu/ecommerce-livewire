@@ -234,7 +234,8 @@
                             <div class="col-lg-4 col-md-6 col-sm-6" wire:key='{{ $sp->id }}'>
                                 <div class="product__item">
                                     <div class="product__item__pic">
-                                        <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $sp->photo) }}"
+                                        <img class="imgSpecial"
+                                            src="{{ asset('storage/public/photos/' . $sp->photo) }}"
                                             alt="{{ $setting->name_app }}" srcset="">
 
                                         <ul class="product__item__pic__hover">
@@ -304,3 +305,8 @@
     </section>
     <!-- Product Section End -->
 </div>
+
+
+@push('script')
+    <script src="{{ asset('guest/js/main.js') }}"></script>
+@endpush

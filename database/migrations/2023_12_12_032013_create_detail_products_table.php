@@ -14,26 +14,39 @@ return new class extends Migration
         Schema::create('detail_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->char('province_code');
-            $table->char('city_code');
             $table->longText('address');
             $table->longText('long_desc');
-            $table->string('lat')->nullable();
-            $table->string('long')->nullable();
             $table->longText('gmaps')->nullable();
-            $table->string('surface_area')->nullable();
-            $table->string('building_area')->nullable();
-            $table->string('sup_doc')->nullable()->comment('support document');
             $table->enum('type_sales', [1, 2])->comment('jenis penjualan. 1: lelang, 2: jual langsung');
             $table->integer('seeing_count')->nullable();
             $table->integer('share_count')->nullable();
             $table->string('after_sale')->nullable();
             $table->string('no_pic')->comment('nomor whatsapp dari pic bank arthaya');
+            $table->string('sup_doc')->nullable()->comment('support document');
+            $table->string('surface_area')->nullable();
+            $table->string('building_area')->nullable();
+            $table->string('bedroom')->nullable();
+            $table->string('bathroom')->nullable();
+            $table->string('floors')->nullable();
+            $table->string('certificate')->nullable();
+            $table->string('garage')->nullable();
+            $table->string('electrical_power')->nullable();
+            $table->string('building_year')->nullable();
+
+            $table->string('chassis_number')->nullable();
+            $table->string('machine_number')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('series')->nullable();
+            $table->string('kilometers')->nullable();
+            $table->string('cc')->nullable();
+            $table->string('type')->nullable();
+            $table->string('color')->nullable();
+            $table->string('transmission')->nullable();
+            $table->string('vehicle_year')->nullable();
+            $table->string('date_stnk')->nullable();
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('province_code')->references('code')->on('indonesia_provinces');
-            $table->foreign('city_code')->references('code')->on('indonesia_cities');
         });
     }
 

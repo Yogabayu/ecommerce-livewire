@@ -57,3 +57,7 @@
         </div>
     </div>
 </div>
+
+@push('script')
+    <script src="{{ asset('guest/js/main.js') }}"></script>
+@endpush

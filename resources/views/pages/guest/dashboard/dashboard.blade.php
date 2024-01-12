@@ -40,7 +40,6 @@
         .see_all>a:hover {
             color: #3e49b3;
         }
-
     </style>
 @endpush
 <div>
@@ -105,7 +104,9 @@
                             </div>
                         </div>
                         <div wire:key="{{ $fp->slugCat }}"
-                            class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}">
+                            class="col-lg-3 col-md-4 col-sm-6 item-hover mix {{ $fp->slugCat }}"
+                            onclick="window.location='{{ route('detailproduct', ['slug' => $fp->slug]) }}';"
+                            style="cursor: pointer;">
                             <div class="featured__item">
                                 <div class="featured__item__pic">
                                     <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $fp->photo) }}"
@@ -147,7 +148,8 @@
                                             </a>
                                         </li>
                                         <li data-toggle="tooltip" title="Info Selengkapnya">
-                                            <a href="{{ route('detailproduct', ['slug' => $fp->slug]) }}" style="display: flex; align-items: center; justify-content: center;">
+                                            <a href="{{ route('detailproduct', ['slug' => $fp->slug]) }}"
+                                                style="display: flex; align-items: center; justify-content: center;">
                                                 <i class="fa fa-info" style="margin: 0; padding: 0;"></i>
                                             </a>
                                         </li>
@@ -180,10 +182,10 @@
                 @foreach ($banners as $banner)
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="banner__pic">
-                            <a href="{{$banner->url}}" target="_blank">
+                            <a href="{{ $banner->url }}" target="_blank">
                                 <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}"
-                                alt="{{ $banner->banner_img }}" wire:key="{{ $banner->id }}"
-                                style="max-width: 570px;max-height: 270px">
+                                    alt="{{ $banner->banner_img }}" wire:key="{{ $banner->id }}"
+                                    style="max-width: 570px;max-height: 270px">
                             </a>
                         </div>
                     </div>
@@ -382,3 +384,6 @@
     </section> --}}
     <!-- Blog Section End -->
 </div>
+@push('script')
+    <script src="{{ asset('guest/js/main.js') }}"></script>
+@endpush

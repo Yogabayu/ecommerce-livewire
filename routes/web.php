@@ -15,6 +15,8 @@ use App\Livewire\DashboardComponent;
 use App\Livewire\DetailProductComponent;
 use App\Livewire\FaqComponent;
 use App\Livewire\PrivacyPolicyComponent;
+use App\Livewire\ProsedurComponent;
+use App\Livewire\ScheduleLelangComponent;
 use App\Livewire\SearchComponentInline;
 use App\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +49,12 @@ Route::middleware('guest')->group(function () {
 
     //search
     Route::get('search', SearchComponentInline::class)->name('search');
+
+    //jadwal-lelang
+    Route::get('schedule', ScheduleLelangComponent::class)->name('schedule');
+
+    //prosedur 
+    Route::get('procedure', ProsedurComponent::class)->name('procedure');
 });
 
 Route::prefix('admin')->group(function () {

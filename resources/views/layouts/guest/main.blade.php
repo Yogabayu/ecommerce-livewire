@@ -29,7 +29,9 @@
     <link rel="stylesheet" href="{{ asset('guest/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('guest/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('guest/css/style.css') }}" type="text/css">
-
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
@@ -59,9 +61,9 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Page Preloder -->
-    <div id="preloder">
+    {{-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> --}}
 
     @include('layouts.guest.components.header')
 
@@ -71,8 +73,8 @@
     @include('layouts.guest.components.footer')
     <!-- Footer Section End -->
 
-    @stack('script')
     <!-- Js Plugins -->
+    
     <script src="{{ asset('guest/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('guest/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('guest/js/jquery.nice-select.min.js') }}"></script>
@@ -80,8 +82,7 @@
     <script src="{{ asset('guest/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('guest/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('guest/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('guest/js/main.js') }}"></script>
-    
+    @stack('script')
     <livewire:scripts />
 </body>
 
