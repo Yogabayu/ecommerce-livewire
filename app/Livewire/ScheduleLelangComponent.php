@@ -63,6 +63,7 @@ class ScheduleLelangComponent extends Component
         $kpknl = $this->getKpknl;
         $name = $this->getName;
         $month = $this->getMonth;
+
         $this->datas = DB::table('products as p')
             ->join('categories as c', 'p.category_id', '=', 'c.id')
             ->join('auction_schedules as ac', 'p.id', '=', 'ac.product_id')
@@ -71,7 +72,7 @@ class ScheduleLelangComponent extends Component
                     ->where('pp.is_primary', '=', 1);
             })
             ->where(function ($query) use ($cat, $kpknl, $name, $month) {
-                $query->Where('p.name', $name)
+                $query->orWhere('p.name', 'LIKE', '%' . $name . '%')
                     ->orWhere(DB::raw('DATE_FORMAT(ac.schedule, "%Y-%m")'), $month)
                     ->orWhere('ac.kpknl', $kpknl)
                     ->orWhere('c.name', 'LIKE', '%' . $cat . '%');
@@ -85,7 +86,8 @@ class ScheduleLelangComponent extends Component
                 'ac.schedule',
                 'pp.photo'
             )
-            ->orderByDesc('p.created_at')
+            ->orderByRaw("CASE WHEN p.name LIKE '%$name%' THEN 1 ELSE 0 END DESC")
+            ->orderBy('p.name', 'ASC')
             ->groupBy(
                 'p.id',
                 'p.name',
@@ -97,6 +99,7 @@ class ScheduleLelangComponent extends Component
             )
             ->paginate(10);
     }
+
 
     public function boot()
     {
