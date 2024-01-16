@@ -242,13 +242,16 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Dokumen Pendukung (jika ada)</label>
-                                        <div class="input-group">
-                                            <iframe src="{{ asset('storage/public/sup_doc/' . $detailProduct->sup_doc) }}"
-                                                frameborder="1" width="100%" height="300px"></iframe>
+
+                                    @if ($detailProduct->sup_doc)
+                                        <div class="form-group">
+                                            <label>Dokumen Pendukung (jika ada)</label>
+                                            <div class="input-group">
+                                                <iframe src="{{ asset('storage/public/sup_doc/' . $detailProduct->sup_doc) }}" frameborder="1" width="100%"
+                                                    height="300px"></iframe>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif                                    
 
                                     {{-- semua yg berkaitan dengan tanah/bangunan --}}
                                     @if ($detailProduct->surface_area)
