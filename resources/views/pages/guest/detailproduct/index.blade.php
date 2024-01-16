@@ -105,7 +105,7 @@
                         <div class="product__details__pic__slider owl-carousel">
                             @foreach ($photoProducts as $index => $photo)
                                 @php
-                                    $nextIndex = ($index + 4) % count($photoProducts);
+                                    $nextIndex = ($index + 5) % count($photoProducts);
                                     $nextPhoto = $photoProducts[$nextIndex];
                                 @endphp
 
