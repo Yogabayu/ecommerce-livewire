@@ -172,7 +172,7 @@
                                             </div>
                                             <select name="type_sales" id="type_sales" class="form-control" required>
                                                 <option value="1" selected>Lelang</option>
-                                                {{-- <option >Jual Langsung</option> --}}
+                                                <option value="2">Dibawah Tangan</option>
                                             </select>
                                         </div>
                                     </div>

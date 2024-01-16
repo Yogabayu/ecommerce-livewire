@@ -169,8 +169,7 @@
                                         <select name="type_sales" id="type_sales" class="form-control" disabled>
                                             <option value="1" @if ($detailProduct->type_sales == 1) selected @endif>Lelang
                                             </option>
-                                            <option value="0" @if ($detailProduct->type_sales == 0) selected @endif>Jual
-                                                Langsung</option>
+                                            <option value="2" @if ($detailProduct->type_sales == 2) selected @endif>Dibawah tangan</option>
                                         </select>
                                     </div>
                                 </div>

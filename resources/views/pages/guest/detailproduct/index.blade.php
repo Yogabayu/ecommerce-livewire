@@ -166,6 +166,11 @@
                             <li><b>Status</b> <span>Tersedia</span></li>
                             <li><b>Jadwal lelang</b> <span>{{ \Carbon\Carbon::parse($schedule->schedule)->format('d/m/Y H:i:s') }} WIB</span></li>
                             <li><b>Tempat Lelang</b> <span>KPKNL {{$schedule->kpknl}}</span></li>
+                            <li><b>Jenis Lelang</b> <span>@if ($detailProduct->type_sales ==1)
+                                Lelang
+                            @else
+                                Dibawah tangan
+                            @endif </span></li>
                             <li>
                                 <b>Bagikan</b>
                                 <div class="share">
