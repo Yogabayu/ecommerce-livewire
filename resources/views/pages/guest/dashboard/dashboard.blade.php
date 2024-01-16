@@ -8,7 +8,7 @@
 
         .item-hover:hover {
             /* border: 1px solid #39fc03; */
-            background-color: #3e49b3;
+            background-color: #aa98ff;
             border-radius: 1.5rem;
         }
 
