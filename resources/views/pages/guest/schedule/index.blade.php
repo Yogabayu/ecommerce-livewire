@@ -103,7 +103,7 @@
                         <a href="{{ route('detailproduct', ['slug' => $d->slug]) }}" style="color:#000000">
                             <div class="row my-2">
                                 <div class="col-sm-12 col-md-2 col-lg-2 col-12"
-                                    style="background-image: url('{{ asset('guest/img/sales.jpg') }}');background-size: cover; background-position: center; border-radius:0.5rem;">
+                                    style="background-image: url('{{ asset('storage/public/photos/' . $d->photo) }}');background-size: cover; background-position: center; border-radius:0.5rem;">
                                 </div>
                                 <div class="col-sm-12 col-md-7 col-lg-7 col-12 ">
                                     <h4>{{ $d->name }}</h4>
