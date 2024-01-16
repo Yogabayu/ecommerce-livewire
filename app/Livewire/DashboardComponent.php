@@ -14,6 +14,7 @@ class DashboardComponent extends Component
     public $latesProducts = [];
     public $viewedProducts = [];
     public $mostSharedProducts = [];
+    public $randomProducts = [];
 
     public function mount()
     {
@@ -23,6 +24,22 @@ class DashboardComponent extends Component
         $this->getLatestProducts();
         $this->getMostSharedProducts();
         $this->getMostViewedProducts();
+        $this->getRandomProduct();
+    }
+
+    public function getRandomProduct()
+    {
+        $this->randomProducts =
+            DB::table('products as p')
+            ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
+            ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
+            ->select('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.after_sale')
+            ->where('pp.is_primary', 1)
+            ->where('p.publish', '!=', 0)
+            ->groupBy('p.id', 'p.slug', 'p.name', 'p.price', 'pp.photo', 'p.created_at', 'dp.after_sale')
+            ->inRandomOrder()
+            ->limit(6)
+            ->get();
     }
 
     public function getHeroSection()

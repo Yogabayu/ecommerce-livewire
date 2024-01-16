@@ -70,7 +70,7 @@
     <livewire:HeadComponent />
     <!-- Hero Section End -->
     <!-- Breadcrumb Section Begin -->
-    <section wire:ignore.self class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/sales.jpg') }}">
+    <section wire:ignore.self class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/background-footer.webp') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -1008,7 +1008,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title related__product__title">
-                        <h2>Related Product</h2>
+                        <h2>Aset Terkait</h2>
                     </div>
                 </div>
             </div>

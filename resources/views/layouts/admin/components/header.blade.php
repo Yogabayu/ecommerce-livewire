@@ -17,7 +17,7 @@
                 <a href="{{ route('showUser', auth()->user()->uuid) }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                @if (auth()->user()->uuid)
+                @if (auth()->user()->role_id == 1)
                     <a href="{{ route('setting.index') }}" class="dropdown-item has-icon">
                         <i class="fas fa-cog"></i> Settings
                     </a>

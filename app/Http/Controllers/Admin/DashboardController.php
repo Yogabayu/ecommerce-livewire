@@ -45,7 +45,13 @@ class DashboardController extends Controller
                 ->where('products.user_uuid', auth()->user()->uuid)
                 ->where('detail_products.share_count', '!=', 0)
                 ->sum('detail_products.share_count');
-            return view('pages.admin.dashboard.index', compact('totalProduct', 'totalShareProduct', 'totalClickProduct'));
+            $mostViewedProducts = DB::table('products as p')
+                ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
+                ->select('p.*', 'dp.seeing_count')
+                ->where('p.user_uuid', auth()->user()->uuid)
+                ->orderByDesc('dp.seeing_count')
+                ->get();
+            return view('pages.admin.dashboard.index', compact('mostViewedProducts', 'totalProduct', 'totalShareProduct', 'totalClickProduct'));
         }
     }
 }

@@ -17,7 +17,7 @@ class AuthController extends Controller
         try {
             return view('pages.admin.auth');
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return back()->with('error', 'email and password are wrong.');
         }
     }
 
@@ -43,9 +43,13 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
         return redirect()->route('login');
     }
 }

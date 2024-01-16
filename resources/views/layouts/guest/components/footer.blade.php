@@ -11,7 +11,7 @@
                         </a>
                     </div>
                     <ul>
-                        <li>Address: {{ $setting->address }}</li>
+                        <li>Alamat: {{ $setting->address }}</li>
                         <li>Phone: +{{ $setting->main_tlp }}</li>
                         <li>Email: {{ $setting->email }}</li>
                     </ul>
@@ -19,17 +19,17 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                 <div class="footer__widget">
-                    <h6>Useful Links</h6>
+                    <h6>Tautan Lain</h6>
                     <ul>
-                        <li><a href="{{ route('aboutus') }}">About Us</a></li>
-                        <li><a href="https://bankarthaya.com/" target="_blank">About Bank Arthaya</a></li>
-                        <li><a href="{{ route('privacypolicy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('aboutus') }}">Tentang Kami</a></li>
+                        <li><a href="https://bankarthaya.com/" target="_blank">Tentang Bank Arthaya</a></li>
+                        <li><a href="{{ route('privacypolicy') }}">Kebijakan Privasi</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="footer__widget">
-                    <h6>Bergabunglah dengan buletin Kami Sekarang</h6>
+                    <h6>Lebih dekat dengan Kami Sekarang</h6>
                     <div class="footer__widget__social">
                         <a href="{{ $setting->fb }}" target="_blank"><i class="fa fa-facebook"></i></a>
                         <a href="{{ $setting->ig }}" target="_blank"><i class="fa fa-instagram"></i></a>

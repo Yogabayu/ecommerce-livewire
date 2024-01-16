@@ -49,14 +49,15 @@
         <div class="container">
             <div class="row">
                 <div wire:ignore class="categories__slider owl-carousel">
-                    @foreach ($categories as $cat)
-                        <div wire:key='{{ $cat->id }}' class="col-lg-3">
+                    @foreach ($randomProducts as $rp)
+                        <div wire:key='{{ $rp->id }}' class="col-lg-3" onclick="window.location='{{ route('detailproduct', ['slug' => $rp->slug]) }}';"
+                        style="cursor: pointer;">
                             <div class="categories__item item-hover">
-                                <img class="imgSpecial" src="{{ asset('storage/public/categories/' . $cat->image) }}"
+                                <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $rp->photo) }}"
                                     alt="{{ $setting->name_app }}" srcset="">
                                 <h5>
-                                    <a href="{{ route('search', ['inputText' => $cat->name]) }}">
-                                        {{ $cat->name }}
+                                    <a href="{{ route('detailproduct', ['slug' => $rp->slug]) }}">
+                                        {{ $rp->name }}
                                     </a>
                                 </h5>
                             </div>
