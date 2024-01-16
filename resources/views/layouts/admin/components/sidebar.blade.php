@@ -33,7 +33,7 @@
             <li class="menu-header">Applications</li>
             <li class='{{ Request::is('admin/product') ? 'active' : '' }}'>
                 <a class="nav-link " href="{{ route('product.index') }}">
-                    <i class="fas fa-cart-shopping"></i><span>Product</span>
+                    <i class="fas fa-cart-shopping"></i><span>Asset</span>
                 </a>
             </li>
             @if (auth()->user()->role_id == 1)
