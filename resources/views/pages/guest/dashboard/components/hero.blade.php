@@ -2,7 +2,7 @@
     <style>
         .bg-overdrive {
             background-color: #FFFF;
-            padding-inline: 5px;
+            padding-inline: 0.5rem;
             border-radius: 10px
         }
 

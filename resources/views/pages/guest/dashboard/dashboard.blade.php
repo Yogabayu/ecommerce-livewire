@@ -7,8 +7,7 @@
         }
 
         .item-hover:hover {
-            /* border: 1px solid #39fc03; */
-            background-color: #03b5fc;
+            background-color: #897BAF;
             border-radius: 1.5rem;
         }
 
@@ -27,7 +26,7 @@
         }
 
         .see_all {
-            color: #aaaaaa;
+            color: #625192;
             font-weight: 600
         }
 
@@ -38,7 +37,7 @@
         }
 
         .see_all>a:hover {
-            color: #3e49b3;
+            color: #897BAF;
         }
 
     </style>
