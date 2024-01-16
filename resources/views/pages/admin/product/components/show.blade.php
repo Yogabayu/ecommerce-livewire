@@ -571,386 +571,394 @@
                         </div>
 
                         {{-- akses ke fasilitas umum --}}
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Akses Ke Fasilitas Umum</h4>
+                        @if ($accessProduct)
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Akses Ke Fasilitas Umum</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Akses Rumah Sakit ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-hospital"></i>
+                                                </div>
+                                            </div>
+                                            <select name="hospital" id="hospital" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->hospital == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->hospital) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Akses Sekolah ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-school"></i>
+                                                </div>
+                                            </div>
+                                            <select name="school" id="school" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->school == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->school) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Akses Bank / ATM ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-building-columns"></i>
+                                                </div>
+                                            </div>
+                                            <select name="bank" id="bank" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->bank == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->bank) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Akses Pasar ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-store"></i>
+                                                </div>
+                                            </div>
+                                            <select name="market" id="market" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->market == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->market) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Akses Rumah Ibadah ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-place-of-worship"></i>
+                                                </div>
+                                            </div>
+                                            <select name="house_of_worship" id="house_of_worship" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->house_of_worship == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->house_of_worship) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Akses Bioskop ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-film"></i>
+                                                </div>
+                                            </div>
+                                            <select name="cinema" id="cinema" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->cinema == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->cinema) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Akses Halte ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-bus"></i>
+                                                </div>
+                                            </div>
+                                            <select name="halte" id="halte" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->halte == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->halte) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Akses Bandara ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-plane"></i>
+                                                </div>
+                                            </div>
+                                            <select name="airport" id="airport" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->airport == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->airport) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Akses toll ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-road-bridge"></i>
+                                                </div>
+                                            </div>
+                                            <select name="toll" id="toll" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->toll == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->toll) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Akses Mall ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-cart-shopping"></i>
+                                                </div>
+                                            </div>
+                                            <select name="mall" id="mall" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->mall == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->mall) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Akses Taman ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-tree"></i>
+                                                </div>
+                                            </div>
+                                            <select name="park" id="park" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->park == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->park) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Akses Farmasi (apotek, dsb) ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-stethoscope"></i>
+                                                </div>
+                                            </div>
+                                            <select name="pharmacy" id="pharmacy" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->pharmacy == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->pharmacy) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Akses Restoran ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-utensils"></i>
+                                                </div>
+                                            </div>
+                                            <select name="restaurant" id="restaurant" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->restaurant == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->restaurant) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Akses Stasiun ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-train"></i>
+                                                </div>
+                                            </div>
+                                            <select name="station" id="station" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->station == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->station) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Akses SPBU/SPKLU ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-gas-pump"></i>
+                                                </div>
+                                            </div>
+                                            <select name="gas_station" id="gas_station" class="form-control" disabled>
+                                                <option value="1" @if ($accessProduct->gas_station == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$accessProduct->gas_station) selected @endif>Tidak Ada
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>Akses Rumah Sakit ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-hospital"></i>
-                                            </div>
-                                        </div>
-                                        <select name="hospital" id="hospital" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->hospital == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->hospital) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Akses Sekolah ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-school"></i>
-                                            </div>
-                                        </div>
-                                        <select name="school" id="school" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->school == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->school) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Akses Bank / ATM ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-building-columns"></i>
-                                            </div>
-                                        </div>
-                                        <select name="bank" id="bank" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->bank == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->bank) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Akses Pasar ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-store"></i>
-                                            </div>
-                                        </div>
-                                        <select name="market" id="market" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->market == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->market) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Akses Rumah Ibadah ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-place-of-worship"></i>
-                                            </div>
-                                        </div>
-                                        <select name="house_of_worship" id="house_of_worship" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->house_of_worship == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->house_of_worship) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Akses Bioskop ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-film"></i>
-                                            </div>
-                                        </div>
-                                        <select name="cinema" id="cinema" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->cinema == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->cinema) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Akses Halte ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-bus"></i>
-                                            </div>
-                                        </div>
-                                        <select name="halte" id="halte" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->halte == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->halte) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Akses Bandara ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-plane"></i>
-                                            </div>
-                                        </div>
-                                        <select name="airport" id="airport" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->airport == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->airport) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Akses toll ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-road-bridge"></i>
-                                            </div>
-                                        </div>
-                                        <select name="toll" id="toll" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->toll == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->toll) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Akses Mall ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-cart-shopping"></i>
-                                            </div>
-                                        </div>
-                                        <select name="mall" id="mall" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->mall == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->mall) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Akses Taman ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-tree"></i>
-                                            </div>
-                                        </div>
-                                        <select name="park" id="park" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->park == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->park) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Akses Farmasi (apotek, dsb) ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-stethoscope"></i>
-                                            </div>
-                                        </div>
-                                        <select name="pharmacy" id="pharmacy" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->pharmacy == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->pharmacy) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Akses Restoran ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-utensils"></i>
-                                            </div>
-                                        </div>
-                                        <select name="restaurant" id="restaurant" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->restaurant == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->restaurant) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Akses Stasiun ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-train"></i>
-                                            </div>
-                                        </div>
-                                        <select name="station" id="station" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->station == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->station) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Akses SPBU/SPKLU ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-gas-pump"></i>
-                                            </div>
-                                        </div>
-                                        <select name="gas_station" id="gas_station" class="form-control" disabled>
-                                            <option value="1" @if ($accessProduct->gas_station == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$accessProduct->gas_station) selected @endif>Tidak Ada
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endif
+                       
 
                         {{-- fasilitas aset --}}
-                        <div class="card">
-                            <div class="card-header"><h4>Fasilitas Asset</h4></div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label>Perabotan ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-couch"></i>
-                                            </div>
-                                        </div>
-                                        <select name="furnished" id="furnished" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->furnished == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->furnished) selected @endif>Tidak Ada</option>
-                                        </select>
-                                    </div>
+                        @if ($facilitiesProduct)
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Fasilitas Asset</h4>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label>Kolam Renang ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-person-swimming"></i>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Perabotan ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-couch"></i>
+                                                </div>
                                             </div>
+                                            <select name="furnished" id="furnished" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->furnished == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->furnished) selected @endif>Tidak Ada</option>
+                                            </select>
                                         </div>
-                                        <select name="swimming_pool" id="swimming_pool" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->swimming_pool == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->swimming_pool) selected @endif>Tidak Ada</option>
-                                        </select>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Lift ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-elevator"></i>
+                            
+                                    <div class="form-group">
+                                        <label>Kolam Renang ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-person-swimming"></i>
+                                                </div>
                                             </div>
+                                            <select name="swimming_pool" id="swimming_pool" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->swimming_pool == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->swimming_pool) selected @endif>Tidak Ada</option>
+                                            </select>
                                         </div>
-                                        <select name="lift" id="lift" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->lift == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->lift) selected @endif>Tidak Ada</option>
-                                        </select>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Gym ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-dumbbell"></i>
+                            
+                                    <div class="form-group">
+                                        <label>Lift ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-elevator"></i>
+                                                </div>
                                             </div>
+                                            <select name="lift" id="lift" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->lift == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->lift) selected @endif>Tidak Ada</option>
+                                            </select>
                                         </div>
-                                        <select name="gym" id="gym" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->gym == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->gym) selected @endif>Tidak Ada</option>
-                                        </select>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Parkir/carport ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-square-parking"></i>
+                            
+                                    <div class="form-group">
+                                        <label>Gym ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-dumbbell"></i>
+                                                </div>
                                             </div>
+                                            <select name="gym" id="gym" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->gym == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->gym) selected @endif>Tidak Ada</option>
+                                            </select>
                                         </div>
-                                        <select name="carport" id="carport" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->carport == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->carport) selected @endif>Tidak Ada</option>
-                                        </select>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Sambungan Telepon ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-phone"></i>
+                            
+                                    <div class="form-group">
+                                        <label>Parkir/carport ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-square-parking"></i>
+                                                </div>
                                             </div>
+                                            <select name="carport" id="carport" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->carport == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->carport) selected @endif>Tidak Ada</option>
+                                            </select>
                                         </div>
-                                        <select name="telephone" id="telephone" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->telephone == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->telephone) selected @endif>Tidak Ada</option>
-                                        </select>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Keamanan ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-user-shield"></i>
+                            
+                                    <div class="form-group">
+                                        <label>Sambungan Telepon ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-phone"></i>
+                                                </div>
                                             </div>
+                                            <select name="telephone" id="telephone" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->telephone == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->telephone) selected @endif>Tidak Ada</option>
+                                            </select>
                                         </div>
-                                        <select name="security" id="security" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->security == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->security) selected @endif>Tidak Ada</option>
-                                        </select>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Garasi ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-warehouse"></i>
+                            
+                                    <div class="form-group">
+                                        <label>Keamanan ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user-shield"></i>
+                                                </div>
                                             </div>
+                                            <select name="security" id="security" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->security == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->security) selected @endif>Tidak Ada</option>
+                                            </select>
                                         </div>
-                                        <select name="fasgarage" id="fasgarage" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->garage == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->garage) selected @endif>Tidak Ada</option>
-                                        </select>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Taman ?</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-tree"></i>
+                            
+                                    <div class="form-group">
+                                        <label>Garasi ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-warehouse"></i>
+                                                </div>
                                             </div>
+                                            <select name="fasgarage" id="fasgarage" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->garage == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->garage) selected @endif>Tidak Ada</option>
+                                            </select>
                                         </div>
-                                        <select name="faspark" id="faspark" class="form-control" disabled>
-                                            <option value="1" @if ($facilitiesProduct->park == 1) selected @endif>Ada</option>
-                                            <option value="0" @if (!$facilitiesProduct->park) selected @endif>Tidak Ada</option>
-                                        </select>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label>Taman ?</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-tree"></i>
+                                                </div>
+                                            </div>
+                                            <select name="faspark" id="faspark" class="form-control" disabled>
+                                                <option value="1" @if ($facilitiesProduct->park == 1) selected @endif>Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct->park) selected @endif>Tidak Ada</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
+                        
 
                         <div class="text-right">
                             <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary mr-1">
