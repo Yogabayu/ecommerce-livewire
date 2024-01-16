@@ -14,7 +14,7 @@
     <livewire:HeadComponent />
     <!-- Breadcrumb Section Begin -->
     <section wire:ignore class="breadcrumb-section set-bg"
-        style="background-image: url('{{ asset('guest/img/sales.jpg') }}');">
+        style="background-image: url('{{ asset('guest/img/background-footer.webp') }}');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
