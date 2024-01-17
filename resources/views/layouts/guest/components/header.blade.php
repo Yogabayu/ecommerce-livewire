@@ -82,7 +82,7 @@
                             <a href="{{ route('schedule') }}">Jadwal Lelang</a>
                         </li>
                         <li class="{{ request()->is('contactus') ? 'active' : '' }}">
-                            <a href="{{ route('contactus') }}">Contact</a>
+                            <a href="{{ route('contactus') }}">Kontak</a>
                         </li>
                         <li
                             class="nav-item dropdown {{ request()->is('faq') || request()->is('procedure') ? 'active' : '' }}">
