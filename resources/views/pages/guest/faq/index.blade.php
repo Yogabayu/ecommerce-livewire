@@ -52,9 +52,29 @@
     </style>
 @endpush
 <div>
-    <div class="text-center">
+    <!-- Hero Section Begin -->
+    <livewire:HeadComponent />
+    <!-- Hero Section End -->
+    {{-- <div class="text-center">
         <h2 class="mt-5 mb-5">FAQ</h2>
-    </div>
+    </div> --}}
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/background-footer.webp') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>FAQ</h2>
+                        <div class="breadcrumb__option">
+                            <a href="{{ url('/') }}">Home</a>
+                            <span>Frequently Asked Questions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
     <section class="container my-5" id="maincontent">
         <section id="accordion">
             @foreach ($faqs as $faq)

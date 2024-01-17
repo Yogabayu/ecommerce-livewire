@@ -31,7 +31,7 @@ class UserController extends Controller
                     Rule::unique('users')->ignore($user->id),
                 ],
                 'password' => 'nullable|min:8',
-                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             $user->role_id = $request->role_id;
@@ -44,12 +44,10 @@ class UserController extends Controller
             }
 
             if ($request->hasFile('photo')) {
-                // Save the photo to the storage
                 $extension = $request->file('photo')->extension();
                 $imgname = date('dmyHis') . '.' . $extension;
                 $path = $request->file('photo')->storeAs('public/photos', $imgname);
 
-                // Remove the old photo if exists
                 if ($user->photo) {
                     Storage::delete("public/photos/{$user->photo}");
                 }
@@ -91,14 +89,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -117,12 +107,10 @@ class UserController extends Controller
                 'password' => 'required|min:8',
             ]);
 
-            // Save the photo to the storage
             $extension = $request->file('photo')->extension();
             $imgname = date('dmyHis') . '.' . $extension;
             $path = Storage::putFileAs('public/photos', $request->file('photo'), $imgname);
 
-            // Create a new user
             User::create([
                 'role_id' => $request->role_id,
                 'uuid' => Str::uuid(),
@@ -137,22 +125,6 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
@@ -176,7 +148,7 @@ class UserController extends Controller
                     Rule::unique('users')->ignore($user->id),
                 ],
                 'password' => 'nullable|min:8',
-                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             $user->role_id = $request->role_id;
@@ -189,12 +161,10 @@ class UserController extends Controller
             }
 
             if ($request->hasFile('photo')) {
-                // Save the photo to the storage
                 $extension = $request->file('photo')->extension();
                 $imgname = date('dmyHis') . '.' . $extension;
                 $path = $request->file('photo')->storeAs('public/photos', $imgname);
 
-                // Remove the old photo if exists
                 if ($user->photo) {
                     Storage::delete("public/photos/{$user->photo}");
                 }
