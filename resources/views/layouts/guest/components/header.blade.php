@@ -9,10 +9,13 @@
         <ul>
             <li class="{{ request()->is('/') ? 'active' : '' }}"><a href="#">Home</a></li>
             <li class="{{ request()->is('shop') ? 'active' : '' }}"><a href="{{ route('shop') }}">Daftar Lelang</a></li>
-            <li class="{{ request()->is('schedule') ? 'active' : '' }}"><a href="{{ route('schedule') }}">Jadwal Lelang</a></li>
-            <li class="{{ request()->is('contactus') ? 'active' : '' }}"><a href="{{ route('contactus') }}">Contact</a></li>
+            <li class="{{ request()->is('schedule') ? 'active' : '' }}"><a href="{{ route('schedule') }}">Jadwal
+                    Lelang</a></li>
+            <li class="{{ request()->is('contactus') ? 'active' : '' }}"><a href="{{ route('contactus') }}">Kontak</a>
+            </li>
             <li class="{{ request()->is('faq') ? 'active' : '' }}"><a href="{{ route('faq') }}">FaQ</a></li>
-            <li class="{{ request()->is('procedure') ? 'active' : '' }}"><a href="{{ route('procedure') }}">Prosedur</a></li>
+            <li class="{{ request()->is('procedure') ? 'active' : '' }}"><a
+                    href="{{ route('procedure') }}">Prosedur</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -81,11 +84,13 @@
                         <li class="{{ request()->is('contactus') ? 'active' : '' }}">
                             <a href="{{ route('contactus') }}">Contact</a>
                         </li>
-                        <li class="nav-item dropdown {{ request()->is('faq') || request()->is('procedure') ? 'active' : '' }}">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">Informasi Lelang</a>
+                        <li
+                            class="nav-item dropdown {{ request()->is('faq') || request()->is('procedure') ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Informasi Lelang</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item ml-3 {{ request()->is('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a>
+                                <a class="dropdown-item ml-3 {{ request()->is('faq') ? 'active' : '' }}"
+                                    href="{{ route('faq') }}">FAQ</a>
                                 <a class="dropdown-item ml-3 {{ request()->is('procedure') ? 'active' : '' }}"
                                     href="{{ route('procedure') }}">Prosedur</a>
                             </div>
