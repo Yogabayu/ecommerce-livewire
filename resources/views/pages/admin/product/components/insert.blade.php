@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Apakah akan ditampilkan di Layar Utama (hero)</label>
+                                        <label>Apakah akan ditampilkan di Layar Utama (hero/highlight)</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -121,7 +121,7 @@
                                             </div>
                                             <select class="form-control" name="is_hero" id="is_hero" required>
                                                 <option value="1">Ya</option>
-                                                <option>Tidak</option>
+                                                <option value="0" selected>Tidak</option>
                                             </select>
                                         </div>
                                     </div>
@@ -176,32 +176,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div x-cloak x-data="{ openLand: false, openQue: true }">
-                                        <div x-show="openQue">
-                                            <p>Apakah Produk sedang diskon ?</p>
-                                            <button @click="openLand = !openLand"
-                                                class="btn btn-sm btn-primary my-3 justify-content-start"
-                                                type="button">Ya</button>
-                                            <button @click="openLand = false"
-                                                class="btn btn-sm btn-primary my-3 justify-content-start"
-                                                type="button">Tidak</button>
-                                        </div>
-
-                                        <div x-show="openLand">
-                                            <div class="form-group">
-                                                <label>Harga Setelah diskon</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-tag"></i>
-                                                        </div>
-                                                    </div>
-                                                    <input type="text" name="after_sale" id="formattedPrice2"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <label data-toggle="tooltip" title="nomor diawali dengan 62 tanpa tanda +">Nomor
                                             WhatsApp
@@ -241,267 +215,6 @@
                                                 accept=".pdf">
                                         </div>
                                     </div>
-
-                                    <div x-cloak x-data="{ openLand: false, openQue: true }">
-                                        <div x-show="openQue">
-                                            <p>Apakah Ingin menambahkan informasi lain ?</p>
-                                            <button @click="openLand = !openLand"
-                                                class="btn btn-sm btn-primary my-3 justify-content-start"
-                                                type="button">Ya</button>
-                                            <button @click="openLand = false"
-                                                class="btn btn-sm btn-primary my-3 justify-content-start"
-                                                type="button">Tidak</button>
-                                        </div>
-
-                                        <div x-show="openLand">
-                                            {{-- semua yg berkaitan dengan tanah/bangunan --}}
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4>Isi Form dibawah jika berupa tanah/bangunan</h4>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label>Luas Tanah (m&sup2;)</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    {{-- <i class="fas fa-chart-area"></i> --}}
-                                                                    LT
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" name="surface_area" id="surface_area" class="form-control" x-model="surface_area">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Luas Bangunan (m&sup2;)</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    {{-- <i class="fas fa-house"></i> --}}
-                                                                    LB
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" name="building_area" id="building_area" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Jumlah Kamar Tidur</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-bed"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" name="bedroom" id="bedroom" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Jumlah Kamar mandi</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-bath"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" name="bathroom_area" id="bathroom_area" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Jumlah Lantai</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    {{-- <i class="fas fa-chart-area"></i> --}}
-                                                                    JL
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" name="floors" id="floors" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Jumlah Garasi</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-warehouse"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" name="garage" id="garage" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Jenis Sertifikat</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-certificate"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="certificate" id="certificate" class="form-control" placeholder="contoh: SHM">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Daya Listrik</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-bolt"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" name="electrical_power" id="electrical_power" class="form-control">
-                                                        </div>
-                                                        <span class="text-danger">satuan Kwh</span>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Tahun Bangun</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-calendar"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" name="building_year" id="building_year" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <hr>
-
-                                            {{-- semua yg berkaitan dengan kendaraan --}}
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4>
-                                                        Isi Form Dibawah jika berupa kendaraan
-                                                    </h4>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label>Nomor Rangka</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="chassis_number" id="chassis_number" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Nomor Mesin</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="machine_number" id="machine_number" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Merk</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="brand" id="brand" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Seri</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="series" id="series" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Kilometer</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="kilometers" id="kilometers" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Jenis CC</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="cc" id="cc" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Tipe</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="type" id="type" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Warna</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="color" id="color" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Transmisi</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-gear"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="transmission" id="transmission" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Tahun (khusus aset kendaraan)</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-calendar"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="vehicle_year" id="vehicle_year" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Tanggal STNK</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-calendar"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" name="date_stnk" id="date_stnk" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="form-group">
                                         <label for="tags">Tag Produk</label>
                                         <div class="input-group">
@@ -526,8 +239,289 @@
                                 </div>
                             </div>
 
+                            {{-- informasi lain --}}
+                            <div x-cloak x-data="{ openLand: false, openQue: true }">
+                                <div x-show="openQue">
+                                    <p>Apakah Ingin menambahkan informasi lain ?</p>
+                                    <button @click="openLand = !openLand"
+                                        class="btn btn-sm btn-primary my-3 justify-content-start"
+                                        type="button">Ya</button>
+                                    <button @click="openLand = false"
+                                        class="btn btn-sm btn-primary my-3 justify-content-start"
+                                        type="button">Tidak</button>
+                                </div>
+
+                                <div x-show="openLand">
+                                    {{-- semua yg berkaitan dengan tanah/bangunan --}}
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Isi Form dibawah jika berupa tanah/bangunan</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label>Luas Tanah (m&sup2;)</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            {{-- <i class="fas fa-chart-area"></i> --}}
+                                                            LT
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" name="surface_area" id="surface_area"
+                                                        class="form-control" x-model="surface_area">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Luas Bangunan (m&sup2;)</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            {{-- <i class="fas fa-house"></i> --}}
+                                                            LB
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" name="building_area" id="building_area"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jumlah Kamar Tidur</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-bed"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" name="bedroom" id="bedroom"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jumlah Kamar mandi</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-bath"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" name="bathroom_area" id="bathroom_area"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jumlah Lantai</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            {{-- <i class="fas fa-chart-area"></i> --}}
+                                                            JL
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" name="floors" id="floors"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jumlah Garasi</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-warehouse"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" name="garage" id="garage"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jenis Sertifikat</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-certificate"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="certificate" id="certificate"
+                                                        class="form-control" placeholder="contoh: SHM">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Daya Listrik</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-bolt"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" name="electrical_power" id="electrical_power"
+                                                        class="form-control">
+                                                </div>
+                                                <span class="text-danger">satuan Kwh</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tahun Bangun</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" name="building_year" id="building_year"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    {{-- semua yg berkaitan dengan kendaraan --}}
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>
+                                                Isi Form Dibawah jika berupa kendaraan
+                                            </h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label>Nomor Rangka</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="chassis_number" id="chassis_number"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Nomor Mesin</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="machine_number" id="machine_number"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Merk</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="brand" id="brand"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Seri</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="series" id="series"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Kilometer</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="kilometers" id="kilometers"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Jenis CC</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="cc" id="cc"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tipe</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="type" id="type"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Warna</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="color" id="color"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Transmisi</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-gear"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="transmission" id="transmission"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tahun (khusus aset kendaraan)</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="vehicle_year" id="vehicle_year"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tanggal STNK</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="date_stnk" id="date_stnk"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             {{-- jadwal lelang --}}
-                            <div class="card">
+                            {{-- <div class="card">
                                 <div class="card-header">
                                     <h4>Jadwal Lelang</h4>
                                 </div>
@@ -557,6 +551,83 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div> --}}
+
+                            {{-- diskon --}}
+                            <div x-cloak x-data="{ openLand: false, openQue: true }">
+                                <div x-show="openQue">
+                                    <p>Apakah Produk sedang diskon ?</p>
+                                    <button @click="openLand = !openLand"
+                                        class="btn btn-sm btn-primary my-3 justify-content-start"
+                                        type="button">Ya</button>
+                                    <button @click="openLand = false"
+                                        class="btn btn-sm btn-primary my-3 justify-content-start"
+                                        type="button">Tidak</button>
+                                </div>
+
+                                <div x-show="openLand">
+                                    <div class="form-group">
+                                        <label>Harga Setelah diskon</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-tag"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text" name="after_sale" id="formattedPrice2"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- jadwal lelang --}}
+                            <div x-cloak x-data="{ openSchedule: false, openQue: true }">
+                                <div x-show="openQue">
+                                    <p>Apakah ingin menyertakan jadwal lelang aset ?</p>
+                                    <button @click="openSchedule = !openSchedule"
+                                        class="btn btn-sm btn-primary my-3 justify-content-start"
+                                        type="button">Ya</button>
+                                    <button @click="openSchedule = false"
+                                        class="btn btn-sm btn-primary my-3 justify-content-start"
+                                        type="button">Tidak</button>
+                                </div>
+
+                                <div x-show="openSchedule">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Jadwal Lelang
+                                        </div>
+                                        <div class="card-body">
+                                            <input type="hidden" name="isScheduled"
+                                                x-bind:value="openSchedule ? '1' : '0'">
+                                            <div class="form-group">
+                                                <label>Tanggal Lelang (WIB)</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="datetime-local" name="schedule" id="schedule"
+                                                        class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>KPKNL</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-location-dot"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="kpknl" id="kpknl"
+                                                        class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             {{-- akses ke fasilitas umum --}}
@@ -579,6 +650,7 @@
                                         <div class="card-body">
                                             <input type="hidden" name="isPublicFacilities"
                                                 x-bind:value="openLand ? '1' : '0'">
+                                            {{-- rumah sakit --}}
                                             <div class="form-group">
                                                 <label>Akses Rumah Sakit ?</label>
                                                 <div class="input-group">
@@ -587,13 +659,13 @@
                                                             <i class="fas fa-hospital"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="hospital" id="hospital" class="form-control"
-                                                        >
+                                                    <select name="hospital" id="hospital" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- sekolah --}}
                                             <div class="form-group">
                                                 <label>Akses Sekolah ?</label>
                                                 <div class="input-group">
@@ -602,13 +674,13 @@
                                                             <i class="fas fa-school"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="school" id="school" class="form-control"
-                                                        >
+                                                    <select name="school" id="school" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- bank/atm --}}
                                             <div class="form-group">
                                                 <label>Akses Bank / ATM ?</label>
                                                 <div class="input-group">
@@ -617,13 +689,13 @@
                                                             <i class="fas fa-building-columns"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="bank" id="bank" class="form-control"
-                                                        >
+                                                    <select name="bank" id="bank" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- pasar --}}
                                             <div class="form-group">
                                                 <label>Akses Pasar ?</label>
                                                 <div class="input-group">
@@ -632,13 +704,13 @@
                                                             <i class="fas fa-store"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="market" id="market" class="form-control"
-                                                        >
+                                                    <select name="market" id="market" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- rumah ibadah --}}
                                             <div class="form-group">
                                                 <label>Akses Rumah Ibadah ?</label>
                                                 <div class="input-group">
@@ -648,12 +720,13 @@
                                                         </div>
                                                     </div>
                                                     <select name="house_of_worship" id="house_of_worship"
-                                                        class="form-control" >
+                                                        class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- bioskop --}}
                                             <div class="form-group">
                                                 <label>Akses Bioskop ?</label>
                                                 <div class="input-group">
@@ -662,13 +735,13 @@
                                                             <i class="fas fa-film"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="cinema" id="cinema" class="form-control"
-                                                        >
+                                                    <select name="cinema" id="cinema" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- halte --}}
                                             <div class="form-group">
                                                 <label>Akses Halte ?</label>
                                                 <div class="input-group">
@@ -677,13 +750,13 @@
                                                             <i class="fas fa-bus"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="halte" id="halte" class="form-control"
-                                                        >
+                                                    <select name="halte" id="halte" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- bandara --}}
                                             <div class="form-group">
                                                 <label>Akses Bandara ?</label>
                                                 <div class="input-group">
@@ -692,13 +765,13 @@
                                                             <i class="fas fa-plane"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="airport" id="airport" class="form-control"
-                                                        >
+                                                    <select name="airport" id="airport" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- toll --}}
                                             <div class="form-group">
                                                 <label>Akses toll ?</label>
                                                 <div class="input-group">
@@ -707,13 +780,13 @@
                                                             <i class="fas fa-road-bridge"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="toll" id="toll" class="form-control"
-                                                        >
+                                                    <select name="toll" id="toll" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- mall --}}
                                             <div class="form-group">
                                                 <label>Akses Mall ?</label>
                                                 <div class="input-group">
@@ -722,13 +795,13 @@
                                                             <i class="fas fa-cart-shopping"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="mall" id="mall" class="form-control"
-                                                        >
+                                                    <select name="mall" id="mall" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- taman --}}
                                             <div class="form-group">
                                                 <label>Akses Taman ?</label>
                                                 <div class="input-group">
@@ -743,6 +816,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- farmasi --}}
                                             <div class="form-group">
                                                 <label>Akses Farmasi (apotek, dsb) ?</label>
                                                 <div class="input-group">
@@ -751,13 +825,13 @@
                                                             <i class="fas fa-stethoscope"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="pharmacy" id="pharmacy" class="form-control"
-                                                        >
+                                                    <select name="pharmacy" id="pharmacy" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- restoran --}}
                                             <div class="form-group">
                                                 <label>Akses Restoran ?</label>
                                                 <div class="input-group">
@@ -766,13 +840,13 @@
                                                             <i class="fas fa-utensils"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="restaurant" id="restaurant" class="form-control"
-                                                        >
+                                                    <select name="restaurant" id="restaurant" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- stasiun --}}
                                             <div class="form-group">
                                                 <label>Akses Stasiun ?</label>
                                                 <div class="input-group">
@@ -781,13 +855,13 @@
                                                             <i class="fas fa-train"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="station" id="station" class="form-control"
-                                                        >
+                                                    <select name="station" id="station" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- spklu/spbu --}}
                                             <div class="form-group">
                                                 <label>Akses SPBU/SPKLU ?</label>
                                                 <div class="input-group">
@@ -796,11 +870,17 @@
                                                             <i class="fas fa-gas-pump"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="gas_station" id="gas_station" class="form-control"
-                                                        >
+                                                    <select name="gas_station" id="gas_station" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            {{-- others --}}
+                                            <div class="form-group">
+                                                <label>Keterangan lain terkait fasilitas umum:</label>
+                                                <div class="input-group">
+                                                    <textarea class="form-control summernote" name="others_fac_pub" id="others_fac_pub" ></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -827,6 +907,8 @@
                                         <div class="card-body">
                                             <input type="hidden" name="isAssetFacilities"
                                                 x-bind:value="openLand ? '1' : '0'">
+                                            
+                                            {{-- perabotan --}}
                                             <div class="form-group">
                                                 <label>Perabotan ?</label>
                                                 <div class="input-group">
@@ -835,15 +917,14 @@
                                                             <i class="fas fa-couch"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="furnished" id="furnished" class="form-control"
-                                                        >
+                                                    <select name="furnished" id="furnished" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group">
+                                            {{-- kolam renang --}}
+                                            {{-- <div class="form-group">
                                                 <label>Kolam Renang ?</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -851,15 +932,14 @@
                                                             <i class="fas fa-person-swimming"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="swimming_pool" id="swimming_pool" class="form-control"
-                                                        >
+                                                    <select name="swimming_pool" id="swimming_pool" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
-                                            </div>
-
-                                            <div class="form-group">
+                                            </div> --}}
+                                            {{-- Lift --}}
+                                            {{-- <div class="form-group">
                                                 <label>Lift ?</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -867,15 +947,14 @@
                                                             <i class="fas fa-elevator"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="lift" id="lift" class="form-control"
-                                                        >
+                                                    <select name="lift" id="lift" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
-                                            </div>
-
-                                            <div class="form-group">
+                                            </div> --}}
+                                            {{-- gym --}}
+                                            {{-- <div class="form-group">
                                                 <label>Gym ?</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -883,14 +962,13 @@
                                                             <i class="fas fa-dumbbell"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="gym" id="gym" class="form-control"
-                                                        >
+                                                    <select name="gym" id="gym" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
-                                            </div>
-
+                                            </div> --}}
+                                            {{-- parkir --}}
                                             <div class="form-group">
                                                 <label>Parkir/carport ?</label>
                                                 <div class="input-group">
@@ -899,14 +977,13 @@
                                                             <i class="fas fa-square-parking"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="carport" id="carport" class="form-control"
-                                                        >
+                                                    <select name="carport" id="carport" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
-
+                                            {{-- telepon --}}
                                             <div class="form-group">
                                                 <label>Sambungan Telepone ?</label>
                                                 <div class="input-group">
@@ -915,14 +992,13 @@
                                                             <i class="fas fa-phone"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="telephone" id="telephone" class="form-control"
-                                                        >
+                                                    <select name="telephone" id="telephone" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
-
+                                            {{-- keamanan --}}
                                             <div class="form-group">
                                                 <label>Keamanan ?</label>
                                                 <div class="input-group">
@@ -931,14 +1007,13 @@
                                                             <i class="fas fa-user-shield"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="security" id="security" class="form-control"
-                                                        >
+                                                    <select name="security" id="security" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
-
+                                            {{-- garasi --}}
                                             <div class="form-group">
                                                 <label>Garasi ?</label>
                                                 <div class="input-group">
@@ -947,14 +1022,13 @@
                                                             <i class="fas fa-warehouse"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="fasgarage" id="fasgarage" class="form-control"
-                                                        >
+                                                    <select name="fasgarage" id="fasgarage" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
-
+                                            {{-- taman --}}
                                             <div class="form-group">
                                                 <label>Taman ?</label>
                                                 <div class="input-group">
@@ -963,11 +1037,17 @@
                                                             <i class="fas fa-tree"></i>
                                                         </div>
                                                     </div>
-                                                    <select name="faspark" id="faspark" class="form-control"
-                                                        >
+                                                    <select name="faspark" id="faspark" class="form-control">
                                                         <option value="1" selected>Ada</option>
                                                         <option value="0">Tidak Ada</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            {{-- others --}}
+                                            <div class="form-group">
+                                                <label>Keterangan lain terkait fasilitas aset:</label>
+                                                <div class="input-group">
+                                                    <textarea class="form-control summernote" name="others_fac_aset" id="others_fac_aset" ></textarea>
                                                 </div>
                                             </div>
                                         </div>

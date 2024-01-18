@@ -70,7 +70,8 @@
     <livewire:HeadComponent />
     <!-- Hero Section End -->
     <!-- Breadcrumb Section Begin -->
-    <section wire:ignore.self class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/background-footer.webp') }}">
+    <section wire:ignore.self class="breadcrumb-section set-bg"
+        data-setbg="{{ asset('guest/img/background-footer.webp') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -78,7 +79,7 @@
                         <h2>{{ $generalProduct->name }}</h2>
                         <div class="breadcrumb__option">
                             <a href="{{ url('/') }}">Home</a>
-                            <a href="">{{ $generalProduct->nameCategory }}</a>
+                            <a href="{{ route('search', ['inputText' => $generalProduct->nameCategory]) }}">{{ $generalProduct->nameCategory }}</a>
                             <span>{{ $generalProduct->name }}</span>
                         </div>
                     </div>
@@ -164,13 +165,22 @@
                         <ul style="padding-top: 5px;margin-top:5px;">
                             <li><b>Kategori</b> <span>{{ $detailProduct->categoryName }}</span></li>
                             <li><b>Status</b> <span>Tersedia</span></li>
-                            <li><b>Jadwal lelang</b> <span>{{ \Carbon\Carbon::parse($schedule->schedule)->format('d/m/Y H:i:s') }} WIB</span></li>
-                            <li><b>Tempat Lelang</b> <span>KPKNL {{$schedule->kpknl}}</span></li>
-                            <li><b>Jenis Lelang</b> <span>@if ($detailProduct->type_sales ==1)
-                                Lelang
-                            @else
-                                Dibawah tangan
-                            @endif </span></li>
+                            @if ($schedule && $schedule->schedule)
+                                <li><b>Jadwal lelang</b>
+                                    <span>{{ \Carbon\Carbon::parse($schedule->schedule)->format('d/m/Y H:i:s') }}
+                                        WIB</span>
+                                </li>
+                            @endif
+                            @if ($schedule && $schedule->kpknl)
+                                <li><b>Tempat Lelang</b> <span>KPKNL {{ $schedule->kpknl }}</span></li>
+                            @endif
+                            <li><b>Jenis Lelang</b> <span>
+                                    @if ($detailProduct->type_sales == 1)
+                                        Lelang
+                                    @else
+                                        Dibawah tangan
+                                    @endif
+                                </span></li>
                             <li>
                                 <b>Bagikan</b>
                                 <div class="share">
@@ -752,6 +762,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            @if ($accessProducts->others)
+                                                <div class="col-sm-12 col-md-12 col-lg-12 col-12">
+                                                    <label for="">
+                                                        Keterangan Lain :
+                                                    </label>
+                                                    {!! $accessProducts->others !!}
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
@@ -783,63 +802,6 @@
                                                 <div class="row">
                                                     <div class="col-2" style="max-width: 5%">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                                            width="18" viewBox="0 0 576 512">
-                                                            <path
-                                                                d="M309.5 178.4L447.9 297.1c-1.6 .9-3.2 2-4.8 3c-18 12.4-40.1 20.3-59.2 20.3c-19.6 0-40.8-7.7-59.2-20.3c-22.1-15.5-51.6-15.5-73.7 0c-17.1 11.8-38 20.3-59.2 20.3c-10.1 0-21.1-2.2-31.9-6.2C163.1 193.2 262.2 96 384 96h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H384c-26.9 0-52.3 6.6-74.5 18.4zM160 160A64 64 0 1 1 32 160a64 64 0 1 1 128 0zM306.5 325.9C329 341.4 356.5 352 384 352c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 405.7 417 416 384 416c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7l0 0C136.7 341.2 165.1 352 192 352c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="col-6 col-md-6 col-sm-6" style="max-width: 85%">
-                                                        Kolam renang
-                                                    </div>
-                                                    <div class="col-4 col-md-4 col-sm-4">
-                                                        @if ($facilitiesProduct->swimming_pool)
-                                                            <p class="font-weight-bold">Ada</p>
-                                                        @else
-                                                            <p class="font-weight-bold">Tidak Ada</p>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-2" style="max-width: 5%">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                                            width="16" viewBox="0 0 512 512">
-                                                            <path
-                                                                d="M132.7 4.7l-64 64c-4.6 4.6-5.9 11.5-3.5 17.4s8.3 9.9 14.8 9.9H208c6.5 0 12.3-3.9 14.8-9.9s1.1-12.9-3.5-17.4l-64-64c-6.2-6.2-16.4-6.2-22.6 0zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H64zm96 96a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM80 400c0-26.5 21.5-48 48-48h64c26.5 0 48 21.5 48 48v16c0 17.7-14.3 32-32 32H112c-17.7 0-32-14.3-32-32V400zm192 0c0-26.5 21.5-48 48-48h64c26.5 0 48 21.5 48 48v16c0 17.7-14.3 32-32 32H304c-17.7 0-32-14.3-32-32V400zm32-128a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM356.7 91.3c6.2 6.2 16.4 6.2 22.6 0l64-64c4.6-4.6 5.9-11.5 3.5-17.4S438.5 0 432 0H304c-6.5 0-12.3 3.9-14.8 9.9s-1.1 12.9 3.5 17.4l64 64z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="col-6 col-md-6 col-sm-6" style="max-width: 85%">
-                                                        Lift
-                                                    </div>
-                                                    <div class="col-4 col-md-4 col-sm-4">
-                                                        @if ($facilitiesProduct->lift)
-                                                            <p class="font-weight-bold">Ada</p>
-                                                        @else
-                                                            <p class="font-weight-bold">Tidak Ada</p>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-2" style="max-width: 5%">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                                            width="20" viewBox="0 0 640 512">
-                                                            <path
-                                                                d="M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="col-6 col-md-6 col-sm-6" style="max-width: 85%">
-                                                        Gym
-                                                    </div>
-                                                    <div class="col-4 col-md-4 col-sm-4">
-                                                        @if ($facilitiesProduct->gym)
-                                                            <p class="font-weight-bold">Ada</p>
-                                                        @else
-                                                            <p class="font-weight-bold">Tidak Ada</p>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-2" style="max-width: 5%">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" height="16"
                                                             width="14" viewBox="0 0 448 512">
                                                             <path
                                                                 d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM192 256h48c17.7 0 32-14.3 32-32s-14.3-32-32-32H192v64zm48 64H192v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V288 168c0-22.1 17.9-40 40-40h72c53 0 96 43 96 96s-43 96-96 96z" />
@@ -856,12 +818,9 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-6 col-12">
                                                 <div class="row">
                                                     <div class="col-2" style="max-width: 5%">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                                            width="16" viewBox="0 0 512 512">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
                                                             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                                             <path
                                                                 d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
@@ -872,12 +831,14 @@
                                                     </div>
                                                     <div class="col-4 col-md-4 col-sm-4">
                                                         @if ($facilitiesProduct->telephone)
-                                                            <p class="font-weight-bold">Ada</p>
+                                                        <p class="font-weight-bold">Ada</p>
                                                         @else
-                                                            <p class="font-weight-bold">Tidak Ada</p>
+                                                        <p class="font-weight-bold">Tidak Ada</p>
                                                         @endif
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-lg-6 col-12">
                                                 <div class="row">
                                                     <div class="col-2" style="max-width: 5%">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="16"
@@ -898,7 +859,6 @@
                                                         @endif
                                                     </div>
                                                 </div>
-
                                                 <div class="row">
                                                     <div class="col-2" style="max-width: 5%">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="16"
@@ -940,6 +900,14 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if ($facilitiesProduct->others)
+                                                <div class="col-sm-12 col-md-12 col-lg-12 col-12">
+                                                    <label for="">
+                                                        Keterangan Lain :
+                                                    </label>
+                                                    {!! $facilitiesProduct->others !!}
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
@@ -1019,7 +987,8 @@
             </div>
             <div class="row">
                 @foreach ($relatedProducts as $rp)
-                    <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="col-lg-3 col-md-4 col-sm-6" onclick="window.location='{{ route('detailproduct', ['slug' => $rp->slug]) }}';"
+                            style="cursor: pointer;">
                         <div class="product__item">
                             <div class="product__item__pic set-bg">
                                 <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $rp->photo) }}"
@@ -1098,7 +1067,7 @@
                 100; // Convert percentage to decimal
             var jangkaWaktu = parseInt(document.getElementById('loanTerm').value);
 
-            var hasilKPR = ((hargaAsset * sukuBunga) + (hargaAsset/jangkaWaktu));
+            var hasilKPR = ((hargaAsset * sukuBunga) + (hargaAsset / jangkaWaktu));
             // var monthlyPayment = hasilKPR / jangkaWaktu;
 
             document.getElementById('result').innerHTML = '<div class="common-border">' +

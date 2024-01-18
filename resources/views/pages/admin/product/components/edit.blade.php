@@ -175,7 +175,8 @@
                                                 <option value="1" @if ($detailProduct->type_sales == 1) selected @endif>
                                                     Lelang
                                                 </option>
-                                                <option value="2" @if ($detailProduct->type_sales == 2) selected @endif>Dibawah tangan</option>
+                                                <option value="2" @if ($detailProduct->type_sales == 2) selected @endif>
+                                                    Dibawah tangan</option>
                                             </select>
                                         </div>
                                     </div>
@@ -247,11 +248,12 @@
                                         <div class="form-group">
                                             <label>Dokumen Pendukung (jika ada)</label>
                                             <div class="input-group">
-                                                <iframe src="{{ asset('storage/public/sup_doc/' . $detailProduct->sup_doc) }}" frameborder="1" width="100%"
-                                                    height="300px"></iframe>
+                                                <iframe
+                                                    src="{{ asset('storage/public/sup_doc/' . $detailProduct->sup_doc) }}"
+                                                    frameborder="1" width="100%" height="300px"></iframe>
                                             </div>
                                         </div>
-                                    @endif                                    
+                                    @endif
 
                                     {{-- semua yg berkaitan dengan tanah/bangunan --}}
                                     @if ($detailProduct->surface_area)
@@ -557,7 +559,7 @@
                                                     </option>
                                                 @endforeach
 
-                                                </select>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -577,8 +579,10 @@
                                                     <i class="fas fa-calendar"></i>
                                                 </div>
                                             </div>
-                                            <input type="datetime-local" name="schedule" id="schedule" class="form-control"
-                                                value="{{ \Carbon\Carbon::parse($auctionSchedule->schedule)->format('Y-m-d\TH:i') }}" required>
+                                            <input type="datetime-local" name="schedule" id="schedule"
+                                                class="form-control"
+                                                value="{{ $auctionSchedule ? \Carbon\Carbon::parse($auctionSchedule->schedule)->format('Y-m-d\TH:i') : '' }}"
+                                                >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -590,8 +594,22 @@
                                                 </div>
                                             </div>
                                             <input type="text" name="kpknl" id="kpknl" class="form-control"
-                                                value="{{ $auctionSchedule->kpknl }}">
+                                                value="{{ $auctionSchedule ? $auctionSchedule->kpknl : '' }}">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="stateScheduled"
+                                            id="inlineRadio2" value="1">
+                                        <label class="form-check-label" for="inlineRadio2">Insert / Update Data "Jadwal
+                                            lelang"</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="stateScheduled"
+                                            id="inlineRadio3" value="2">
+                                        <label class="form-check-label" for="inlineRadio3">Hapus Data "Jadwal
+                                            Lelang"</label>
                                     </div>
                                 </div>
                             </div>
@@ -611,9 +629,11 @@
                                                 </div>
                                             </div>
                                             <select name="hospital" id="hospital" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->hospital == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->hospital == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->hospital) selected @endif>Tidak Ada
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->hospital) selected @endif>
+                                                    Tidak Ada
                                                 </option>
                                             </select>
                                         </div>
@@ -627,9 +647,11 @@
                                                 </div>
                                             </div>
                                             <select name="school" id="school" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->school == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->school == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->school) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->school) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
@@ -644,9 +666,11 @@
                                                 </div>
                                             </div>
                                             <select name="bank" id="bank" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->bank == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->bank == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->bank) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->bank) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
@@ -661,9 +685,11 @@
                                                 </div>
                                             </div>
                                             <select name="market" id="market" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->market == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->market == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->market) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->market) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
@@ -678,9 +704,11 @@
                                                 </div>
                                             </div>
                                             <select name="house_of_worship" id="house_of_worship" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->house_of_worship == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->house_of_worship == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->house_of_worship) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->house_of_worship) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
@@ -695,9 +723,11 @@
                                                 </div>
                                             </div>
                                             <select name="cinema" id="cinema" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->cinema == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->cinema == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->cinema) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->cinema) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
@@ -712,15 +742,17 @@
                                                 </div>
                                             </div>
                                             <select name="halte" id="halte" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->halte == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->halte == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->halte) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->halte) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Akses Bandara ?</label>
                                         <div class="input-group">
@@ -730,15 +762,17 @@
                                                 </div>
                                             </div>
                                             <select name="airport" id="airport" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->airport == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->airport == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->airport) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->airport) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Akses toll ?</label>
                                         <div class="input-group">
@@ -748,15 +782,17 @@
                                                 </div>
                                             </div>
                                             <select name="toll" id="toll" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->toll == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->toll == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->toll) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->toll) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Akses Mall ?</label>
                                         <div class="input-group">
@@ -766,9 +802,11 @@
                                                 </div>
                                             </div>
                                             <select name="mall" id="mall" class="form-control">
-                                                <option value="1" @if ($accessProduct &&$accessProduct->mall == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->mall == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->mall) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->mall) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
@@ -784,15 +822,17 @@
                                                 </div>
                                             </div>
                                             <select name="park" id="park" class="form-control">
-                                                <option value="1" @if ($accessProduct &&$accessProduct->park == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->park == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->park) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->park) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Akses Farmasi (apotek, dsb) ?</label>
                                         <div class="input-group">
@@ -802,15 +842,17 @@
                                                 </div>
                                             </div>
                                             <select name="pharmacy" id="pharmacy" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->pharmacy == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->pharmacy == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->pharmacy) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->pharmacy) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Akses Restoran ?</label>
                                         <div class="input-group">
@@ -820,15 +862,17 @@
                                                 </div>
                                             </div>
                                             <select name="restaurant" id="restaurant" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->restaurant == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->restaurant == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->restaurant) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->restaurant) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Akses Stasiun ?</label>
                                         <div class="input-group">
@@ -838,9 +882,11 @@
                                                 </div>
                                             </div>
                                             <select name="station" id="station" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->station == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->station == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->station) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->station) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
@@ -855,41 +901,41 @@
                                                 </div>
                                             </div>
                                             <select name="gas_station" id="gas_station" class="form-control">
-                                                <option value="1" @if ($accessProduct && $accessProduct->gas_station == 1) selected @endif>Ada
+                                                <option value="1" @if ($accessProduct && $accessProduct->gas_station == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$accessProduct || !$accessProduct->gas_station) selected @endif>Tidak
+                                                <option value="0" @if (!$accessProduct || !$accessProduct->gas_station) selected @endif>
+                                                    Tidak
                                                     Ada
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label>Keterangan lain terkait fasilitas umum:</label>
+                                        <div class="input-group">
+                                            <textarea class="form-control summernote" name="others_fac_pub" id="others_fac_pub">{!! $accessProduct->others ?? '' !!}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
-                                    {{-- <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="isPublicFacilities" name="isPublicFacilities">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                           <span class="text-danger">Centang untuk memasukkan data update "Akses Fasilitas Umum"</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="deletePublicFacilities" name="deletePublicFacilities">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            <span class="text-danger">Hapus data "Akses Fasilitas Umum"</span>
-                                        </label>
-                                    </div> --}}
-
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="statePublicFacilities" id="inlineRadio2" value="1">
-                                        <label class="form-check-label" for="inlineRadio2">Tambah/Update Data "Akses Fasilitas Umum"</label>
+                                        <input class="form-check-input" type="radio" name="statePublicFacilities"
+                                            id="inlineRadio2" value="1">
+                                        <label class="form-check-label" for="inlineRadio2">Tambah/Update Data "Akses
+                                            Fasilitas Umum"</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="statePublicFacilities" id="inlineRadio3" value="2">
-                                        <label class="form-check-label" for="inlineRadio3">Hapus Data "Akses Fasilitas Umum"</label>
+                                        <input class="form-check-input" type="radio" name="statePublicFacilities"
+                                            id="inlineRadio3" value="2">
+                                        <label class="form-check-label" for="inlineRadio3">Hapus Data "Akses Fasilitas
+                                            Umum"</label>
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- fasilitas aset --}}                            
+                            {{-- fasilitas aset --}}
                             <div class="card">
                                 <div class="card-header">Fasilitas Asset</div>
                                 <div class="card-body">
@@ -902,12 +948,14 @@
                                                 </div>
                                             </div>
                                             <select name="furnished" id="furnished" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->furnished == 1) selected @endif>Ada</option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->furnished) selected @endif>Tidak Ada</option>
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->furnished == 1) selected @endif>
+                                                    Ada</option>
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->furnished) selected @endif>
+                                                    Tidak Ada</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Kolam Renang ?</label>
                                         <div class="input-group">
@@ -917,14 +965,16 @@
                                                 </div>
                                             </div>
                                             <select name="swimming_pool" id="swimming_pool" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->swimming_pool == 1) selected @endif>Ada
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->swimming_pool == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->swimming_pool) selected @endif>Tidak
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->swimming_pool) selected @endif>
+                                                    Tidak
                                                     Ada</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Lift ?</label>
                                         <div class="input-group">
@@ -934,14 +984,16 @@
                                                 </div>
                                             </div>
                                             <select name="lift" id="lift" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->lift == 1) selected @endif>Ada
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->lift == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->lift) selected @endif>Tidak
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->lift) selected @endif>
+                                                    Tidak
                                                     Ada</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Gym ?</label>
                                         <div class="input-group">
@@ -951,14 +1003,16 @@
                                                 </div>
                                             </div>
                                             <select name="gym" id="gym" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct &&$facilitiesProduct->gym == 1) selected @endif>Ada
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->gym == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->gym) selected @endif>Tidak
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->gym) selected @endif>
+                                                    Tidak
                                                     Ada</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Parkir/carport ?</label>
                                         <div class="input-group">
@@ -968,14 +1022,16 @@
                                                 </div>
                                             </div>
                                             <select name="carport" id="carport" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct &&$facilitiesProduct->carport == 1) selected @endif>Ada
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->carport == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->carport) selected @endif>Tidak
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->carport) selected @endif>
+                                                    Tidak
                                                     Ada</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Sambungan Telepon ?</label>
                                         <div class="input-group">
@@ -985,14 +1041,16 @@
                                                 </div>
                                             </div>
                                             <select name="telephone" id="telephone" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->telephone == 1) selected @endif>Ada
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->telephone == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->telephone) selected @endif>Tidak
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->telephone) selected @endif>
+                                                    Tidak
                                                     Ada</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Keamanan ?</label>
                                         <div class="input-group">
@@ -1002,14 +1060,16 @@
                                                 </div>
                                             </div>
                                             <select name="security" id="security" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->security == 1) selected @endif>Ada
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->security == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->security) selected @endif>Tidak
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->security) selected @endif>
+                                                    Tidak
                                                     Ada</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Garasi ?</label>
                                         <div class="input-group">
@@ -1019,14 +1079,16 @@
                                                 </div>
                                             </div>
                                             <select name="fasgarage" id="fasgarage" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->garage == 1) selected @endif>Ada
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->garage == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->garage) selected @endif>Tidak
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->garage) selected @endif>
+                                                    Tidak
                                                     Ada</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label>Taman ?</label>
                                         <div class="input-group">
@@ -1036,34 +1098,34 @@
                                                 </div>
                                             </div>
                                             <select name="faspark" id="faspark" class="form-control">
-                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->park == 1) selected @endif>Ada
+                                                <option value="1" @if ($facilitiesProduct && $facilitiesProduct->park == 1) selected @endif>
+                                                    Ada
                                                 </option>
-                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->park) selected @endif>Tidak
+                                                <option value="0" @if (!$facilitiesProduct || !$facilitiesProduct->park) selected @endif>
+                                                    Tidak
                                                     Ada</option>
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Keterangan lain terkait fasilitas aset:</label>
+                                        <div class="input-group">
+                                            <textarea class="form-control summernote" name="others_fac_aset" id="others_fac_aset">{!! $facilitiesProduct && $facilitiesProduct->others ?? '' !!}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
-                                    {{-- <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="isAssetFacilities" name="isAssetFacilities">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            <span class="text-danger">Centang untuk memasukkan data update "Fasilitas Aset"</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="deleteAssetFacilities" name="deleteAssetFacilities">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            <span class="text-danger">Hapus data "Fasilitas Aset"</span>
-                                        </label>
-                                    </div> --}}
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="stateAssetFacilities" id="inlineRadio2" value="1">
-                                        <label class="form-check-label" for="inlineRadio2">Insert / Update Data "Fasilitas Aset"</label>
+                                        <input class="form-check-input" type="radio" name="stateAssetFacilities"
+                                            id="inlineRadio2" value="1">
+                                        <label class="form-check-label" for="inlineRadio2">Insert / Update Data "Fasilitas
+                                            Aset"</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="stateAssetFacilities" id="inlineRadio3" value="2">
-                                        <label class="form-check-label" for="inlineRadio3">Hapus Data "Fasilitas Aset"</label>
+                                        <input class="form-check-input" type="radio" name="stateAssetFacilities"
+                                            id="inlineRadio3" value="2">
+                                        <label class="form-check-label" for="inlineRadio3">Hapus Data "Fasilitas
+                                            Aset"</label>
                                     </div>
                                 </div>
                             </div>

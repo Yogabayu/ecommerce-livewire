@@ -20,6 +20,7 @@ class FacilitiesProduct extends Model
         'security',
         'garage',
         'park',
+        'others',
     ];
 
     public function product()

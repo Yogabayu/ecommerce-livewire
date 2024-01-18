@@ -221,8 +221,6 @@ class ProductController extends Controller
             if ($cekIsSee == 1 && $request->is_hero == 1) {
                 $msg = "Asset tidak dijadikan asset utama";
                 $is_hero = 0;
-            } else {
-                $is_hero = 1;
             }
             //slug
             $slugProduct = Str::slug($request->name);
@@ -281,12 +279,14 @@ class ProductController extends Controller
                 'date_stnk'         => $request->date_stnk,
             ]);
 
-            AuctionSchedule::create([
-                'product_id' => $product->id,
-                'category_id' => $request->category_id,
-                'schedule' => $request->schedule,
-                'kpknl' => $request->kpknl,
-            ]);
+            if ($request->isScheduled) {
+                AuctionSchedule::create([
+                    'product_id' => $product->id,
+                    'category_id' => $request->category_id,
+                    'schedule' => $request->schedule,
+                    'kpknl' => $request->kpknl,
+                ]);
+            }
 
             // Handle product photos upload
             $photoFiles = $request->file('photos');
@@ -341,6 +341,7 @@ class ProductController extends Controller
                     'restaurant' => $request->restaurant,
                     'station' => $request->station,
                     'gas_station' => $request->gas_station,
+                    'others' => $request->others_fac_pub,
                 ]);
             }
 
@@ -356,6 +357,7 @@ class ProductController extends Controller
                     'security' => $request->security,
                     'garage' => $request->fasgarage,
                     'park' => $request->faspark,
+                    'others' => $request->others_fac_aset,
                 ]);
             }
 
@@ -534,13 +536,6 @@ class ProductController extends Controller
             $dp->date_stnk         = $request->date_stnk;
             $dp->save();
 
-            $as  =
-                AuctionSchedule::where('product_id', $id)->first();
-            $as->category_id = $request->category_id;
-            $as->schedule = $request->schedule;
-            $as->kpknl = $request->kpknl;
-            $as->save();
-
             //handle tag product
             $tagsProduct = $request->tags;
             $existingTagIds = ProductTagMapping::where('product_id', $id)->pluck('tag_id')->toArray();
@@ -551,6 +546,21 @@ class ProductController extends Controller
                     $tagMapping->tag_id = $tp;
                     $tagMapping->save();
                 }
+            }
+
+            //jadwal lelang
+            if ($request->stateScheduled == '1') {
+                AuctionSchedule::updateOrCreate(
+                    ['product_id' => $id],
+                    [
+                        'category_id' => $request->category_id,
+                        'schedule' => $request->schedule,
+                        'kpknl' => $request->kpknl,
+                    ]
+                );
+            }
+            if ($request->stateScheduled == '2') {
+                DB::table('auction_schedules')->where('product_id', $id)->delete();
             }
 
             //fasilitas public
@@ -573,6 +583,7 @@ class ProductController extends Controller
                         'restaurant' => $request->restaurant,
                         'station' => $request->station,
                         'gas_station' => $request->gas_station,
+                        'others' => $request->others_fac_pub,
                     ]
                 );
             }
@@ -594,6 +605,7 @@ class ProductController extends Controller
                         'security'      => $request->security,
                         'garage'        => $request->fasgarage,
                         'park'          => $request->faspark,
+                        'others'        => $request->others_fac_aset,
                     ]
                 );
             }

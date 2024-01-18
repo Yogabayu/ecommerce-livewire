@@ -27,6 +27,8 @@ class AccessProductModel extends Model
         'restaurant',
         'station',
         'gas_station',
+
+        'others'
     ];
 
     public function product()

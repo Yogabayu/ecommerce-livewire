@@ -249,7 +249,7 @@
                         @endif
                     </div>
                     <div class="product__pagination">
-                        {{ $results->links() }}
+                        {{-- {{ $results->links() }} --}}
                     </div>
                 </div>
             </div>
