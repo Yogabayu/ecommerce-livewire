@@ -368,8 +368,9 @@ class ProductController extends Controller
             }
             return redirect()->back()->with('success', 'Product added successfully! ');
         } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with("error", $e->getMessage());
+            // DB::rollBack();
+            dd($e->getMessage());
+            // return redirect()->back()->with("error", $e->getMessage());
         }
     }
 
