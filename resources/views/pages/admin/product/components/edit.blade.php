@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('title')
-    Edit Produk
+    Edit Asset
 @endsection
 
 @push('style')
@@ -24,7 +24,7 @@
                             <i class="fas fa-arrow-left"></i>
                         </button>
                     </a>
-                    <h1>Produk</h1>
+                    <h1>Edit Asset</h1>
                 </div>
             </div>
 
