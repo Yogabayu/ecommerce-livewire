@@ -41,7 +41,7 @@ class SearchComponentInline extends Component
             ->join('detail_products as dp', 'p.id', '=', 'dp.product_id')
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
             ->join('product_tag_mappings as ptm', 'p.id', '=', 'ptm.product_id')
-            ->join('auction_schedules as ac', 'p.id', '=', 'ac.product_id')
+            ->leftJoin('auction_schedules as ac', 'p.id', '=', 'ac.product_id')
             ->join('categories as c', 'c.id', '=', 'p.category_id')
             ->join('tags as t', 'ptm.tag_id', '=', 't.id')
             ->select(
