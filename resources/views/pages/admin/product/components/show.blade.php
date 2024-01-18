@@ -122,7 +122,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h4>Detail Produk</h4>
+                                <h4>Detail Asset</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -204,7 +204,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Photo Produk</label>
+                                    <label>Photo Asset</label>
                                     <div class="row">
                                         @foreach ($productPhotos as $pp)
                                             <div class="col-6 col-md-3 mb-3">
@@ -528,7 +528,7 @@
                                 @endif
 
                                 <div class="form-group">
-                                    <label for="tags">Tag Produk</label>
+                                    <label for="tags">Tag Asset</label>
                                     <div class="input-group">
                                         <select class="form-control select2" multiple="multiple" id="tags"
                                             name="tags[]" disabled>

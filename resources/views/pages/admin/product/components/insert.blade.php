@@ -130,7 +130,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Detail Produk</h4>
+                                    <h4>Detail Asset</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -192,7 +192,7 @@
                                         <span class="text-danger">contoh: 6212345678912</span>
                                     </div>
                                     <div class="form-group">
-                                        <label>Photo Produk</label>
+                                        <label>Photo Asset</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -216,7 +216,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="tags">Tag Produk</label>
+                                        <label for="tags">Tag Asset</label>
                                         <div class="input-group">
                                             <div style="width: 80%">
                                                 <select class="form-control select2" multiple="multiple" id="tags"
@@ -556,7 +556,7 @@
                             {{-- diskon --}}
                             <div x-cloak x-data="{ openLand: false, openQue: true }">
                                 <div x-show="openQue">
-                                    <p>Apakah Produk sedang diskon ?</p>
+                                    <p>Apakah Asset sedang diskon ?</p>
                                     <button @click="openLand = !openLand"
                                         class="btn btn-sm btn-primary my-3 justify-content-start"
                                         type="button">Ya</button>

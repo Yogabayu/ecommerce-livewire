@@ -126,7 +126,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Detail Produk</h4>
+                                    <h4>Detail Asset</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
@@ -210,7 +210,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Photo Produk
+                                        <label>Photo Asset
                                             <a class="btn btn-primary" data-toggle="modal" data-target="#AddPhotoModal"
                                                 data-backdrop="false"><i class="fas fa-add" aria-hidden="true"></i>
                                                 Foto</a></label>
@@ -548,7 +548,7 @@
                                     @endif
 
                                     <div class="form-group">
-                                        <label for="tags">Tag Produk</label>
+                                        <label for="tags">Tag Asset</label>
                                         <div class="input-group">
                                             <select class="form-control select2" multiple="multiple" id="tags"
                                                 name="tags[]" required>
