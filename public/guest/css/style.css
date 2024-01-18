@@ -760,7 +760,7 @@ ol {
 .categories__item {
 	height: 270px;
 	position: relative;
-	background-color: #adadad;
+	/* background-color: #adadad; */
 	border-radius: 1.5rem;
 }
 
