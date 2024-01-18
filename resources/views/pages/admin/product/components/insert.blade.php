@@ -107,7 +107,7 @@
                                             </div>
                                             <select class="form-control" name="publish" id="publish" required>
                                                 <option value="1">Ya</option>
-                                                <option>Tidak</option>
+                                                <option value="0">Tidak</option>
                                             </select>
                                         </div>
                                     </div>
