@@ -13,6 +13,28 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public function rstpwd(Request $request)
+    {
+        try {
+            $request->validate([
+                'uuid' => 'required',
+            ]);
+
+            $user = User::where('uuid', $request->uuid)->first();
+
+            if (!$user) {
+                return redirect()->back()->with('error', 'User not found');
+            }
+
+            $user->password = Hash::make('12345678');
+            $user->save();
+
+            return redirect()->back()->with('success', 'Berhasil mereset password');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'error code 500');
+        }
+    }
+
     public function updateUser(Request $request, $uuid)
     {
         try {

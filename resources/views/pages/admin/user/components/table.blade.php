@@ -31,6 +31,13 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
+                    <form action="{{ route('a-rst') }}" method="post" style="display: inline;">
+                        @csrf
+                        <input type="hidden" name="uuid" value="{{ $user->uuid }}">
+                        <button class="btn btn-warning btn-sm" type="submit" title="Reset">
+                            <i class="fas fa-arrows-spin"></i>
+                        </button>
+                    </form>
                     <a class="btn btn-info btn-sm" title="Edit" data-toggle="modal"
                         data-target="#editModal{{ $user->id }}" data-backdrop="false">
                         <i class="fas fa-edit"></i>

@@ -69,6 +69,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('user', UserController::class);
         Route::get('show-user/{uuid}', [UserController::class, 'showUser'])->name('showUser');
         Route::put('update-user/{uuid}', [UserController::class, 'updateUser'])->name('updateUser');
+        Route::post('a-rst', [UserController::class, 'rstpwd'])->name('a-rst');
 
         //banner
         Route::resource('banner', BannerController::class);
