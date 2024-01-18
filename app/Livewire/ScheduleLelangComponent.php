@@ -33,6 +33,7 @@ class ScheduleLelangComponent extends Component
                 $join->on('p.id', '=', 'pp.product_id')
                     ->where('pp.is_primary', '=', 1);
             })
+            ->where('p.publish', '!=', 0)
             ->select(
                 'p.id',
                 'p.name',
@@ -77,6 +78,7 @@ class ScheduleLelangComponent extends Component
                     ->orWhere('ac.kpknl', $kpknl)
                     ->orWhere('c.name', 'LIKE', '%' . $cat . '%');
             })
+            ->where('p.publish', '!=', 0)
             ->select(
                 'p.id',
                 'p.name',

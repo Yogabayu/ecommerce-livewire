@@ -64,6 +64,7 @@ class DashboardComponent extends Component
             ->join('product_photos as pp', 'p.id', '=', 'pp.product_id')
             ->select('p.id', 'p.name', 'p.short_desc', 'p.price', 'p.slug', 'pp.photo', 'c.name as category')
             ->where('p.is_hero', 1)
+            ->where('p.publish', '!=', 0)
             ->where('pp.is_primary', 1)
             ->first();
     }
