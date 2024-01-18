@@ -186,7 +186,7 @@
                             <a href="{{ $banner->url }}" target="_blank">
                                 <img src="{{ asset('storage/public/banners/' . $banner->banner_img) }}"
                                     alt="{{ $banner->banner_img }}" wire:key="{{ $banner->id }}"
-                                    style="max-width: 570px;max-height: 270px">
+                                    style="max-width: 570px;max-height: 270px;border-radius:10px;">
                             </a>
                         </div>
                     </div>
