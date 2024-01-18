@@ -213,6 +213,8 @@ class ProductController extends Controller
                 'tags'        => 'required|array', // Ensure 'photos' is an array
                 'photos'        => 'required|array', // Ensure 'photos' is an array
                 'photos.*'      => 'image|mimes:jpeg,jpg,png|max:2048', // Validate each photo in the array
+            ], [
+                'photos.*.max' => 'Ukuran foto tidak boleh melebihi 2 MB.', // Custom error message for photo size
             ]);
 
             $cekIsSee = Product::where('is_hero', 1)->count();

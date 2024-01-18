@@ -1155,16 +1155,16 @@
 
             if (files.length < minFiles) {
                 alert('Harap unggah minimal 5 file.');
-                $(document).off('submit', '#formInsert'); // Remove previous submit event handler
+                $(document).off('submit', '#formInsert'); 
                 $(document).on('submit', '#formInsert', function(ev) {
-                    ev.preventDefault(); // Prevent form submission when files are less than 5
+                    ev.preventDefault(); 
                 });
             } else {
-                $(document).off('submit', '#formInsert'); // Remove previous submit event handler
+                $(document).off('submit', '#formInsert'); 
                 $(document).on('submit', '#formInsert', function(ev) {
                     // You can include any additional logic or processing for the form submission here
                     // For example, you can remove the event handler after successful submission
-                    // $(document).off('submit', '#formInsert');
+                    $(document).off('submit', '#formInsert');
                     // Then, you can submit the form
                     $('#formInsert').submit();
                 });
