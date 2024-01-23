@@ -4,7 +4,7 @@
             <th class="text-center">
                 No.
             </th>
-            <th class="text-center">Kategori</th>
+            <th class="text-center">Photo</th>
             <th class="text-center">Nama</th>
             <th class="text-center">Harga</th>
             <th class="text-center">Status</th>
@@ -22,7 +22,9 @@
                 <td class="text-center">
                     {{ $no++ }}
                 </td>
-                <td class="text-center">{{ $p->category->name }}</td>
+                <td class="text-center">                    
+                    <img src="{{ asset('storage/public/photos/' . $p->productPhoto[0]->photo) }}" alt="{{$p->name}}" class="img-fluid">                
+                </td>
                 <td class="text-center">{{ $p->name }}</td>
                 <td class="text-center">Rp{{ $p->price }},-</td>
                 <td class="text-center">

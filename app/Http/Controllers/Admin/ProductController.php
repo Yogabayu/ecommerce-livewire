@@ -22,22 +22,43 @@ class ProductController extends Controller
     public function changeHero($slug)
     {
         try {
-            $countHero = Product::where('is_hero', 1)->count();
-            if ($countHero == 1) {
-                return redirect()->back()->with('error', 'Product updated failed! Pastikan hanya ada 1 produk yang dijadikan hero');
-            }
             $product = Product::where('slug', $slug)->first();
+
+            if (!$product) {
+                return redirect()->back()->with('error', 'Product not found!');
+            }
+            $currentHero = Product::where('is_hero', 1)->first();
+
+            if ($product->publish != 1) {
+                return redirect()->back()->with('error', 'Asset harus ditampilkan untuk menjadi hero');
+            }
+
             if ($product->is_hero == 1) {
                 $product->is_hero = 0;
+                $product->save();
+
+                return redirect()->back()->with('success', 'Asset tidak lagi menjadi hero.');
+            } elseif ($currentHero && $currentHero->slug !== $slug) {
+                $currentHero->is_hero = 0;
+                $currentHero->save();
+
+                $product->is_hero = 1;
+                $product->save();
+
+                return redirect()->back()->with('success', 'Asset tidak lagi menjadi hero.');
+            } elseif (!$currentHero) {
+                $product->is_hero = 1;
+                $product->save();
+
+                return redirect()->back()->with('success', 'Asset sekarang menjadi hero');
             } else {
                 $product->is_hero = 1;
-            }
-            $product->save();
+                $product->save();
 
-            return redirect()->back()->with('success', 'Product updated successfully!');
+                return redirect()->back()->with('success', 'Asset sekarang menjadi hero.');
+            }
         } catch (\Exception $e) {
-            // return redirect()->back()->with('error', 'Failed to change hero.');
-            dd($e->getMessage());
+            return redirect()->back()->with('error', 'Failed. ' . $e->getMessage());
         }
     }
     public function changePhotoPrimary($id)
@@ -46,11 +67,9 @@ class ProductController extends Controller
             $photo = ProductPhoto::find($id);
 
             if ($photo) {
-                // Set is_primary to 1 for the specified photo
                 $photo->is_primary = 1;
                 $photo->save();
 
-                // Set is_primary to 0 for other photos associated with the same product
                 ProductPhoto::where('product_id', $photo->product_id)
                     ->where('id', '!=', $id)
                     ->update(['is_primary' => 0]);
@@ -79,7 +98,6 @@ class ProductController extends Controller
                     $photo->delete();
 
                     if ($isPrimary) {
-                        // Find another photo and set it as primary
                         $newPrimaryPhoto = ProductPhoto::where('product_id', $photo->product_id)->first();
                         $newPrimaryPhoto->is_primary = 1;
                         $newPrimaryPhoto->save();
@@ -118,15 +136,13 @@ class ProductController extends Controller
                 $imgname = date('dmyHis') . uniqid() . '.' . $extension;
                 $path = Storage::putFileAs('public/photos', $photoFile, $imgname);
 
-                // Insert into 'product_photos' table
                 $productPhotos = new ProductPhoto;
                 $productPhotos->product_id = $request->id;
                 $productPhotos->photo = $imgname;
 
-                // Set the first photo as primary
                 if (!$isPrimarySet) {
                     $productPhotos->is_primary = 1;
-                    $isPrimarySet = true; // Set the flag after setting is_primary for the first photo
+                    $isPrimarySet = true;
                 } else {
                     $productPhotos->is_primary = 0;
                 }
@@ -164,9 +180,15 @@ class ProductController extends Controller
     {
         try {
             if (auth()->user()->role_id == 1) {
-                $products = Product::with('category')->get();
+                $products = Product::with(['category', 'productPhoto' => function ($query) {
+                    $query->where('is_primary', 1);
+                }])->get();
             } else {
-                $products = Product::with('category')->where('user_uuid', auth()->user()->uuid)->get();
+                $products = Product::with(['category', 'productPhoto' => function ($query) {
+                    $query->where('is_primary', 1);
+                }])
+                    ->where('user_uuid', auth()->user()->uuid)
+                    ->get();
             }
 
             return view('pages.admin.product.index', compact('products'));
@@ -225,9 +247,12 @@ class ProductController extends Controller
                 $is_hero = 0;
             }
             //slug
-            $slugProduct = Str::slug($request->name);
+            $slugProduct = Str::slug($request->name) . '-' . uniqid();
 
-            //insert to table product
+            if (Product::where('name', $request->name)->exists()) {
+                return redirect()->back()->with('error', 'Nama Aset tidak boleh sama dengan yang ada sebelumnya. Buat lebih unik.');
+            }
+
             $product = Product::create([
                 'user_uuid'     => auth()->user()->uuid,
                 'category_id'   => $request->category_id,
@@ -239,10 +264,8 @@ class ProductController extends Controller
                 'slug'          => $slugProduct,
             ]);
 
-            //insert to table detail_product
             $fileSup = '';
             if ($request->hasFile('sup_doc')) {
-                // Handle image upload
                 $extension = $request->file('sup_doc')->extension();
                 $fileSup = date('dmyHis') . uniqid() . '.' . $extension;
                 $path = Storage::putFileAs('public/sup_doc', $request->file('sup_doc'), $fileSup);
@@ -290,7 +313,6 @@ class ProductController extends Controller
                 ]);
             }
 
-            // Handle product photos upload
             $photoFiles = $request->file('photos');
             $isPrimarySet = 0;
 
@@ -315,7 +337,6 @@ class ProductController extends Controller
                 $productPhotos->save();
             }
 
-            //handle tag product
             $tagsProduct = $request->tags;
             foreach ($tagsProduct as $tp) {
                 $tagMapping = new ProductTagMapping;
@@ -324,7 +345,6 @@ class ProductController extends Controller
                 $tagMapping->save();
             }
 
-            //access to public facilities
             if ($request->isPublicFacilities) {
                 AccessProductModel::create([
                     'product_id' => $product->id,
