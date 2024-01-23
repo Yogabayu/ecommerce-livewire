@@ -64,21 +64,27 @@ class ScheduleLelangComponent extends Component
         $kpknl = $this->getKpknl;
         $name = $this->getName;
         $month = $this->getMonth;
+        // dd($cat);
 
-        $this->datas = DB::table('products as p')
+        $query = DB::table('products as p')
             ->join('categories as c', 'p.category_id', '=', 'c.id')
             ->join('auction_schedules as ac', 'p.id', '=', 'ac.product_id')
             ->join('product_photos as pp', function ($join) {
                 $join->on('p.id', '=', 'pp.product_id')
                     ->where('pp.is_primary', '=', 1);
-            })
-            ->where(function ($query) use ($cat, $kpknl, $name, $month) {
-                $query->orWhere('p.name', 'LIKE', '%' . $name . '%')
-                    ->orWhere(DB::raw('DATE_FORMAT(ac.schedule, "%Y-%m")'), $month)
-                    ->orWhere('ac.kpknl', $kpknl)
-                    ->orWhere('c.name', 'LIKE', '%' . $cat . '%');
-            })
-            ->where('p.publish', '!=', 0)
+            });
+
+        if ($cat) {
+            $query->where('c.id', $cat);
+        } elseif ($kpknl) {
+            $query->where('ac.kpknl', $kpknl);
+        } elseif ($name) {
+            $query->where('p.name', 'LIKE', '%' . $name . '%');
+        } elseif ($month) {
+            $query->where(DB::raw('DATE_FORMAT(ac.schedule, "%Y-%m")'), $month);
+        }
+
+        $this->datas = $query->where('p.publish', '!=', 0)
             ->select(
                 'p.id',
                 'p.name',

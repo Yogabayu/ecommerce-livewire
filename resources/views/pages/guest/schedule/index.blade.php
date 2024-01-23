@@ -37,8 +37,8 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-2 col-lg-2 col-12">
                             <div class="form-group mx-3 d-flex justify-content-center">
-                                <select class="form-select" aria-label="kategori" wire:model.live="getCat">
-                                    <option selected disabled>Pilih Kategori</option>
+                                <select class="form-select" aria-label="kategori" wire:model="getCat">
+                                    <option selected>Pilih Kategori</option>
                                     @foreach ($categories as $cat)
                                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                     @endforeach
