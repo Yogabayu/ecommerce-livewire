@@ -36,21 +36,9 @@
                         <a href="https://wa.me/{{ $setting->wa }}" target="_blank"><i class="fa fa-whatsapp"></i></a>
                     </div>
                     <hr>
-                    {{-- <div class="row">
-                        <div class="col">
-                            <h6>Bank Arthaya terdaftar dan diawasi oleh:</h6>
-                            <a href="http://www.ojk.go.id" target="_blank" rel="noopener noreferrer"><img
-                                    src="https://bankarthaya.com/wp-content/uploads/2022/06/OJK.png" alt="ojk"
-                                    class="footer-logo"></a>
-
-                        </div> --}}
-                        {{-- <div class="col"> --}}
-                            <h6>Tautan ke link mitra:</h6>
-                            <a href="http://lelang.go.id" target="_blank" rel="noopener noreferrer"><img
-                                    src="{{ asset('guest/img/lelang_djkn.jpeg') }}" alt="lelang"
-                                    class="footer-logo"></a>
-                        {{-- </div>
-                    </div> --}}
+                    <h6>Tautan ke link mitra:</h6>
+                    <a href="http://lelang.go.id" target="_blank" rel="noopener noreferrer"><img
+                            src="{{ asset('guest/img/lelang_djkn.jpeg') }}" alt="lelang" class="footer-logo"></a>
                 </div>
             </div>
         </div>
@@ -58,16 +46,13 @@
             <div class="col-lg-12">
                 <div class="footer__copyright">
                     <div class="footer__copyright__text">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>
                             Copyright Bank Arthaya &copy;
                             <script>
                                 document.write(new Date().getFullYear());
                             </script> All rights reserved
                         </p>
                     </div>
-                    {{-- <div class="footer__copyright__payment">
-                        <img src="{{ asset('guest/img/footer.png') }}" alt="footer">
-                    </div> --}}
                 </div>
             </div>
         </div>
