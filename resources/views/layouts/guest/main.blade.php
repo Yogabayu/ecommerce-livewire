@@ -3,11 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Lelang Bank Arthaya Indotama Pusaka - Situs Resmi Lelang Properti dan Aset Bank">
-    <meta name="keywords" content="lelang, bank arthaya indotama pusaka, situs lelang, properti, bank, rumah lelang,kendaraan">
+    <meta name="description"
+        content="Lelang Bank Arthaya Indotama Pusaka - Situs Resmi Lelang Properti dan Aset Bank di Indonesia. Temukan properti dan aset berkualitas dengan harga terbaik.">
+    <meta name="keywords"
+        content="lelang, bank arthaya indotama pusaka, situs lelang, properti, bank, rumah lelang, kendaraan, lelang properti, lelang aset, lelang rumah, lelang kendaraan">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lelang Bank Arthaya Indotama Pusaka - Situs Resmi Lelang Bank</title>
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Bank Arthaya Indotama Pusaka | Yoga Bayu Anggana Pratama">
+    <title>Lelang Bank Arthaya Indotama Pusaka - Situs Resmi Lelang Properti dan Aset Bank di Indonesia</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
