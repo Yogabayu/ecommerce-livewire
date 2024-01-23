@@ -43,7 +43,7 @@
                         @foreach ($categories->take(10) as $index => $cat)
                             <li wire:key='{{ $cat->id }}' class="hover-bg">
                                 <div class="row" style="display: flex; justify-content: space-between;margin-right:2rem">
-                                    <a href="{{ route('search', ['inputText' => $cat->name]) }}" >{{ $cat->name }}</a>
+                                    <a href="{{ route('search', ['category' => $cat->name]) }}" >{{ $cat->name }}</a>
                                     @if ($cat->prod_count)
                                         <p class="prod_count">{{ $cat->prod_count }}</p>
                                     @endif

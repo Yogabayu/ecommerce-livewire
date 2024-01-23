@@ -14,7 +14,13 @@ class ShopComponent extends Component
     public $categories = [], $saleProducts = [], $populartags = [], $latesProducts = [];
     public $state = 0;
     public $countProduct;
+    public $lowPrice, $highPrice;
     private $sortProducts = [];
+
+    public function search()
+    {
+        $this->redirectRoute('search', ['lowPrice' => $this->lowPrice, 'highPrice' => $this->highPrice]);
+    }
 
     public function updateSortState($value)
     {
@@ -54,19 +60,19 @@ class ShopComponent extends Component
         } elseif ($value == 5) { // Termahal
             // $query->orderBy(DB::raw('CAST(REPLACE(p.price, ".", "") AS SIGNED)'), 'DESC');
             $query->orderBy(DB::raw('
-    CASE
-        WHEN dp.after_sale IS NOT NULL THEN CAST(REPLACE(dp.after_sale, ".", "") AS SIGNED)
-        ELSE CAST(REPLACE(p.price, ".", "") AS SIGNED)
-    END
-'), 'DESC');
+                CASE
+                    WHEN dp.after_sale IS NOT NULL THEN CAST(REPLACE(dp.after_sale, ".", "") AS SIGNED)
+                    ELSE CAST(REPLACE(p.price, ".", "") AS SIGNED)
+                END
+            '), 'DESC');
         } elseif ($value == 6) { // Termurah
             // $query->orderBy(DB::raw('CAST(REPLACE(p.price, ".", "") AS SIGNED)'), 'ASC');
             $query->orderBy(DB::raw('
-    CASE
-        WHEN dp.after_sale IS NOT NULL THEN CAST(REPLACE(dp.after_sale, ".", "") AS SIGNED)
-        ELSE CAST(REPLACE(p.price, ".", "") AS SIGNED)
-    END
-'), 'ASC');
+                CASE
+                    WHEN dp.after_sale IS NOT NULL THEN CAST(REPLACE(dp.after_sale, ".", "") AS SIGNED)
+                    ELSE CAST(REPLACE(p.price, ".", "") AS SIGNED)
+                END
+            '), 'ASC');
         }
 
         $this->sortProducts = $query->groupBy(
@@ -146,9 +152,22 @@ class ShopComponent extends Component
     public function getCategories()
     {
         $this->categories = DB::table('categories')
-            ->select('id', 'name', 'slug', 'image')
-            ->where('status', '!=', 0)
+            ->leftJoin('products', 'categories.id', '=', 'products.category_id')
+            ->select(
+                'categories.id',
+                'categories.name',
+                'categories.slug',
+                'categories.image',
+                'categories.status',
+                'categories.created_at',
+                'categories.updated_at',
+                DB::raw('COUNT(products.category_id) as prod_count')
+            )
+            ->where('categories.status', '!=', 0)
+            ->groupBy('categories.id', 'categories.name', 'categories.slug', 'categories.image', 'categories.status', 'categories.created_at', 'categories.updated_at')
+            ->orderByDesc('prod_count')
             ->get();
+        // dd($this->categories);
     }
 
     public function getSale()

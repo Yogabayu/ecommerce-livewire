@@ -12,10 +12,21 @@ class HeadComponent extends Component
     public function mount()
     {
         $this->categories = DB::table('categories')
-            ->select('id', 'name', 'slug', 'image')
-            ->groupBy('id', 'name', 'slug', 'image')
-            ->where('status', '!=', 0)
-            ->havingRaw('COUNT(id) <= 11')
+            ->leftJoin('products', 'categories.id', '=', 'products.category_id')
+            ->select(
+                'categories.id',
+                'categories.name',
+                'categories.slug',
+                'categories.image',
+                'categories.status',
+                'categories.created_at',
+                'categories.updated_at',
+                DB::raw('COUNT(products.category_id) as prod_count')
+            )
+            ->where('categories.status', '!=', 0)
+            ->groupBy('categories.id', 'categories.name', 'categories.slug', 'categories.image', 'categories.status', 'categories.created_at', 'categories.updated_at')
+            ->orderByDesc('prod_count')
+            ->havingRaw('COUNT(categories.id) <= 11')
             ->get();
     }
 

@@ -217,7 +217,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         try {
             $request->validate([
                 //wajibun
@@ -232,11 +231,11 @@ class ProductController extends Controller
                 'gmaps' => 'required',
                 'type_sales' => 'required',
                 'no_pic' => 'required',
-                'tags'        => 'required|array', // Ensure 'photos' is an array
-                'photos'        => 'required|array', // Ensure 'photos' is an array
-                'photos.*'      => 'image|mimes:jpeg,jpg,png|max:2048', // Validate each photo in the array
+                'tags'        => 'required|array',
+                'photos'        => 'required|array',
+                'photos.*'      => 'image|mimes:jpeg,jpg,png|max:2048',
             ], [
-                'photos.*.max' => 'Ukuran foto tidak boleh melebihi 2 MB.', // Custom error message for photo size
+                'photos.*.max' => 'Ukuran foto tidak boleh melebihi 2 MB.',
             ]);
 
             $cekIsSee = Product::where('is_hero', 1)->count();
@@ -389,8 +388,8 @@ class ProductController extends Controller
             return redirect()->back()->with('success', 'Product added successfully! ');
         } catch (\Exception $e) {
             // DB::rollBack();
-            dd($e->getMessage());
-            // return redirect()->back()->with("error", $e->getMessage());
+            // dd($e->getMessage());
+            return redirect()->back()->with("error", $e->getMessage());
         }
     }
 

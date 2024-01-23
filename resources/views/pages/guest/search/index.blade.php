@@ -86,7 +86,8 @@
 <div>
     <livewire:HeadComponent />
     <!-- Breadcrumb Section Begin -->
-    <section wire:ignore class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/background-footer.webp') }}">
+    <section wire:ignore class="breadcrumb-section set-bg"
+        style="background-image: url('{{ asset('guest/img/background-footer.webp') }}');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -115,28 +116,46 @@
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item hidden-on-phone">
-                            <h4>Kategori</h4>
+                            <h4>Kategori @if ($category)
+                                    <button class="btn btn-sm" wire:click='clearFilter(1)'>Hapus filter <i
+                                            class="fa fa-close"></i></button>
+                                @endif
+                            </h4>
                             <ul>
                                 @foreach ($categories as $cat)
                                     <li wire:key='{{ $cat->id }}'
-                                        class="@if ($inputText == $cat->name) active-pad @endif hover-bg">
-                                        <a wire:click="updateText('{{ $cat->name }}')">{{ $cat->name }}</a>
+                                        class="@if ($category == $cat->name) active-pad @endif hover-bg">
+                                        <a wire:click="updateCategory('{{ $cat->name }}')">{{ $cat->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
                         <div class="sidebar__item">
-                            <h4>Tag Populer</h4>
+                            <h4>Tag Populer @if ($tag)
+                                    <button class="btn btn-sm" wire:click='clearFilter(2)'>Hapus filter <i
+                                            class="fa fa-close"></i></button>
+                                @endif
+                            </h4>
                             @foreach ($populartags as $pt)
                                 <div wire:key='{{ $pt->name }}' class="sidebar__item__size">
-                                    <label for="large-{{ $pt->name }}"
-                                        wire:click="updateText('{{ $pt->name }}')"
-                                        class="@if ($inputText == $pt->name) active-pad @endif hover-bg">
+                                    <label for="large-{{ $pt->name }}" wire:click="updateTag('{{ $pt->name }}')"
+                                        class="@if ($tag == $pt->name) active-pad @endif hover-bg">
                                         {{ $pt->name }}
                                         <input type="radio" id="large-{{ $pt->name }}">
                                     </label>
                                 </div>
                             @endforeach
+                        </div>
+                        <div class="sidebar__item">
+                            <h4>Harga 
+                                @if ($lowPrice || $highPrice)
+                                    <button class="btn btn-sm" wire:click='clearFilter(3)'>Hapus filter <i
+                                            class="fa fa-close"></i></button>
+                                @endif
+                            </h4>
+                            <input type="text" class="form-control" id="formattedPrice" wire:model.live='lowPrice'>
+                            s.d <input type="text" class="form-control" id="formattedPrice2"
+                                wire:model.live='highPrice'>
                         </div>
                         <div class="sidebar__item hidden-on-phone">
                             <div class="latest-product__text">
@@ -195,7 +214,16 @@
                             </div>
                             <div class="col-lg-3 col-md-3">
                                 <div class="filter__found">
-                                    <h6>Terkait: <span>{{ $inputText }}</span></h6>
+                                    <h6>Terkait: <span>
+                                            @if ($category)
+                                                {{ $category }} |
+                                            @elseif ($tag)
+                                                {{ $tag }} |
+                                            @elseif ($inputText)
+                                                {{ $inputText }}
+                                            @endif
+                                        </span></h6>
+
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3">
@@ -208,13 +236,14 @@
                     <div class="row" style="margin-top: 1rem">
                         @if ($results->isEmpty())
                             <div class="col-12 text-center">
-                                <p>***Produck tidak ditemukan***</p>
-                                <p>***Coba Cari dengan kata kunci lain***</p>
+                                <p>***Asset tidak ditemukan***</p>
+                                <p>***Coba Cari dengan kata kunci lain / hapus filter***</p>
                             </div>
                         @else
                             @foreach ($results as $sp)
-                                <div class="col-lg-4 col-md-6 col-sm-6 item-hover" wire:key='{{ $sp->id }}' onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
-                                style="cursor: pointer;">
+                                <div class="col-lg-4 col-md-6 col-sm-6 item-hover" wire:key='{{ $sp->id }}'
+                                    onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
+                                    style="cursor: pointer;">
                                     <div class="product__item">
                                         <div class="product__item__pic">
                                             <img class="imgSpecial"
@@ -267,8 +296,9 @@
             </div>
             <div class="row">
                 @foreach ($relatedProducts as $rp)
-                    <div class="col-lg-3 col-md-4 col-sm-6 item-hover" onclick="window.location='{{ route('detailproduct', ['slug' => $rp->slug]) }}';"
-                            style="cursor: pointer;">
+                    <div class="col-lg-3 col-md-4 col-sm-6 item-hover"
+                        onclick="window.location='{{ route('detailproduct', ['slug' => $rp->slug]) }}';"
+                        style="cursor: pointer;">
                         <div class="product__item">
                             <div class="product__item__pic">
                                 <img class="imgSpecial" src="{{ asset('storage/public/photos/' . $rp->photo) }}"
@@ -303,5 +333,28 @@
     <!-- Related Product Section End -->
 </div>
 @push('script')
-    <script src="{{ asset('guest/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('guest/js/main.js') }}"></script> --}}
+    <script>
+        document.getElementById('formattedPrice').addEventListener('input', function(event) {
+            // Remove existing commas and dots
+            let inputValue = event.target.value.replace(/[,\.]/g, '');
+
+            // Format the number with commas
+            let formattedValue = Number(inputValue).toLocaleString('id-ID'); // 'id-ID' for Indonesian locale
+
+            // Update the input value
+            event.target.value = formattedValue;
+        });
+
+        document.getElementById('formattedPrice2').addEventListener('input', function(event) {
+            // Remove existing commas and dots
+            let inputValue = event.target.value.replace(/[,\.]/g, '');
+
+            // Format the number with commas
+            let formattedValue = Number(inputValue).toLocaleString('id-ID'); // 'id-ID' for Indonesian locale
+
+            // Update the input value
+            event.target.value = formattedValue;
+        });
+    </script>
 @endpush

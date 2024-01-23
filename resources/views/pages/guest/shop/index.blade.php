@@ -52,7 +52,7 @@
                             <ul>
                                 @foreach ($categories as $cat)
                                     <li wire:key='{{ $cat->id }}' class="hover-bg active-pad"><a
-                                            href="{{ route('search', ['inputText' => $cat->name]) }}">{{ $cat->name }}</a>
+                                            href="{{ route('search', ['category' => $cat->name]) }}">{{ $cat->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -79,7 +79,7 @@
                             @foreach ($populartags as $pt)
                                 <div wire:key='{{ $pt->name }}' class="sidebar__item__size">
                                     <label for="large-{{ $pt->name }}">
-                                        <a href="{{ route('search', ['inputText' => $pt->name]) }}"
+                                        <a href="{{ route('search', ['tag' => $pt->name]) }}"
                                             class="hover-bg active-pad" style="color: #000000">
                                             {{ $pt->name }}
                                             <input type="radio" id="large-{{ $pt->name }}">
@@ -87,6 +87,17 @@
                                     </label>
                                 </div>
                             @endforeach
+                        </div>
+                        <div class="sidebar__item">
+                            <h4>
+                                Harga
+                            </h4>
+                            <form wire:submit.prevent='search' class="d-flex justify-content-center">
+                                <input type="text" class="form-control" id="formattedPrice" wire:model='lowPrice'>
+                                s.d
+                                <input type="text" class="form-control" id="formattedPrice2" wire:model='highPrice'>
+                                <button type="submit" class="btn btn-sm search-btn">Filter</button>
+                            </form>
                         </div>
                         <div class="sidebar__item">
                             <div class="latest-product__text">
@@ -124,8 +135,9 @@
                         <div class="row">
                             <div wire:ignore class="product__discount__slider owl-carousel">
                                 @foreach ($saleProducts as $sp)
-                                    <div class="col-lg-4" onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
-                            style="cursor: pointer;">
+                                    <div class="col-lg-4"
+                                        onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
+                                        style="cursor: pointer;">
                                         <div class="product__discount__item">
                                             <div class="product__discount__item__pic ">
                                                 <img class="imgSpecial"
@@ -232,8 +244,9 @@
 
                     <div class="row">
                         @foreach ($sortProducts as $sp)
-                            <div class="col-lg-4 col-md-6 col-sm-6" wire:key='{{ $sp->id }}' onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
-                            style="cursor: pointer;">
+                            <div class="col-lg-4 col-md-6 col-sm-6" wire:key='{{ $sp->id }}'
+                                onclick="window.location='{{ route('detailproduct', ['slug' => $sp->slug]) }}';"
+                                style="cursor: pointer;">
                                 <div class="product__item">
                                     <div class="product__item__pic">
                                         <img class="imgSpecial"
@@ -310,5 +323,28 @@
 
 
 @push('script')
+    <script>
+        document.getElementById('formattedPrice').addEventListener('input', function(event) {
+            // Remove existing commas and dots
+            let inputValue = event.target.value.replace(/[,\.]/g, '');
+
+            // Format the number with commas
+            let formattedValue = Number(inputValue).toLocaleString('id-ID'); // 'id-ID' for Indonesian locale
+
+            // Update the input value
+            event.target.value = formattedValue;
+        });
+
+        document.getElementById('formattedPrice2').addEventListener('input', function(event) {
+            // Remove existing commas and dots
+            let inputValue = event.target.value.replace(/[,\.]/g, '');
+
+            // Format the number with commas
+            let formattedValue = Number(inputValue).toLocaleString('id-ID'); // 'id-ID' for Indonesian locale
+
+            // Update the input value
+            event.target.value = formattedValue;
+        });
+    </script>
     <script src="{{ asset('guest/js/main.js') }}"></script>
 @endpush
