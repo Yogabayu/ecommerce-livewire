@@ -86,8 +86,7 @@
 <div>
     <livewire:HeadComponent />
     <!-- Breadcrumb Section Begin -->
-    <section wire:ignore class="breadcrumb-section set-bg"
-        style="background-image: url('{{ asset('guest/img/background-footer.webp') }}');">
+    <section wire:ignore class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/background-footer.webp') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -333,7 +332,7 @@
     <!-- Related Product Section End -->
 </div>
 @push('script')
-    {{-- <script src="{{ asset('guest/js/main.js') }}"></script> --}}
+    <script src="{{ asset('guest/js/pusat.js') }}"></script>
     <script>
         document.getElementById('formattedPrice').addEventListener('input', function(event) {
             // Remove existing commas and dots

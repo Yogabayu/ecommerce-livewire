@@ -13,8 +13,7 @@
 <div>
     <livewire:HeadComponent />
     <!-- Breadcrumb Section Begin -->
-    <section wire:ignore class="breadcrumb-section set-bg"
-        style="background-image: url('{{ asset('guest/img/background-footer.webp') }}');">
+    <section wire:ignore class="breadcrumb-section set-bg" data-setbg="{{ asset('guest/img/background-footer.webp') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -154,4 +153,5 @@
         // Set the default value for the input
         document.getElementById('monthInput').value = `${currentYear}-${currentMonth}`;
     </script>
+    <script src="{{ asset('guest/js/main.js') }}"></script>
 @endpush

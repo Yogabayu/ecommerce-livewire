@@ -89,6 +89,7 @@
     <script src="{{ asset('guest/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('guest/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('guest/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('guest/js/pusat.js') }}"></script>
     @stack('script')
     <livewire:scripts />
 </body>

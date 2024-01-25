@@ -12,7 +12,10 @@ class HeadComponent extends Component
     public function mount()
     {
         $this->categories = DB::table('categories')
-            ->leftJoin('products', 'categories.id', '=', 'products.category_id')
+            ->join('products', function ($join) {
+                $join->on('categories.id', '=', 'products.category_id')
+                    ->where('products.publish', '=', 1);
+            })
             ->select(
                 'categories.id',
                 'categories.name',
