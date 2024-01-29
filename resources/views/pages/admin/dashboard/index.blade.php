@@ -70,7 +70,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Produk</h4>
+                                <h4>Total Asset</h4>
                             </div>
                             <div class="card-body">
                                 {{ $totalProduct }}
@@ -85,7 +85,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Klik Semua Produk</h4>
+                                <h4>Total Klik Semua Asset</h4>
                             </div>
                             <div class="card-body">
                                 {{ $totalClickProduct }}
@@ -100,7 +100,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Share Semua Produk</h4>
+                                <h4>Total Share Semua Asset</h4>
                             </div>
                             <div class="card-body">
                                 {{ $totalShareProduct }}
@@ -113,7 +113,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Produk Paling Banyak di lihat</h4>
+                            <h4>Asset Paling Banyak di lihat</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('product.index') }}" class="btn btn-danger">Lihat Selengkapnya <i
                                         class="fas fa-chevron-right"></i></a>
@@ -124,7 +124,7 @@
                                 <table class="table-striped table">
                                     <tr>
                                         <th>Jumlah Dilihat</th>
-                                        <th>Produk</th>
+                                        <th>Asset</th>
                                         <th>Harga</th>
                                         <th>Action</th>
                                     </tr>

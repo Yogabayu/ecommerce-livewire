@@ -180,11 +180,11 @@ class ProductController extends Controller
     {
         try {
             if (auth()->user()->role_id == 1) {
-                $products = Product::with(['category', 'productPhoto' => function ($query) {
+                $products = Product::with(['category', 'user', 'productPhoto' => function ($query) {
                     $query->where('is_primary', 1);
                 }])->get();
             } else {
-                $products = Product::with(['category', 'productPhoto' => function ($query) {
+                $products = Product::with(['category', 'user', 'productPhoto' => function ($query) {
                     $query->where('is_primary', 1);
                 }])
                     ->where('user_uuid', auth()->user()->uuid)

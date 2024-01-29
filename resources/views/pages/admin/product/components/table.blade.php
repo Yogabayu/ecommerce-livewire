@@ -4,6 +4,9 @@
             <th class="text-center">
                 No.
             </th>
+            @if (auth()->user()->role_id == 1)
+                <th class="text-center" data-toggle="tooltip" title="Yang upload">User</th>
+            @endif
             <th class="text-center">Photo</th>
             <th class="text-center">Nama</th>
             <th class="text-center">Harga</th>
@@ -22,8 +25,14 @@
                 <td class="text-center">
                     {{ $no++ }}
                 </td>
-                <td class="text-center">                    
-                    <img src="{{ asset('storage/public/photos/' . $p->productPhoto[0]->photo) }}" alt="{{$p->name}}" class="img-fluid">                
+                @if (auth()->user()->role_id == 1)
+                    <td class="text-center">
+                        {{ $p->user->name }}
+                    </td>
+                @endif
+                <td class="text-center">
+                    <img src="{{ asset('storage/public/photos/' . $p->productPhoto[0]->photo) }}"
+                        alt="{{ $p->name }}" class="img-fluid">
                 </td>
                 <td class="text-center">{{ $p->name }}</td>
                 <td class="text-center">Rp{{ $p->price }},-</td>

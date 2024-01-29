@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('title')
-    Produk
+    Asset
 @endsection
 
 @push('style')
@@ -13,7 +13,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Produk</h1>
+                <h1>Asset</h1>
             </div>
 
             <div class="section-body">

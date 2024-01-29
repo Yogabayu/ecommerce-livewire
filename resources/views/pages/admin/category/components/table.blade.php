@@ -6,7 +6,7 @@
             </th>
             <th class="text-center">Gambar</th>
             <th class="text-center">Nama</th>
-            <th class="text-center">Jumlah produk yang memakai</th>
+            <th class="text-center">Jumlah Asset yang memakai</th>
             <th class="text-center">Status</th>
             <th class="text-center">Action</th>
         </tr>

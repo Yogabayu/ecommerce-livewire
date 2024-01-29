@@ -81,7 +81,7 @@
                                                 <i class="fas fa-tag"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="harga produk" name="price"
+                                        <input type="text" class="form-control" placeholder="harga asset" name="price"
                                             id="formattedPrice" value="{{ $product->price }}" readonly>
                                     </div>
                                 </div>

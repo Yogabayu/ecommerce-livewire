@@ -31,10 +31,14 @@ $("[data-checkboxes]").each(function() {
 $("#table-1").dataTable({
   "columnDefs": [
     { "sortable": false, "targets": [2,3] }
-  ]
+  ],
+  "scrollX": true,
+  "scrollY": true
 });
 $("#table-2").dataTable({
   "columnDefs": [
     { "sortable": false, "targets": [0,2,3] }
-  ]
+  ],
+  "scrollX": true,
+  "scrollY": true
 });

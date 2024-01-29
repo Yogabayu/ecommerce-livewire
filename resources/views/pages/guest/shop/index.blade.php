@@ -101,7 +101,7 @@
                         </div>
                         <div class="sidebar__item">
                             <div class="latest-product__text">
-                                <h4>Produk Terbaru</h4>
+                                <h4>Asset Terbaru</h4>
                                 <div wire:ignore class="latest-product__slider owl-carousel">
                                     @foreach ($latesProducts->chunk(3) as $chunk)
                                         <div class="latest-prdouct__slider__item">
@@ -236,7 +236,7 @@
                             </div>
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__found">
-                                    <h6><span>{{ $countProduct }}</span> Produk ditemukan</h6>
+                                    <h6><span>{{ $countProduct }}</span> Asset ditemukan</h6>
                                 </div>
                             </div>
                         </div>

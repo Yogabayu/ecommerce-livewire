@@ -5,7 +5,7 @@
                 No.
             </th>
             <th class="text-center">Tag</th>
-            <th class="text-center">Jumlah produk yang memakai</th>
+            <th class="text-center">Jumlah asset yang memakai tag</th>
             <th class="text-center">Action</th>
         </tr>
     </thead>
