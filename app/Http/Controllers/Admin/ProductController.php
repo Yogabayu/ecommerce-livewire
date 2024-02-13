@@ -236,6 +236,8 @@ class ProductController extends Controller
                 'photos.*'      => 'image|mimes:jpeg,jpg,png|max:2048',
             ], [
                 'photos.*.max' => 'Ukuran foto tidak boleh melebihi 2 MB.',
+                '*.required' => 'Kolom :attribute harus diisi.',
+                'tags.required' => 'Mohon pilih setidaknya satu tag.',
             ]);
 
             $cekIsSee = Product::where('is_hero', 1)->count();
