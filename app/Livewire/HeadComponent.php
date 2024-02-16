@@ -26,9 +26,9 @@ class HeadComponent extends Component
                 'categories.updated_at',
                 DB::raw('COUNT(products.category_id) as prod_count')
             )
+            ->where('categories.status', '!=', 0)
             ->groupBy('categories.id', 'categories.name', 'categories.slug', 'categories.image', 'categories.status', 'categories.created_at', 'categories.updated_at')
             ->orderByDesc('prod_count')
-            ->havingRaw('COUNT(categories.id) <= 11')
             ->get();
     }
 
