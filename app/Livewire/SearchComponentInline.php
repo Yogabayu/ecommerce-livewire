@@ -203,7 +203,7 @@ class SearchComponentInline extends Component
         if ($this->category && $this->tag == '' && $this->inputText == '') {
             $category = $this->category;
             $nameCat = DB::table('categories')->where('id', $category)->first();
-            $nameCat = $nameCat->name;
+            $this->nameCat = $nameCat->name;
             $query->where('c.id', $category);
         } elseif ($this->tag && $this->category == '' && $this->inputText == '') {
             $tag = $this->tag;
