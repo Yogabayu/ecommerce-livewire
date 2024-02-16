@@ -88,10 +88,9 @@ class SearchComponentInline extends Component
 
         if ($this->category && $this->tag == '' && $this->inputText == '') {
             $category = $this->category;
-            $idCategory = DB::table('categories')->where('name', 'LIKE', '%' . $category . '%')->first();
-            // $query->where(function ($query) use ($category) {
-            //     $query->where('c.name', 'LIKE', '%' . $category . '%');
-            // });
+            $idCategory = DB::table('categories')
+                ->where('name', 'LIKE', '%' . $category . '%')
+                ->first();
             $query->where('c.id', $idCategory->id);
         } elseif ($this->tag && $this->category == '' && $this->inputText == '') {
             $tag = $this->tag;
@@ -162,6 +161,7 @@ class SearchComponentInline extends Component
             '), 'ASC');
         }
 
+        $this->countProduct = $query->get()->count();
         $this->results = $query->groupBy(
             'c.name',
             'p.id',
@@ -175,7 +175,6 @@ class SearchComponentInline extends Component
             'pp.photo'
         )->paginate(10);
 
-        $this->countProduct = $query->get()->count();
 
         $this->state = $value;
     }
