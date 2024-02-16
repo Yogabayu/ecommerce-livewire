@@ -346,5 +346,5 @@
             event.target.value = formattedValue;
         });
     </script>
-    <script src="{{ asset('guest/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('guest/js/main.js') }}"></script> --}}
 @endpush

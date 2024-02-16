@@ -153,5 +153,5 @@
         // Set the default value for the input
         document.getElementById('monthInput').value = `${currentYear}-${currentMonth}`;
     </script>
-    <script src="{{ asset('guest/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('guest/js/main.js') }}"></script> --}}
 @endpush

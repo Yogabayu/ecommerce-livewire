@@ -35,12 +35,6 @@
                         <ul>
                             @foreach ($categories as $cat)
                                 <li wire:key='{{ $cat->name }}' class="hover-bg">
-                                    {{-- <a href="{{ route('search', ['category' => $cat->name]) }}">{{ $cat->name }}</a>
-                                    @if ($cat->prod_count)
-                                        <p class="prod_count">{{ $cat->prod_count }}
-                                        </p>
-                                    @endif --}}
-
                                     <div class="row" style="display: flex; justify-content: space-between;margin-right:2rem">
                                         <a href="{{ route('search', ['category' => $cat->name]) }}">{{ $cat->name }}</a>
                                         @if ($cat->prod_count)

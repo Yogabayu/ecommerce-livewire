@@ -332,7 +332,7 @@
     <!-- Related Product Section End -->
 </div>
 @push('script')
-    <script src="{{ asset('guest/js/pusat.js') }}"></script>
+    {{-- <script src="{{ asset('guest/js/pusat.js') }}"></script> --}}
     <script>
         document.getElementById('formattedPrice').addEventListener('input', function(event) {
             // Remove existing commas and dots

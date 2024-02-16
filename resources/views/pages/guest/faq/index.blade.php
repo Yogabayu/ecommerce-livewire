@@ -100,5 +100,5 @@
     </section>
 </div>
 @push('script')
-    <script src="{{ asset('guest/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('guest/js/main.js') }}"></script> --}}
 @endpush
