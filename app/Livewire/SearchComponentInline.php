@@ -88,10 +88,12 @@ class SearchComponentInline extends Component
 
         if ($this->category && $this->tag == '' && $this->inputText == '') {
             $category = $this->category;
-            $query->where(function ($query) use ($category) {
-                $query->where('c.name', 'LIKE', '%' . $category . '%')
-                    ->orWhere('c.slug', 'LIKE', '%' . $category . '%');
-            });
+            // $query->where(function ($query) use ($category) {
+            //     $query->where('c.name', 'LIKE', '%' . $category . '%')
+            //         ->orWhere('c.slug', 'LIKE', '%' . $category . '%');
+            // });
+            $idCategory = DB::table('categories')->where('name', 'LIKE', '%' . $category . '%')->first();
+            $query->where('c.id', $idCategory->id);
         } elseif ($this->tag && $this->category == '' && $this->inputText == '') {
             $tag = $this->tag;
             $query->where(function ($query) use ($tag) {
