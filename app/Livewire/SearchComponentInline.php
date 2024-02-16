@@ -276,7 +276,10 @@ class SearchComponentInline extends Component
 
         $this->results = $query->distinct()->simplePaginate(20);
 
-        $this->countProduct = $query->distinct()->count();
+        // $this->countProduct = $query->distinct()->count();
+        $countQuery = clone $query;
+        $countQuery->select(DB::raw('COUNT(*) as count'));
+        $this->countProduct = $countQuery->distinct()->count();
 
         $this->state = $value;
     }
