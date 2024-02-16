@@ -88,10 +88,10 @@ class SearchComponentInline extends Component
 
         if ($this->category && $this->tag == '' && $this->inputText == '') {
             $category = $this->category;
-            $idCategory = DB::table('categories')
-                ->where('name', 'LIKE', '%' . $category . '%')
-                ->first();
-            $query->where('c.id', $idCategory->id);
+            $query->where(function ($query) use ($category) {
+                $query->where('c.name', 'LIKE', '%' . $category . '%')
+                    ->orWhere('c.slug', 'LIKE', '%' . $category . '%');
+            });
         } elseif ($this->tag && $this->category == '' && $this->inputText == '') {
             $tag = $this->tag;
             $query->where(function ($query) use ($tag) {
@@ -173,7 +173,7 @@ class SearchComponentInline extends Component
             'dp.seeing_count',
             'dp.share_count',
             'pp.photo'
-        )->paginate(10);
+        )->simplePaginate(10);
 
 
         $this->state = $value;
