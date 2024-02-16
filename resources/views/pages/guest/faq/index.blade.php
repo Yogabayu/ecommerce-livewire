@@ -53,7 +53,7 @@
 @endpush
 <div>
     <!-- Hero Section Begin -->
-    <livewire:HeadComponent />
+    <livewire:headComponent />
     <!-- Hero Section End -->
     {{-- <div class="text-center">
         <h2 class="mt-5 mb-5">FAQ</h2>

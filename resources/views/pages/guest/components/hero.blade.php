@@ -30,7 +30,7 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>Semua Kategori</span>
+                            <span>Semua Kategori.</span>
                         </div>
                         <ul>
                             @foreach ($categories as $cat)
