@@ -123,7 +123,7 @@
                             <ul>
                                 @foreach ($categories as $cat)
                                     <li wire:key='{{ $cat->id }}'
-                                        class="@if ($category == $cat->name) active-pad @endif hover-bg">
+                                        class="@if ($category == $cat->id) active-pad @endif hover-bg">
                                         <a wire:click="updateCategory('{{ $cat->id }}')">{{ $cat->name }}</a>
                                     </li>
                                 @endforeach
@@ -136,11 +136,11 @@
                                 @endif
                             </h4>
                             @foreach ($populartags as $pt)
-                                <div wire:key='{{ $pt->id }}' class="sidebar__item__size">
-                                    <label for="large-{{ $pt->id }}" wire:click="updateTag('{{ $pt->name }}')"
-                                        class="@if ($tag == $pt->id) active-pad @endif hover-bg">
+                                <div wire:key='{{ $pt->name }}' class="sidebar__item__size">
+                                    <label for="large-{{ $pt->name }}" wire:click="updateTag('{{ $pt->name }}')"
+                                        class="@if ($tag == $pt->name) active-pad @endif hover-bg">
                                         {{ $pt->name }}
-                                        <input type="radio" id="large-{{ $pt->id }}">
+                                        <input type="radio" id="large-{{ $pt->name }}">
                                     </label>
                                 </div>
                             @endforeach
