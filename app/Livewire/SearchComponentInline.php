@@ -89,8 +89,8 @@ class SearchComponentInline extends Component
         if ($this->category && $this->tag == '' && $this->inputText == '') {
             $category = $this->category;
             $query->where(function ($query) use ($category) {
-                $query->where('c.name', $category)
-                    ->orWhere('c.slug', $category);
+                $query->where('c.name', 'LIKE', '%' . $category . '%')
+                    ->orWhere('c.slug', 'LIKE', '%' . $category . '%');
             });
         } elseif ($this->tag && $this->category == '' && $this->inputText == '') {
             $tag = $this->tag;
