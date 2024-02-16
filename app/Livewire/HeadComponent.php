@@ -28,6 +28,7 @@ class HeadComponent extends Component
             )
             ->groupBy('categories.id', 'categories.name', 'categories.slug', 'categories.image', 'categories.status', 'categories.created_at', 'categories.updated_at')
             ->orderByDesc('prod_count')
+            ->havingRaw('COUNT(categories.id) <= 11')
             ->get();
     }
 
