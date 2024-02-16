@@ -276,9 +276,9 @@ class SearchComponentInline extends Component
     '), 'ASC');
         }
 
-        $this->results = $query->simplePaginate(10);
+        $this->results = $query->simplePaginate(20);
 
-        $this->countProduct = $query->select('p.id')->distinct()->count();
+        $this->countProduct = $query->distinct()->count();
 
         $this->state = $value;
     }
