@@ -202,11 +202,6 @@ class SearchComponentInline extends Component
 
         if ($this->category && $this->tag == '' && $this->inputText == '') {
             $category = $this->category;
-            // $query->where(function ($query) use ($category) {
-            //     $query->where('c.name', 'LIKE', '%' . $category . '%')
-            //         ->orWhere('c.slug', 'LIKE', '%' . $category . '%');
-            // });
-            // $idCategory = DB::table('categories')->where('name', 'LIKE', '%' . $category . '%')->first();
             $nameCat = DB::table('categories')->where('id', $category)->first();
             $nameCat = $nameCat->name;
             $query->where('c.id', $category);
@@ -279,7 +274,7 @@ class SearchComponentInline extends Component
     '), 'ASC');
         }
 
-        $this->results = $query->simplePaginate(20);
+        $this->results = $query->distinct()->simplePaginate(20);
 
         $this->countProduct = $query->distinct()->count();
 
