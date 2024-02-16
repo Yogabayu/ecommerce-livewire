@@ -161,7 +161,6 @@ class SearchComponentInline extends Component
             '), 'ASC');
         }
 
-        $this->countProduct = $query->get()->count();
         $this->results = $query->groupBy(
             'c.name',
             'p.id',
@@ -175,6 +174,7 @@ class SearchComponentInline extends Component
             'pp.photo'
         )->simplePaginate(10);
 
+        $this->countProduct = $query->count();
 
         $this->state = $value;
     }
