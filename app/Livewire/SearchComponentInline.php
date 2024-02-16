@@ -88,7 +88,7 @@ class SearchComponentInline extends Component
 
         if ($this->category && $this->tag == '' && $this->inputText == '') {
             $category = $this->category;
-            $idCategory = DB::table('categories')->where('c.name', 'LIKE', '%' . $category . '%')->first();
+            $idCategory = DB::table('categories')->where('name', 'LIKE', '%' . $category . '%')->first();
             // $query->where(function ($query) use ($category) {
             //     $query->where('c.name', 'LIKE', '%' . $category . '%');
             // });
