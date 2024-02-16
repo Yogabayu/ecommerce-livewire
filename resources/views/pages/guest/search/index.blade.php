@@ -124,7 +124,7 @@
                                 @foreach ($categories as $cat)
                                     <li wire:key='{{ $cat->id }}'
                                         class="@if ($category == $cat->name) active-pad @endif hover-bg">
-                                        <a wire:click="updateCategory('{{ $cat->name }}')">{{ $cat->name }}</a>
+                                        <a wire:click="updateCategory('{{ $cat->id }}')">{{ $cat->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -214,8 +214,8 @@
                             <div class="col-lg-3 col-md-3">
                                 <div class="filter__found">
                                     <h6>Terkait: <span>
-                                            @if ($category)
-                                                {{ $category }} |
+                                            @if ($nameCat)
+                                                {{ $nameCat }} |
                                             @elseif ($tag)
                                                 {{ $tag }} |
                                             @elseif ($inputText)

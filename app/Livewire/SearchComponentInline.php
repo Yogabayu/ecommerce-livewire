@@ -22,6 +22,7 @@ class SearchComponentInline extends Component
     public $populartags = [];
     public $latesProducts = [];
     // public $lowPrice, $highPrice;
+    public $nameCat = '';
 
 
     public function updateSortState($value)
@@ -205,8 +206,10 @@ class SearchComponentInline extends Component
             //     $query->where('c.name', 'LIKE', '%' . $category . '%')
             //         ->orWhere('c.slug', 'LIKE', '%' . $category . '%');
             // });
-            $idCategory = DB::table('categories')->where('name', 'LIKE', '%' . $category . '%')->first();
-            $query->where('c.id', $idCategory->id);
+            // $idCategory = DB::table('categories')->where('name', 'LIKE', '%' . $category . '%')->first();
+            $nameCat = DB::table('categories')->where('id', $category)->first();
+            $nameCat = $nameCat->name;
+            $query->where('c.id', $category);
         } elseif ($this->tag && $this->category == '' && $this->inputText == '') {
             $tag = $this->tag;
             $query->where(function ($query) use ($tag) {
