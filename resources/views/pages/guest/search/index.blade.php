@@ -136,11 +136,11 @@
                                 @endif
                             </h4>
                             @foreach ($populartags as $pt)
-                                <div wire:key='{{ $pt->name }}' class="sidebar__item__size">
-                                    <label for="large-{{ $pt->name }}" wire:click="updateTag('{{ $pt->name }}')"
-                                        class="@if ($tag == $pt->name) active-pad @endif hover-bg">
+                                <div wire:key='{{ $pt->id }}' class="sidebar__item__size">
+                                    <label for="large-{{ $pt->id }}" wire:click="updateTag('{{ $pt->name }}')"
+                                        class="@if ($tag == $pt->id) active-pad @endif hover-bg">
                                         {{ $pt->name }}
-                                        <input type="radio" id="large-{{ $pt->name }}">
+                                        <input type="radio" id="large-{{ $pt->id }}">
                                     </label>
                                 </div>
                             @endforeach
@@ -227,7 +227,7 @@
                             </div>
                             <div class="col-lg-3 col-md-3">
                                 <div class="filter__found">
-                                    <h6><span>{{ $countProduct }}</span> Asset ditemukan</h6>
+                                    {{-- <h6><span>{{ $countProduct }}</span> Asset ditemukan</h6> --}}
                                 </div>
                             </div>
                         </div>
