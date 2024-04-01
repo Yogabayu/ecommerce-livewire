@@ -31,9 +31,9 @@
         /* CSS for responsiveness */
         @media only screen and (max-width: 768px) {
             .responsive-h2 {
-                font-size: 18px;
+                font-size: 16px;
                 /* Adjust font size for h2 on mobile */
-                line-height: 24px;
+                line-height: 22px;
                 /* Adjust line height for h2 on mobile */
             }
 
