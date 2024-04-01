@@ -28,22 +28,6 @@
             border-radius: 10px;
         }
 
-        /* CSS for responsiveness */
-        @media only screen and (max-width: 768px) {
-            .responsive-h2 {
-                font-size: 16px;
-                /* Adjust font size for h2 on mobile */
-                line-height: 22px;
-                /* Adjust line height for h2 on mobile */
-            }
-
-            .responsive-p {
-                font-size: 14px;
-                /* Adjust font size for paragraph on mobile */
-                line-height: 20px;
-                /* Adjust line height for paragraph on mobile */
-            }
-        }
     </style>
 @endpush
 <!-- Hero Section Begin -->
@@ -100,8 +84,8 @@
                         @if ($heroProd)
                             <span class="bg-overdrive">{{ $heroProd->category ?? 'kategori' }}</span>
                             <div style="max-width: 600px;">
-                                <h2 class="bg-overdrive responsive-h2">{{ $heroProd->name ?? 'name product' }}</h2>
-                                <p class="bg-overdrive responsive-p">{{ $heroProd->short_desc ?? 'short desc' }}</p>
+                                <h2 class="bg-overdrive">{{ $heroProd->name ?? 'name product' }}</h2>
+                                <p class="bg-overdrive">{{ $heroProd->short_desc ?? 'short desc' }}</p>
                             </div>
                             <a href="{{ route('detailproduct', ['slug' => $heroProd->slug]) }}"
                                 class="primary-btn">Detail</a>

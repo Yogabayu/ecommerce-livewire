@@ -758,6 +758,12 @@ ol {
 	font-weight: 700;
 	margin: 10px 0;
 }
+@media only screen and (max-width: 768px) {
+    .hero__text h2 {
+        font-size: 24px; /* Adjust font size for h2 on mobile */
+        line-height: 30px; /* Adjust line height for h2 on mobile */
+    }
+}
 
 .hero__text p {
 	margin-bottom: 35px;
