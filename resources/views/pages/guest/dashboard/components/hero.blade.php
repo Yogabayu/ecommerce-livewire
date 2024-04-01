@@ -4,7 +4,6 @@
             background-color: #FFFF;
             padding-inline: 5px;
             border-radius: 10px;
-            font-size: 26px;
         }
 
         .hover-bg:hover {
@@ -85,7 +84,8 @@
                         @if ($heroProd)
                             <span class="bg-overdrive">{{ $heroProd->category ?? 'kategori' }}</span>
                             <div style="max-width: 600px;">
-                                <h2 class="bg-overdrive">{{ $heroProd->name ?? 'name product' }}</h2>
+                                <h2 class="bg-overdrive" style="
+                                font-size: 26px;">{{ $heroProd->name ?? 'name product' }}</h2>
                                 <p class="bg-overdrive">{{ $heroProd->short_desc ?? 'short desc' }}</p>
                             </div>
                             <a href="{{ route('detailproduct', ['slug' => $heroProd->slug]) }}"
