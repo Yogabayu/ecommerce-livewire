@@ -27,6 +27,23 @@
             background-color: #350f72;
             border-radius: 10px;
         }
+
+        /* CSS for responsiveness */
+        @media only screen and (max-width: 768px) {
+            .responsive-h2 {
+                font-size: 18px;
+                /* Adjust font size for h2 on mobile */
+                line-height: 24px;
+                /* Adjust line height for h2 on mobile */
+            }
+
+            .responsive-p {
+                font-size: 14px;
+                /* Adjust font size for paragraph on mobile */
+                line-height: 20px;
+                /* Adjust line height for paragraph on mobile */
+            }
+        }
     </style>
 @endpush
 <!-- Hero Section Begin -->
@@ -42,8 +59,9 @@
                     <ul>
                         @foreach ($categories->take(10) as $index => $cat)
                             <li wire:key='{{ $cat->id }}' class="hover-bg">
-                                <div class="row" style="display: flex; justify-content: space-between;margin-right:2rem">
-                                    <a href="{{ route('search', ['category' => $cat->id]) }}" >{{ $cat->name }}</a>
+                                <div class="row"
+                                    style="display: flex; justify-content: space-between;margin-right:2rem">
+                                    <a href="{{ route('search', ['category' => $cat->id]) }}">{{ $cat->name }}</a>
                                     @if ($cat->prod_count)
                                         <p class="prod_count">{{ $cat->prod_count }}</p>
                                     @endif
@@ -53,7 +71,8 @@
 
                         @if ($categories->count() > 10)
                             <li wire:key='more-categories' class="hover-bg">
-                                <div class="row" style="display: flex; justify-content: space-between;margin-right:2rem">
+                                <div class="row"
+                                    style="display: flex; justify-content: space-between;margin-right:2rem">
                                     <a href="{{ route('shop') }}">lainnya</a>
                                 </div>
                             </li>
@@ -81,8 +100,8 @@
                         @if ($heroProd)
                             <span class="bg-overdrive">{{ $heroProd->category ?? 'kategori' }}</span>
                             <div style="max-width: 600px;">
-                                <h2 class="bg-overdrive">{{ $heroProd->name ?? 'name product' }}</h2>
-                                <p class="bg-overdrive">{{ $heroProd->short_desc ?? 'short desc' }}</p>
+                                <h2 class="bg-overdrive responsive-h2">{{ $heroProd->name ?? 'name product' }}</h2>
+                                <p class="bg-overdrive responsive-p">{{ $heroProd->short_desc ?? 'short desc' }}</p>
                             </div>
                             <a href="{{ route('detailproduct', ['slug' => $heroProd->slug]) }}"
                                 class="primary-btn">Detail</a>
