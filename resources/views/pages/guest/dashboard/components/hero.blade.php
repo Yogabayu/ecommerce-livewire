@@ -83,7 +83,7 @@
                     <div class="hero__text">
                         @if ($heroProd)
                             <span class="bg-overdrive">{{ $heroProd->category ?? 'kategori' }}</span>
-                            <div style="max-width: 600px;">
+                            <div style="max-width: 600px; margin-right: 10px;">
                                 <h2 class="bg-overdrive" style="
                                 font-size: 26px;">{{ $heroProd->name ?? 'name product' }}</h2>
                                 <p class="bg-overdrive">{{ $heroProd->short_desc ?? 'short desc' }}</p>
