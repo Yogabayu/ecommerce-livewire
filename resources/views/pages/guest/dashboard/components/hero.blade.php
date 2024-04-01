@@ -3,7 +3,8 @@
         .bg-overdrive {
             background-color: #FFFF;
             padding-inline: 5px;
-            border-radius: 10px
+            border-radius: 10px;
+            font-size: 26px;
         }
 
         .hover-bg:hover {
