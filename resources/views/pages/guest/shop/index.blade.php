@@ -52,7 +52,7 @@
                             <ul>
                                 @foreach ($categories as $cat)
                                     <li wire:key='{{ $cat->id }}' class="hover-bg active-pad"><a
-                                            href="{{ route('search', ['category' => $cat->name]) }}">{{ $cat->name }}</a>
+                                            href="{{ route('search', ['category' => $cat->id]) }}">{{ $cat->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
