@@ -161,12 +161,12 @@
                                     <h6><a
                                             href="{{ route('detailproduct', ['slug' => $fp->slug]) }}">{{ $fp->name }}</a>
                                     </h6>
-                                    @if ($fp->after_sale)
+                                    {{-- @if ($fp->after_sale)
                                         <h5>Rp.{{ $fp->after_sale }}</h5>
                                         <span style="text-decoration: line-through">Rp.{{ $fp->price }}</span>
                                     @else
                                         <h5>Rp.{{ $fp->price }}</h5>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -223,13 +223,13 @@
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>{{ $product->name }}</h6>
-                                                        @if ($product->after_sale)
+                                                        {{-- @if ($product->after_sale)
                                                             <span>Rp.{{ $product->after_sale }}</span>
                                                             <p style="text-decoration: line-through">
                                                                 Rp.{{ $product->price }}</p>
                                                         @else
                                                             <span>Rp.{{ $product->price }}</span>
-                                                        @endif
+                                                        @endif --}}
                                                     </div>
                                                 </a>
                                             </div>
@@ -262,14 +262,14 @@
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>{{ $product->name }}</h6>
-                                                        @if ($product->after_sale)
+                                                        {{-- @if ($product->after_sale)
                                                             <span>Rp.{{ $product->after_sale }}</span>
                                                             <p style="text-decoration: line-through">
                                                                 Rp.{{ $product->price }}
                                                             </p>
                                                         @else
                                                             <span>Rp.{{ $product->price }}</span>
-                                                        @endif
+                                                        @endif --}}
                                                     </div>
                                                 </a>
                                             </div>
@@ -302,14 +302,14 @@
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>{{ $product->name }}</h6>
-                                                        @if ($product->after_sale)
+                                                        {{-- @if ($product->after_sale)
                                                             <span>Rp.{{ $product->after_sale }}</span>
                                                             <p style="text-decoration: line-through">
                                                                 Rp.{{ $product->price }}
                                                             </p>
                                                         @else
                                                             <span>Rp.{{ $product->price }}</span>
-                                                        @endif
+                                                        @endif --}}
                                                     </div>
                                                 </a>
                                             </div>

@@ -145,7 +145,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="sidebar__item">
+                        {{-- <div class="sidebar__item">
                             <h4>Harga 
                                 @if ($lowPrice || $highPrice)
                                     <button class="btn btn-sm" wire:click='clearFilter(3)'>Hapus filter <i
@@ -155,7 +155,7 @@
                             <input type="text" class="form-control" id="formattedPrice" wire:model.live='lowPrice'>
                             s.d <input type="text" class="form-control" id="formattedPrice2"
                                 wire:model.live='highPrice'>
-                        </div>
+                        </div> --}}
                         <div class="sidebar__item hidden-on-phone">
                             <div class="latest-product__text">
                                 <h4>Asset Terbaru</h4>
@@ -173,7 +173,7 @@
                                                     </div>
                                                     <div class="latest-product__item__text">
                                                         <h6>{{ $product->name }}</h6>
-                                                        <span>Rp.{{ $product->price }}</span>
+                                                        {{-- <span>Rp.{{ $product->price }}</span> --}}
                                                     </div>
                                                 </a>
                                             @endforeach
@@ -263,13 +263,13 @@
                                         </div>
                                         <div class="product__item__text">
                                             <h6><a href="#">{{ $sp->name }}</a></h6>
-                                            @if ($sp->after_sale)
+                                            {{-- @if ($sp->after_sale)
                                                 <h5>Rp.{{ $sp->after_sale }}</h5>
                                                 <span
                                                     style="text-decoration: line-through">Rp.{{ $sp->price }}</span>
                                             @else
                                                 <h5>Rp.{{ $sp->price }}</h5>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                     </div>
                                 </div>
@@ -316,12 +316,12 @@
                                 <h6><a
                                         href="{{ route('detailproduct', ['slug' => $rp->slug]) }}">{{ $rp->name }}</a>
                                 </h6>
-                                @if ($rp->after_sale)
+                                {{-- @if ($rp->after_sale)
                                     <h5>Rp.{{ $rp->after_sale }}</h5>
                                     <span style="text-decoration: line-through">Rp.{{ $rp->price }}</span>
                                 @else
                                     <h5>Rp.{{ $rp->price }}</h5>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                     </div>

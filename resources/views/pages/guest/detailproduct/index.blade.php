@@ -145,7 +145,7 @@
                                     @endif Views)</span>
                             @endif
                         </div>
-                        <div class="product__details__price">
+                        {{-- <div class="product__details__price">
                             @if ($detailProduct->after_sale)
                                 <span>
                                     Rp.{{ $detailProduct->after_sale }}*</span>
@@ -154,7 +154,7 @@
                             @else
                                 <span>Rp.{{ $generalProduct->price }}*</span>
                             @endif
-                        </div>
+                        </div> --}}
                         <p style="margin-bottom: 10px">{{ $generalProduct->short_desc }}</p>
                         <div class="product__details__quantity" style="width: 20%">
 
@@ -1016,17 +1016,12 @@
                                         <a href="#"
                                             style="display: flex; align-items: center; justify-content: center;">
                                             <i class="fa fa-share" style="margin: 0; padding: 0;"></i>
-                                            {{-- {{ $rp->share_count }} --}}
                                             @if ($rp->share_count >= 1000)
-                                                {{-- <span> --}}
                                                 {{ $rp->share_count >= 1000000
                                                     ? number_format($rp->share_count / 1000000, 1) . 'M'
                                                     : number_format($rp->share_count / 1000, 1) . 'k' }}
-                                                {{-- </span> --}}
                                             @else
-                                                {{-- <span> --}}
                                                 {{ $rp->share_count }}
-                                                {{-- </span> --}}
                                             @endif
                                         </a>
                                     </li>
@@ -1042,7 +1037,7 @@
                                 <h6><a
                                         href="{{ route('detailproduct', ['slug' => $rp->slug]) }}">{{ $rp->name }}</a>
                                 </h6>
-                                <h5>Rp.{{ $rp->price }}</h5>
+                                {{-- <h5>Rp.{{ $rp->price }}</h5> --}}
                             </div>
                         </div>
                     </div>
